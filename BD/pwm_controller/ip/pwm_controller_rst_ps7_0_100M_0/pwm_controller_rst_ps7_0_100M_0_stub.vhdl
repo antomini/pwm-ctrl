@@ -1,10 +1,10 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Thu Dec 22 18:46:41 2022
+-- Date        : Mon Feb  6 18:14:43 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/antonio/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_rst_ps7_0_100M_0/pwm_controller_rst_ps7_0_100M_0_stub.vhdl
+--               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_rst_ps7_0_100M_0/pwm_controller_rst_ps7_0_100M_0_stub.vhdl
 -- Design      : pwm_controller_rst_ps7_0_100M_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1

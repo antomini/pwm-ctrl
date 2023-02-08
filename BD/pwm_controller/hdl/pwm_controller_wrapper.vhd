@@ -1,7 +1,7 @@
 --Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
---Date        : Thu Dec 22 18:45:27 2022
+--Date        : Wed Feb  8 11:28:12 2023
 --Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target pwm_controller_wrapper.bd
 --Design      : pwm_controller_wrapper
@@ -33,7 +33,12 @@ entity pwm_controller_wrapper is
     FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
-    FIXED_IO_ps_srstb : inout STD_LOGIC
+    FIXED_IO_ps_srstb : inout STD_LOGIC;
+    Vaux1_0_v_n : in STD_LOGIC;
+    Vaux1_0_v_p : in STD_LOGIC;
+    Vp_Vn_0_v_n : in STD_LOGIC;
+    Vp_Vn_0_v_p : in STD_LOGIC;
+    pwm_o_0 : out STD_LOGIC
   );
 end pwm_controller_wrapper;
 
@@ -60,7 +65,12 @@ architecture STRUCTURE of pwm_controller_wrapper is
     FIXED_IO_ddr_vrp : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
-    FIXED_IO_ps_porb : inout STD_LOGIC
+    FIXED_IO_ps_porb : inout STD_LOGIC;
+    Vaux1_0_v_n : in STD_LOGIC;
+    Vaux1_0_v_p : in STD_LOGIC;
+    Vp_Vn_0_v_n : in STD_LOGIC;
+    Vp_Vn_0_v_p : in STD_LOGIC;
+    pwm_o_0 : out STD_LOGIC
   );
   end component pwm_controller;
 begin
@@ -86,6 +96,11 @@ pwm_controller_i: component pwm_controller
       FIXED_IO_mio(53 downto 0) => FIXED_IO_mio(53 downto 0),
       FIXED_IO_ps_clk => FIXED_IO_ps_clk,
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
-      FIXED_IO_ps_srstb => FIXED_IO_ps_srstb
+      FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
+      Vaux1_0_v_n => Vaux1_0_v_n,
+      Vaux1_0_v_p => Vaux1_0_v_p,
+      Vp_Vn_0_v_n => Vp_Vn_0_v_n,
+      Vp_Vn_0_v_p => Vp_Vn_0_v_p,
+      pwm_o_0 => pwm_o_0
     );
 end STRUCTURE;

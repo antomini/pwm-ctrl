@@ -14,10 +14,8 @@
 -- 
 -- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
--- Further Improvements : duty should not be greather than top
---                        we should use a logic that keeps duty < top
---                        (it can be done externally)
+-- Additional Comments: Using duty_i > top_i will make a 100% duty cycle.
+-- Further Improvements:
 ----------------------------------------------------------------------------------
 
 
@@ -34,12 +32,16 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity pwm_v0 is
-    generic (BIT_NUM : positive := 16);
-    Port ( clk_i : in STD_LOGIC;
-           duty_i : in STD_LOGIC_VECTOR (BIT_NUM-1 downto 0);
-           top_i : in STD_LOGIC_VECTOR (BIT_NUM-1 downto 0);
-           pwm_o : out STD_LOGIC;
-           counter_o : out STD_LOGIC_vector (BIT_NUM-1 downto 0));
+    generic (
+        BIT_NUM : positive := 16
+    );
+    Port ( 
+        clk_i : in STD_LOGIC;
+        duty_i : in STD_LOGIC_VECTOR (BIT_NUM-1 downto 0);
+        top_i : in STD_LOGIC_VECTOR (BIT_NUM-1 downto 0);
+        pwm_o : out STD_LOGIC;
+        counter_o : out STD_LOGIC_vector (BIT_NUM-1 downto 0)
+    );
 end pwm_v0;
 
 architecture Behavioral of pwm_v0 is
@@ -50,7 +52,7 @@ begin
         if rising_edge(clk_i) then
             if (counter_r >= unsigned(top_i)) then
                 counter_r <= to_unsigned(0, counter_r'length);
-            else 
+            else
                 counter_r <= counter_r + 1;
             end if;
         end if;
@@ -59,7 +61,8 @@ begin
     begin
         if(counter_r < unsigned(duty_i)) then
             pwm_o <= '1';
-        else pwm_o <= '0';
+        else
+            pwm_o <= '0';
         end if;
     end process;
     

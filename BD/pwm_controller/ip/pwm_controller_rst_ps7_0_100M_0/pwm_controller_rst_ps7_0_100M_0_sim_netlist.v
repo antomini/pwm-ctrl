@@ -1,10 +1,10 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Thu Dec 22 18:46:41 2022
+// Date        : Mon Feb  6 18:14:43 2023
 // Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/antonio/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_rst_ps7_0_100M_0/pwm_controller_rst_ps7_0_100M_0_sim_netlist.v
+//               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_rst_ps7_0_100M_0/pwm_controller_rst_ps7_0_100M_0_sim_netlist.v
 // Design      : pwm_controller_rst_ps7_0_100M_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.

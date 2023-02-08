@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -108,6 +108,45 @@ module pwm_controller_processing_system7_0_0 (
   input bit [1 : 0] M_AXI_GP0_BRESP,
   input bit [1 : 0] M_AXI_GP0_RRESP,
   input bit [31 : 0] M_AXI_GP0_RDATA,
+  output bit_as_bool M_AXI_GP1_ARVALID,
+  output bit_as_bool M_AXI_GP1_AWVALID,
+  output bit_as_bool M_AXI_GP1_BREADY,
+  output bit_as_bool M_AXI_GP1_RREADY,
+  output bit_as_bool M_AXI_GP1_WLAST,
+  output bit_as_bool M_AXI_GP1_WVALID,
+  output bit [11 : 0] M_AXI_GP1_ARID,
+  output bit [11 : 0] M_AXI_GP1_AWID,
+  output bit [11 : 0] M_AXI_GP1_WID,
+  output bit [1 : 0] M_AXI_GP1_ARBURST,
+  output bit [1 : 0] M_AXI_GP1_ARLOCK,
+  output bit [2 : 0] M_AXI_GP1_ARSIZE,
+  output bit [1 : 0] M_AXI_GP1_AWBURST,
+  output bit [1 : 0] M_AXI_GP1_AWLOCK,
+  output bit [2 : 0] M_AXI_GP1_AWSIZE,
+  output bit [2 : 0] M_AXI_GP1_ARPROT,
+  output bit [2 : 0] M_AXI_GP1_AWPROT,
+  output bit [31 : 0] M_AXI_GP1_ARADDR,
+  output bit [31 : 0] M_AXI_GP1_AWADDR,
+  output bit [31 : 0] M_AXI_GP1_WDATA,
+  output bit [3 : 0] M_AXI_GP1_ARCACHE,
+  output bit [3 : 0] M_AXI_GP1_ARLEN,
+  output bit [3 : 0] M_AXI_GP1_ARQOS,
+  output bit [3 : 0] M_AXI_GP1_AWCACHE,
+  output bit [3 : 0] M_AXI_GP1_AWLEN,
+  output bit [3 : 0] M_AXI_GP1_AWQOS,
+  output bit [3 : 0] M_AXI_GP1_WSTRB,
+  input bit_as_bool M_AXI_GP1_ACLK,
+  input bit_as_bool M_AXI_GP1_ARREADY,
+  input bit_as_bool M_AXI_GP1_AWREADY,
+  input bit_as_bool M_AXI_GP1_BVALID,
+  input bit_as_bool M_AXI_GP1_RLAST,
+  input bit_as_bool M_AXI_GP1_RVALID,
+  input bit_as_bool M_AXI_GP1_WREADY,
+  input bit [11 : 0] M_AXI_GP1_BID,
+  input bit [11 : 0] M_AXI_GP1_RID,
+  input bit [1 : 0] M_AXI_GP1_BRESP,
+  input bit [1 : 0] M_AXI_GP1_RRESP,
+  input bit [31 : 0] M_AXI_GP1_RDATA,
   output bit_as_bool FCLK_CLK0,
   output bit_as_bool FCLK_RESET0_N,
   output bit [53 : 0] MIO,
@@ -137,7 +176,7 @@ endmodule
 
 `ifdef XCELIUM
 (* XMSC_MODULE_EXPORT *)
-module pwm_controller_processing_system7_0_0 (USB0_PORT_INDCTL,USB0_VBUS_PWRSELECT,USB0_VBUS_PWRFAULT,M_AXI_GP0_ARVALID,M_AXI_GP0_AWVALID,M_AXI_GP0_BREADY,M_AXI_GP0_RREADY,M_AXI_GP0_WLAST,M_AXI_GP0_WVALID,M_AXI_GP0_ARID,M_AXI_GP0_AWID,M_AXI_GP0_WID,M_AXI_GP0_ARBURST,M_AXI_GP0_ARLOCK,M_AXI_GP0_ARSIZE,M_AXI_GP0_AWBURST,M_AXI_GP0_AWLOCK,M_AXI_GP0_AWSIZE,M_AXI_GP0_ARPROT,M_AXI_GP0_AWPROT,M_AXI_GP0_ARADDR,M_AXI_GP0_AWADDR,M_AXI_GP0_WDATA,M_AXI_GP0_ARCACHE,M_AXI_GP0_ARLEN,M_AXI_GP0_ARQOS,M_AXI_GP0_AWCACHE,M_AXI_GP0_AWLEN,M_AXI_GP0_AWQOS,M_AXI_GP0_WSTRB,M_AXI_GP0_ACLK,M_AXI_GP0_ARREADY,M_AXI_GP0_AWREADY,M_AXI_GP0_BVALID,M_AXI_GP0_RLAST,M_AXI_GP0_RVALID,M_AXI_GP0_WREADY,M_AXI_GP0_BID,M_AXI_GP0_RID,M_AXI_GP0_BRESP,M_AXI_GP0_RRESP,M_AXI_GP0_RDATA,FCLK_CLK0,FCLK_RESET0_N,MIO,DDR_CAS_n,DDR_CKE,DDR_Clk_n,DDR_Clk,DDR_CS_n,DDR_DRSTB,DDR_ODT,DDR_RAS_n,DDR_WEB,DDR_BankAddr,DDR_Addr,DDR_VRN,DDR_VRP,DDR_DM,DDR_DQ,DDR_DQS_n,DDR_DQS,PS_SRSTB,PS_CLK,PS_PORB)
+module pwm_controller_processing_system7_0_0 (USB0_PORT_INDCTL,USB0_VBUS_PWRSELECT,USB0_VBUS_PWRFAULT,M_AXI_GP0_ARVALID,M_AXI_GP0_AWVALID,M_AXI_GP0_BREADY,M_AXI_GP0_RREADY,M_AXI_GP0_WLAST,M_AXI_GP0_WVALID,M_AXI_GP0_ARID,M_AXI_GP0_AWID,M_AXI_GP0_WID,M_AXI_GP0_ARBURST,M_AXI_GP0_ARLOCK,M_AXI_GP0_ARSIZE,M_AXI_GP0_AWBURST,M_AXI_GP0_AWLOCK,M_AXI_GP0_AWSIZE,M_AXI_GP0_ARPROT,M_AXI_GP0_AWPROT,M_AXI_GP0_ARADDR,M_AXI_GP0_AWADDR,M_AXI_GP0_WDATA,M_AXI_GP0_ARCACHE,M_AXI_GP0_ARLEN,M_AXI_GP0_ARQOS,M_AXI_GP0_AWCACHE,M_AXI_GP0_AWLEN,M_AXI_GP0_AWQOS,M_AXI_GP0_WSTRB,M_AXI_GP0_ACLK,M_AXI_GP0_ARREADY,M_AXI_GP0_AWREADY,M_AXI_GP0_BVALID,M_AXI_GP0_RLAST,M_AXI_GP0_RVALID,M_AXI_GP0_WREADY,M_AXI_GP0_BID,M_AXI_GP0_RID,M_AXI_GP0_BRESP,M_AXI_GP0_RRESP,M_AXI_GP0_RDATA,M_AXI_GP1_ARVALID,M_AXI_GP1_AWVALID,M_AXI_GP1_BREADY,M_AXI_GP1_RREADY,M_AXI_GP1_WLAST,M_AXI_GP1_WVALID,M_AXI_GP1_ARID,M_AXI_GP1_AWID,M_AXI_GP1_WID,M_AXI_GP1_ARBURST,M_AXI_GP1_ARLOCK,M_AXI_GP1_ARSIZE,M_AXI_GP1_AWBURST,M_AXI_GP1_AWLOCK,M_AXI_GP1_AWSIZE,M_AXI_GP1_ARPROT,M_AXI_GP1_AWPROT,M_AXI_GP1_ARADDR,M_AXI_GP1_AWADDR,M_AXI_GP1_WDATA,M_AXI_GP1_ARCACHE,M_AXI_GP1_ARLEN,M_AXI_GP1_ARQOS,M_AXI_GP1_AWCACHE,M_AXI_GP1_AWLEN,M_AXI_GP1_AWQOS,M_AXI_GP1_WSTRB,M_AXI_GP1_ACLK,M_AXI_GP1_ARREADY,M_AXI_GP1_AWREADY,M_AXI_GP1_BVALID,M_AXI_GP1_RLAST,M_AXI_GP1_RVALID,M_AXI_GP1_WREADY,M_AXI_GP1_BID,M_AXI_GP1_RID,M_AXI_GP1_BRESP,M_AXI_GP1_RRESP,M_AXI_GP1_RDATA,FCLK_CLK0,FCLK_RESET0_N,MIO,DDR_CAS_n,DDR_CKE,DDR_Clk_n,DDR_Clk,DDR_CS_n,DDR_DRSTB,DDR_ODT,DDR_RAS_n,DDR_WEB,DDR_BankAddr,DDR_Addr,DDR_VRN,DDR_VRP,DDR_DM,DDR_DQ,DDR_DQS_n,DDR_DQS,PS_SRSTB,PS_CLK,PS_PORB)
 (* integer foreign = "SystemC";
 *);
   output wire [1 : 0] USB0_PORT_INDCTL;
@@ -182,6 +221,45 @@ module pwm_controller_processing_system7_0_0 (USB0_PORT_INDCTL,USB0_VBUS_PWRSELE
   input bit [1 : 0] M_AXI_GP0_BRESP;
   input bit [1 : 0] M_AXI_GP0_RRESP;
   input bit [31 : 0] M_AXI_GP0_RDATA;
+  output wire M_AXI_GP1_ARVALID;
+  output wire M_AXI_GP1_AWVALID;
+  output wire M_AXI_GP1_BREADY;
+  output wire M_AXI_GP1_RREADY;
+  output wire M_AXI_GP1_WLAST;
+  output wire M_AXI_GP1_WVALID;
+  output wire [11 : 0] M_AXI_GP1_ARID;
+  output wire [11 : 0] M_AXI_GP1_AWID;
+  output wire [11 : 0] M_AXI_GP1_WID;
+  output wire [1 : 0] M_AXI_GP1_ARBURST;
+  output wire [1 : 0] M_AXI_GP1_ARLOCK;
+  output wire [2 : 0] M_AXI_GP1_ARSIZE;
+  output wire [1 : 0] M_AXI_GP1_AWBURST;
+  output wire [1 : 0] M_AXI_GP1_AWLOCK;
+  output wire [2 : 0] M_AXI_GP1_AWSIZE;
+  output wire [2 : 0] M_AXI_GP1_ARPROT;
+  output wire [2 : 0] M_AXI_GP1_AWPROT;
+  output wire [31 : 0] M_AXI_GP1_ARADDR;
+  output wire [31 : 0] M_AXI_GP1_AWADDR;
+  output wire [31 : 0] M_AXI_GP1_WDATA;
+  output wire [3 : 0] M_AXI_GP1_ARCACHE;
+  output wire [3 : 0] M_AXI_GP1_ARLEN;
+  output wire [3 : 0] M_AXI_GP1_ARQOS;
+  output wire [3 : 0] M_AXI_GP1_AWCACHE;
+  output wire [3 : 0] M_AXI_GP1_AWLEN;
+  output wire [3 : 0] M_AXI_GP1_AWQOS;
+  output wire [3 : 0] M_AXI_GP1_WSTRB;
+  input bit M_AXI_GP1_ACLK;
+  input bit M_AXI_GP1_ARREADY;
+  input bit M_AXI_GP1_AWREADY;
+  input bit M_AXI_GP1_BVALID;
+  input bit M_AXI_GP1_RLAST;
+  input bit M_AXI_GP1_RVALID;
+  input bit M_AXI_GP1_WREADY;
+  input bit [11 : 0] M_AXI_GP1_BID;
+  input bit [11 : 0] M_AXI_GP1_RID;
+  input bit [1 : 0] M_AXI_GP1_BRESP;
+  input bit [1 : 0] M_AXI_GP1_RRESP;
+  input bit [31 : 0] M_AXI_GP1_RDATA;
   output wire FCLK_CLK0;
   output wire FCLK_RESET0_N;
   inout wire [53 : 0] MIO;
