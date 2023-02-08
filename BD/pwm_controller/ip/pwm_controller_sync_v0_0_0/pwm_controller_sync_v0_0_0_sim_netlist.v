@@ -1,10 +1,10 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Thu Jan 26 10:25:41 2023
+// Date        : Wed Feb  8 14:58:03 2023
 // Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top pwm_controller_sync_v0_0_0 -prefix
-//               pwm_controller_sync_v0_0_0_ pwm_controller_sync_v0_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_sync_v0_0_0/pwm_controller_sync_v0_0_0_sim_netlist.v
 // Design      : pwm_controller_sync_v0_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -41,6 +41,7 @@ module pwm_controller_sync_v0_0_0
         .trigger_o(trigger_o));
 endmodule
 
+(* ORIG_REF_NAME = "sync_v0" *) 
 module pwm_controller_sync_v0_0_0_sync_v0
    (trigger_o,
     top_i,

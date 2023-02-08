@@ -1,10 +1,10 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Tue Jan 31 14:48:47 2023
+-- Date        : Wed Feb  8 14:58:07 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top pwm_controller_axi_gpio_0_0 -prefix
---               pwm_controller_axi_gpio_0_0_ pwm_controller_axi_gpio_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_axi_gpio_0_0/pwm_controller_axi_gpio_0_0_sim_netlist.vhdl
 -- Design      : pwm_controller_axi_gpio_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -72,6 +72,8 @@ entity pwm_controller_axi_gpio_0_0_address_decoder is
     \Not_Dual.ALLOUT0_ND.READ_REG_GEN[1].reg1_reg\ : in STD_LOGIC;
     \Not_Dual.ALLOUT0_ND.READ_REG_GEN[0].reg1_reg\ : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_axi_gpio_0_0_address_decoder : entity is "address_decoder";
 end pwm_controller_axi_gpio_0_0_address_decoder;
 
 architecture STRUCTURE of pwm_controller_axi_gpio_0_0_address_decoder is
@@ -1081,6 +1083,8 @@ entity pwm_controller_axi_gpio_0_0_cdc_sync is
     gpio_io_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axi_aclk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_axi_gpio_0_0_cdc_sync : entity is "cdc_sync";
 end pwm_controller_axi_gpio_0_0_cdc_sync;
 
 architecture STRUCTURE of pwm_controller_axi_gpio_0_0_cdc_sync is
@@ -3100,6 +3104,8 @@ entity pwm_controller_axi_gpio_0_0_GPIO_Core is
     D : in STD_LOGIC_VECTOR ( 31 downto 0 );
     \Not_Dual.gpio_Data_Out_reg[0]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_axi_gpio_0_0_GPIO_Core : entity is "GPIO_Core";
 end pwm_controller_axi_gpio_0_0_GPIO_Core;
 
 architecture STRUCTURE of pwm_controller_axi_gpio_0_0_GPIO_Core is
@@ -5632,6 +5638,8 @@ entity pwm_controller_axi_gpio_0_0_slave_attachment is
     s_axi_araddr : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_axi_gpio_0_0_slave_attachment : entity is "slave_attachment";
 end pwm_controller_axi_gpio_0_0_slave_attachment;
 
 architecture STRUCTURE of pwm_controller_axi_gpio_0_0_slave_attachment is
@@ -6637,6 +6645,8 @@ entity pwm_controller_axi_gpio_0_0_axi_lite_ipif is
     s_axi_araddr : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_axi_gpio_0_0_axi_lite_ipif : entity is "axi_lite_ipif";
 end pwm_controller_axi_gpio_0_0_axi_lite_ipif;
 
 architecture STRUCTURE of pwm_controller_axi_gpio_0_0_axi_lite_ipif is
@@ -6772,6 +6782,8 @@ entity pwm_controller_axi_gpio_0_0_axi_gpio is
   attribute C_TRI_DEFAULT of pwm_controller_axi_gpio_0_0_axi_gpio : entity is "32'b11111111111111111111111111111111";
   attribute C_TRI_DEFAULT_2 : string;
   attribute C_TRI_DEFAULT_2 of pwm_controller_axi_gpio_0_0_axi_gpio : entity is "32'b11111111111111111111111111111111";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_axi_gpio_0_0_axi_gpio : entity is "axi_gpio";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of pwm_controller_axi_gpio_0_0_axi_gpio : entity is "yes";
   attribute ip_group : string;

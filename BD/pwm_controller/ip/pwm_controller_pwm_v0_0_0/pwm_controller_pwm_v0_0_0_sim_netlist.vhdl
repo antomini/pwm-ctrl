@@ -1,10 +1,10 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Thu Jan 26 10:25:42 2023
+-- Date        : Wed Feb  8 14:58:04 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top pwm_controller_pwm_v0_0_0 -prefix
---               pwm_controller_pwm_v0_0_0_ pwm_controller_pwm_v0_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_pwm_v0_0_0/pwm_controller_pwm_v0_0_0_sim_netlist.vhdl
 -- Design      : pwm_controller_pwm_v0_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,6 +22,8 @@ entity pwm_controller_pwm_v0_0_0_pwm_v0 is
     top_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
     duty_i : in STD_LOGIC_VECTOR ( 15 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_pwm_v0_0_0_pwm_v0 : entity is "pwm_v0";
 end pwm_controller_pwm_v0_0_0_pwm_v0;
 
 architecture STRUCTURE of pwm_controller_pwm_v0_0_0_pwm_v0 is

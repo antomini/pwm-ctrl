@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Mon Jan 23 19:22:08 2023
+-- Date        : Wed Feb  8 14:58:14 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top pwm_controller_auto_pc_1 -prefix
 --               pwm_controller_auto_pc_1_ pwm_controller_auto_pc_0_stub.vhdl
