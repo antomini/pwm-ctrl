@@ -1,13 +1,17 @@
 #include "xparameters.h"
 #include "xil_printf.h"
-#include "xgpio.h"
+#include "xil_io.h"
+#include "AXIreg.h"
 
+// AXIreg base address definition
+#define AXI_REG_BASEADDR XPAR_AXIREG_0_S00_AXI_BASEADDR
+// AXIreg offsets redefined for their use
+#define AXI_DUTY_REG AXIREG_S00_AXI_SLV_REG0_OFFSET
+#define AXI_TOPMASK_REG AXIREG_S00_AXI_SLV_REG1_OFFSET
+#define AXI_CFG_REG AXIREG_S00_AXI_SLV_REG2_OFFSET
+//#define AXI_REG3 AXIREG_S00_AXI_SLV_REG3_OFFSET
 
-// Get device IDs from xparameters.h
-#define PWM_ID XPAR_AXI_GPIO_PWM_DEVICE_ID
-#define PWM_CHANNEL 1
-#define OUTPUT_DIR 0
-
+// XADC base address definition and register offsets
 #define AXI_XADC_BASE_ADDRESS 0x7FFF8000U
 #define VAUX1_OFFSET 0x244U
 
@@ -15,28 +19,24 @@
 	Xil_In32(BaseAddress+RegOffset)
 
 int main() {
-	XGpio_Config *cfg_ptr;
-	XGpio pwm_device;
 	u16 duty = 0x00FF;
 	u16 top = 0x0FFF;
+	u16 mask = 0x0FFF;
+	u16 delay = 0x8;
+	u16 shift = 0x2;
 
-	u32 buffer = 0;
+	u32 topmask = (u32) top + (mask << 16);
+	u32 cfg = (u32) delay + (shift << 8);
+
+	AXIREG_mWriteReg(AXI_REG_BASEADDR, AXI_TOPMASK_REG, topmask);
+	AXIREG_mWriteReg(AXI_REG_BASEADDR, AXI_CFG_REG, cfg);
+
 	u32 adc = 0;
 
-	xil_printf("Entered function main\r\n");
-
-	// Initialize Pwm Device
-	cfg_ptr = XGpio_LookupConfig(PWM_ID);
-	XGpio_CfgInitialize(&pwm_device, cfg_ptr, cfg_ptr->BaseAddress);
-
-	// Set Pwm Tristate
-	XGpio_SetDataDirection(&pwm_device, PWM_CHANNEL, OUTPUT_DIR);
-
-
+	xil_printf("Main\r\n");
 
 	while (1) {
 		adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX1_OFFSET);
-		buffer = ((u32) top << 16) + duty;
-		XGpio_DiscreteWrite(&pwm_device, PWM_CHANNEL, buffer);
+		AXIREG_mWriteReg(AXI_REG_BASEADDR, AXI_DUTY_REG, duty);
 	}
 }

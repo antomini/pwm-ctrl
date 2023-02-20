@@ -1,7 +1,7 @@
 --Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
---Date        : Wed Feb  8 14:56:43 2023
+--Date        : Mon Feb 20 12:30:35 2023
 --Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target pwm_controller_wrapper.bd
 --Design      : pwm_controller_wrapper
