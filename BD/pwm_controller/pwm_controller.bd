@@ -365,6 +365,18 @@
           "PCW_CLK3_FREQ": {
             "value": "10000000"
           },
+          "PCW_CORE0_FIQ_INTR": {
+            "value": "0"
+          },
+          "PCW_CORE0_IRQ_INTR": {
+            "value": "0"
+          },
+          "PCW_CORE1_FIQ_INTR": {
+            "value": "0"
+          },
+          "PCW_CORE1_IRQ_INTR": {
+            "value": "0"
+          },
           "PCW_CPU_CPU_6X4X_MAX_RANGE": {
             "value": "667"
           },
@@ -697,6 +709,9 @@
           },
           "PCW_INCLUDE_ACP_TRANS_CHECK": {
             "value": "0"
+          },
+          "PCW_IRQ_F2P_INTR": {
+            "value": "1"
           },
           "PCW_IRQ_F2P_MODE": {
             "value": "DIRECT"
@@ -1316,6 +1331,24 @@
           "PCW_OVERRIDE_BASIC_CLOCK": {
             "value": "0"
           },
+          "PCW_P2F_ENET0_INTR": {
+            "value": "0"
+          },
+          "PCW_P2F_GPIO_INTR": {
+            "value": "0"
+          },
+          "PCW_P2F_QSPI_INTR": {
+            "value": "0"
+          },
+          "PCW_P2F_SDIO0_INTR": {
+            "value": "0"
+          },
+          "PCW_P2F_UART0_INTR": {
+            "value": "0"
+          },
+          "PCW_P2F_USB0_INTR": {
+            "value": "0"
+          },
           "PCW_PACKAGE_DDR_BOARD_DELAY0": {
             "value": "0.279"
           },
@@ -1806,7 +1839,7 @@
             "value": "0"
           },
           "PCW_USE_FABRIC_INTERRUPT": {
-            "value": "0"
+            "value": "1"
           },
           "PCW_USE_HIGH_OCM": {
             "value": "0"
@@ -2806,7 +2839,7 @@
             "value": "1"
           },
           "C_NUM_OF_PROBES": {
-            "value": "6"
+            "value": "7"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -2824,6 +2857,9 @@
             "value": "0"
           },
           "C_PROBE5_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE6_TYPE": {
             "value": "0"
           },
           "C_SLOT_0_APC_EN": {
@@ -2998,6 +3034,21 @@
         "ports": [
           "xadc_wiz_0/eos_out",
           "system_ila_0/probe3"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "ip2intc_irpt": {
+        "ports": [
+          "xadc_wiz_0/ip2intc_irpt",
+          "system_ila_0/probe6",
+          "processing_system7_0/IRQ_F2P"
         ],
         "hdl_attributes": {
           "DEBUG": {
