@@ -43,7 +43,23 @@ void DeviceDriverHandler(void *CallBackRef);
 XScuGic InterruptController; // Instance of the Interrupt Controller
 static XScuGic_Config *GicConfig; // The configuration parameters of the controller
 
-static u32 adc = 0;
+static uint16_t adc = 0;
+static uint16_t ref = 0x777;
+static int16_t err = 0;
+
+static uint16_t kp = 1;
+static uint16_t kiT = 11180; //0.17059x2^16
+static int32_t x = 0; //integrator input
+static int32_t acc = 0; //integrator output
+//static int32_t acc_max = 0xFFFF;
+//static int32_t acc_min = 0;
+//static int8_t sat = 0; // saturation flag
+
+static int32_t y = 0; // controller output
+static int32_t y_max = 0xFFFF;
+static int32_t y_min = 0;
+
+static uint32_t duty = 0;
 
 int main() {
 	setupPWM();
@@ -71,25 +87,56 @@ int main() {
 
 	setupInterruptXADC();
 
-	u16 duty = 0x00FF;
-
 	while (1) {
 		//adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX1_OFFSET);
-		AXIREG_mWriteReg(AXI_REG_BASEADDR, AXI_DUTY_REG, duty);
+		//AXIREG_mWriteReg(AXI_REG_BASEADDR, AXI_DUTY_REG, duty);
 	}
 }
 
 void DeviceDriverHandler(void *CallBackRef){
 	u32 reg = XADC_mRead(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET);
 	XADC_mWrite(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET, reg);
-	adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX1_OFFSET);
+
+	adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX1_OFFSET) >> 4;
+
+	err = (int16_t) (ref - adc);
+	x = (kiT*err)>>16;
+	acc = acc + x;
+
+	/* Anti-Windup Integrator
+	if ((sat < 0 && err < 0)||(sat > 0 && err > 0)) {
+		// do nothing
+	}
+	else {
+		acc = acc + x;
+		if (acc < acc_min){
+			acc = acc_min;
+			sat = -1;
+		}
+		else if (acc > acc_max) {
+			acc = acc_max;
+			sat = 1;
+		}
+	}
+	*/
+
+	y = acc + kp*err;
+	if (y < y_min) {
+		y = y_min;
+	}
+	else if (y > y_max) {
+		y = y_max;
+	}
+
+	duty = (uint32_t) y;
+	AXIREG_mWriteReg(AXI_REG_BASEADDR, AXI_DUTY_REG, duty);
 }
 
 void setupPWM(void){
-	u16 top = 0x0FFF;
-	u16 mask = 0x0FFF;
+	u16 top = 0xFFF;
+	u16 mask = 0xFFF;
 	u16 delay = 0x0;
-	u16 shift = 0x2;
+	u16 shift = 0x0;
 
 	u32 topmask = (u32) top + (mask << 16);
 	u32 cfg = (u32) delay + (shift << 8);
