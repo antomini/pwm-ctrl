@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Feb 24 09:09:07 2023" VIVADOVERSION="2022.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Mar 20 11:01:17 2023" VIVADOVERSION="2022.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="pwm_controller" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -109,16 +109,8 @@
         <CONNECTION INSTANCE="processing_system7_0" PORT="PS_PORB"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="Vaux1_0_v_n" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxn1">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="xadc_wiz_0" PORT="vauxn1"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="Vaux1_0_v_p" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxp1">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="xadc_wiz_0" PORT="vauxp1"/>
-      </CONNECTIONS>
-    </PORT>
+    <PORT DIR="I" NAME="Vaux1_0_v_n" SIGIS="undef"/>
+    <PORT DIR="I" NAME="Vaux1_0_v_p" SIGIS="undef"/>
     <PORT DIR="I" NAME="Vp_Vn_0_v_n" SIGIS="undef" SIGNAME="xadc_wiz_0_vn_in">
       <CONNECTIONS>
         <CONNECTION INSTANCE="xadc_wiz_0" PORT="vn_in"/>
@@ -132,6 +124,16 @@
     <PORT DIR="O" NAME="pwm_o_0" SIGIS="undef" SIGNAME="pwm_v0_1_pwm_o">
       <CONNECTIONS>
         <CONNECTION INSTANCE="pwm_v0_1" PORT="pwm_o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="Vaux9_0_v_n" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxn9">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="xadc_wiz_0" PORT="vauxn9"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="Vaux9_0_v_p" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxp9">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="xadc_wiz_0" PORT="vauxp9"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -181,7 +183,7 @@
         <PORTMAP LOGICAL="PS_PORB" PHYSICAL="FIXED_IO_ps_porb"/>
       </PORTMAPS>
     </BUSINTERFACE>
-    <BUSINTERFACE BUSNAME="External_Interface_Vaux1_0" NAME="Vaux1_0" TYPE="TARGET">
+    <BUSINTERFACE BUSNAME="__NOC__" NAME="Vaux1_0" TYPE="TARGET">
       <PORTMAPS>
         <PORTMAP LOGICAL="V_N" PHYSICAL="Vaux1_0_v_n"/>
         <PORTMAP LOGICAL="V_P" PHYSICAL="Vaux1_0_v_p"/>
@@ -191,6 +193,12 @@
       <PORTMAPS>
         <PORTMAP LOGICAL="V_N" PHYSICAL="Vp_Vn_0_v_n"/>
         <PORTMAP LOGICAL="V_P" PHYSICAL="Vp_Vn_0_v_p"/>
+      </PORTMAPS>
+    </BUSINTERFACE>
+    <BUSINTERFACE BUSNAME="External_Interface_Vaux9_0" NAME="Vaux9_0" TYPE="TARGET">
+      <PORTMAPS>
+        <PORTMAP LOGICAL="V_N" PHYSICAL="Vaux9_0_v_n"/>
+        <PORTMAP LOGICAL="V_P" PHYSICAL="Vaux9_0_v_p"/>
       </PORTMAPS>
     </BUSINTERFACE>
   </EXTERNALINTERFACES>
@@ -3169,7 +3177,7 @@
         <PORT DIR="O" LEFT="15" NAME="counter_o" RIGHT="0" SIGIS="undef" SIGNAME="pwm_v0_1_counter_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="sync_v1_0" PORT="counter_i"/>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe4"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe3"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -3260,7 +3268,7 @@
         <PORT DIR="O" NAME="trigger_o" SIGIS="undef" SIGNAME="sync_v1_0_trigger_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xadc_wiz_0" PORT="convst_in"/>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe5"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe4"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5835,7 +5843,7 @@
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="7"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="6"/>
         <PARAMETER NAME="C_XLNX_HW_PROBE_INFO" VALUE="DEFAULT"/>
         <PARAMETER NAME="Component_Name" VALUE="pwm_controller_system_ila_0_4"/>
         <PARAMETER NAME="C_PROBE70_WIDTH" VALUE="1"/>
@@ -7124,22 +7132,17 @@
             <CONNECTION INSTANCE="xadc_wiz_0" PORT="eoc_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="xadc_wiz_0_eos_out">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="xadc_wiz_0" PORT="eos_out"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="pwm_v0_1_counter_o">
+        <PORT DIR="I" LEFT="15" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="pwm_v0_1_counter_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="pwm_v0_1" PORT="counter_o"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="sync_v1_0_trigger_o">
+        <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="sync_v1_0_trigger_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="sync_v1_0" PORT="trigger_o"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="xadc_wiz_0_ip2intc_irpt">
+        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="xadc_wiz_0_ip2intc_irpt">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xadc_wiz_0" PORT="ip2intc_irpt"/>
           </CONNECTIONS>
@@ -7262,7 +7265,7 @@
         <PARAMETER NAME="C_HAS_VCCPINT_ALARM" VALUE="0"/>
         <PARAMETER NAME="C_HAS_VCCPAUX_ALARM" VALUE="0"/>
         <PARAMETER NAME="C_HAS_VCCDDRO_ALARM" VALUE="0"/>
-        <PARAMETER NAME="C_CONFIGURATION_R0" VALUE="529"/>
+        <PARAMETER NAME="C_CONFIGURATION_R0" VALUE="537"/>
         <PARAMETER NAME="C_CONFIGURATION_R1" VALUE="12719"/>
         <PARAMETER NAME="C_CONFIGURATION_R2" VALUE="1024"/>
         <PARAMETER NAME="C_ALARM_LIMIT_R0" VALUE="46573"/>
@@ -7290,7 +7293,7 @@
         <PARAMETER NAME="C_SEQUENCE_R6" VALUE="0"/>
         <PARAMETER NAME="C_SEQUENCE_R7" VALUE="0"/>
         <PARAMETER NAME="C_VAUX0" VALUE="0"/>
-        <PARAMETER NAME="C_VAUX1" VALUE="1"/>
+        <PARAMETER NAME="C_VAUX1" VALUE="0"/>
         <PARAMETER NAME="C_VAUX2" VALUE="0"/>
         <PARAMETER NAME="C_VAUX3" VALUE="0"/>
         <PARAMETER NAME="C_VAUX4" VALUE="0"/>
@@ -7298,7 +7301,7 @@
         <PARAMETER NAME="C_VAUX6" VALUE="0"/>
         <PARAMETER NAME="C_VAUX7" VALUE="0"/>
         <PARAMETER NAME="C_VAUX8" VALUE="0"/>
-        <PARAMETER NAME="C_VAUX9" VALUE="0"/>
+        <PARAMETER NAME="C_VAUX9" VALUE="1"/>
         <PARAMETER NAME="C_VAUX10" VALUE="0"/>
         <PARAMETER NAME="C_VAUX11" VALUE="0"/>
         <PARAMETER NAME="C_VAUX12" VALUE="0"/>
@@ -7363,7 +7366,7 @@
         <PARAMETER NAME="VCCPAUX_ALARM_UPPER" VALUE="1.8"/>
         <PARAMETER NAME="VCCDDRO_ALARM_LOWER" VALUE="1.2"/>
         <PARAMETER NAME="VCCDDRO_ALARM_UPPER" VALUE="1.25"/>
-        <PARAMETER NAME="SINGLE_CHANNEL_SELECTION" VALUE="VAUXP1_VAUXN1"/>
+        <PARAMETER NAME="SINGLE_CHANNEL_SELECTION" VALUE="VAUXP9_VAUXN9"/>
         <PARAMETER NAME="SINGLE_CHANNEL_ENABLE_CALIBRATION" VALUE="true"/>
         <PARAMETER NAME="BIPOLAR_OPERATION" VALUE="false"/>
         <PARAMETER NAME="SINGLE_CHANNEL_ACQUISITION_TIME" VALUE="false"/>
@@ -7571,8 +7574,8 @@
         </PORT>
         <PORT DIR="O" NAME="ip2intc_irpt" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="xadc_wiz_0_ip2intc_irpt">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe6"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="IRQ_F2P"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe5"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="convst_in" SIGIS="undef" SIGNAME="sync_v1_0_trigger_o">
@@ -7590,14 +7593,14 @@
             <CONNECTION INSTANCE="pwm_controller_imp" PORT="Vp_Vn_0_v_n"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="vauxp1" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxp1">
+        <PORT DIR="I" NAME="vauxp9" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxp9">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="pwm_controller_imp" PORT="Vaux1_0_v_p"/>
+            <CONNECTION INSTANCE="pwm_controller_imp" PORT="Vaux9_0_v_p"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="vauxn1" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxn1">
+        <PORT DIR="I" NAME="vauxn9" SIGIS="undef" SIGNAME="xadc_wiz_0_vauxn9">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="pwm_controller_imp" PORT="Vaux1_0_v_n"/>
+            <CONNECTION INSTANCE="pwm_controller_imp" PORT="Vaux9_0_v_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="4" NAME="channel_out" RIGHT="0" SIGIS="undef" SIGNAME="xadc_wiz_0_channel_out">
@@ -7611,11 +7614,7 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="alarm_out" SIGIS="undef"/>
-        <PORT DIR="O" NAME="eos_out" SIGIS="undef" SIGNAME="xadc_wiz_0_eos_out">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe3"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="eos_out" SIGIS="undef"/>
         <PORT DIR="O" NAME="busy_out" SIGIS="undef" SIGNAME="xadc_wiz_0_busy_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe0"/>
@@ -7681,10 +7680,10 @@
             <PORTMAP LOGICAL="V_P" PHYSICAL="vp_in"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="External_Interface_Vaux1_0" NAME="Vaux1" TYPE="TARGET" VLNV="xilinx.com:interface:diff_analog_io:1.0">
+        <BUSINTERFACE BUSNAME="External_Interface_Vaux9_0" NAME="Vaux9" TYPE="TARGET" VLNV="xilinx.com:interface:diff_analog_io:1.0">
           <PORTMAPS>
-            <PORTMAP LOGICAL="V_N" PHYSICAL="vauxn1"/>
-            <PORTMAP LOGICAL="V_P" PHYSICAL="vauxp1"/>
+            <PORTMAP LOGICAL="V_N" PHYSICAL="vauxn9"/>
+            <PORTMAP LOGICAL="V_P" PHYSICAL="vauxp9"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>

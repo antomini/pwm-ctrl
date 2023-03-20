@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Thu Feb 23 12:48:13 2023
+-- Date        : Mon Mar 20 11:02:17 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top pwm_controller_s01_mmu_0 -prefix
---               pwm_controller_s01_mmu_0_ pwm_controller_s00_mmu_0_sim_netlist.vhdl
--- Design      : pwm_controller_s00_mmu_0
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_s01_mmu_0/pwm_controller_s01_mmu_0_sim_netlist.vhdl
+-- Design      : pwm_controller_s01_mmu_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7z020clg400-1
@@ -60,6 +60,8 @@ entity pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_decerr_slave is
     \gen_axi.gen_read.s_axi_rlast_i_reg_0\ : in STD_LOGIC;
     \gen_axi.gen_read.s_axi_rid_i_reg[11]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_decerr_slave : entity is "axi_mmu_v2_1_25_decerr_slave";
 end pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_decerr_slave;
 
 architecture STRUCTURE of pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_decerr_slave is
@@ -1192,6 +1194,8 @@ entity pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axic_register_slice i
     s_ready_i_reg_2 : in STD_LOGIC;
     s_ready_i_reg_3 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axic_register_slice : entity is "axi_register_slice_v2_1_27_axic_register_slice";
 end pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axic_register_slice;
 
 architecture STRUCTURE of pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axic_register_slice is
@@ -3184,6 +3188,8 @@ entity pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axi_register_slice is
     \m_payload_i_reg[66]_1\ : in STD_LOGIC_VECTOR ( 33 downto 0 );
     s_ready_i_reg : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axi_register_slice : entity is "axi_register_slice_v2_1_27_axi_register_slice";
 end pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axi_register_slice;
 
 architecture STRUCTURE of pwm_controller_s01_mmu_0_axi_register_slice_v2_1_27_axi_register_slice is
@@ -3422,6 +3428,8 @@ entity pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_top is
   attribute C_USES_DEST of pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_top : entity is 0;
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_top : entity is "yes";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_top : entity is "axi_mmu_v2_1_25_top";
   attribute P_AXI3 : integer;
   attribute P_AXI3 of pwm_controller_s01_mmu_0_axi_mmu_v2_1_25_top : entity is 1;
   attribute P_AXI4 : integer;
@@ -4730,7 +4738,7 @@ entity pwm_controller_s01_mmu_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of pwm_controller_s01_mmu_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of pwm_controller_s01_mmu_0 : entity is "pwm_controller_s00_mmu_0,axi_mmu_v2_1_25_top,{}";
+  attribute CHECK_LICENSE_TYPE of pwm_controller_s01_mmu_0 : entity is "pwm_controller_s01_mmu_0,axi_mmu_v2_1_25_top,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of pwm_controller_s01_mmu_0 : entity is "yes";
   attribute X_CORE_INFO : string;

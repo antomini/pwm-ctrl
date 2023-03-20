@@ -1,7 +1,7 @@
 --Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
---Date        : Fri Feb 24 09:08:47 2023
+--Date        : Mon Mar 20 11:01:10 2023
 --Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target pwm_controller.bd
 --Design      : pwm_controller
@@ -2077,8 +2077,8 @@ entity pwm_controller is
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
-    Vaux1_0_v_n : in STD_LOGIC;
-    Vaux1_0_v_p : in STD_LOGIC;
+    Vaux9_0_v_n : in STD_LOGIC;
+    Vaux9_0_v_p : in STD_LOGIC;
     Vp_Vn_0_v_n : in STD_LOGIC;
     Vp_Vn_0_v_p : in STD_LOGIC;
     pwm_o_0 : out STD_LOGIC
@@ -2238,8 +2238,8 @@ architecture STRUCTURE of pwm_controller is
     convst_in : in STD_LOGIC;
     vp_in : in STD_LOGIC;
     vn_in : in STD_LOGIC;
-    vauxp1 : in STD_LOGIC;
-    vauxn1 : in STD_LOGIC;
+    vauxp9 : in STD_LOGIC;
+    vauxn9 : in STD_LOGIC;
     channel_out : out STD_LOGIC_VECTOR ( 4 downto 0 );
     eoc_out : out STD_LOGIC;
     alarm_out : out STD_LOGIC;
@@ -2330,10 +2330,9 @@ architecture STRUCTURE of pwm_controller is
     probe0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe1 : in STD_LOGIC_VECTOR ( 4 downto 0 );
     probe2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe3 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe4 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe3 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe4 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe5 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe6 : in STD_LOGIC_VECTOR ( 0 to 0 );
     SLOT_0_AXI_awaddr : in STD_LOGIC_VECTOR ( 10 downto 0 );
     SLOT_0_AXI_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
     SLOT_0_AXI_awvalid : in STD_LOGIC;
@@ -2359,8 +2358,8 @@ architecture STRUCTURE of pwm_controller is
   signal AXIreg_0_reg0 : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal AXIreg_0_reg1 : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal AXIreg_0_reg2 : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal Vaux1_0_1_V_N : STD_LOGIC;
-  signal Vaux1_0_1_V_P : STD_LOGIC;
+  signal Vaux9_0_1_V_N : STD_LOGIC;
+  signal Vaux9_0_1_V_P : STD_LOGIC;
   signal Vp_Vn_0_1_V_N : STD_LOGIC;
   signal Vp_Vn_0_1_V_P : STD_LOGIC;
   signal busy_out : STD_LOGIC;
@@ -2374,9 +2373,6 @@ architecture STRUCTURE of pwm_controller is
   signal eoc_out : STD_LOGIC;
   attribute DEBUG of eoc_out : signal is "true";
   attribute MARK_DEBUG of eoc_out : signal is std.standard.true;
-  signal eos_out : STD_LOGIC;
-  attribute DEBUG of eos_out : signal is "true";
-  attribute MARK_DEBUG of eos_out : signal is std.standard.true;
   signal ip2intc_irpt : STD_LOGIC;
   attribute DEBUG of ip2intc_irpt : signal is "true";
   attribute MARK_DEBUG of ip2intc_irpt : signal is std.standard.true;
@@ -2596,6 +2592,7 @@ architecture STRUCTURE of pwm_controller is
   signal NLW_rst_ps7_0_100M_interconnect_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps7_0_100M_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_xadc_wiz_0_alarm_out_UNCONNECTED : STD_LOGIC;
+  signal NLW_xadc_wiz_0_eos_out_UNCONNECTED : STD_LOGIC;
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
   attribute X_INTERFACE_INFO of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
@@ -2613,8 +2610,8 @@ architecture STRUCTURE of pwm_controller is
   attribute X_INTERFACE_INFO of FIXED_IO_ps_clk : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
-  attribute X_INTERFACE_INFO of Vaux1_0_v_n : signal is "xilinx.com:interface:diff_analog_io:1.0 Vaux1_0 V_N";
-  attribute X_INTERFACE_INFO of Vaux1_0_v_p : signal is "xilinx.com:interface:diff_analog_io:1.0 Vaux1_0 V_P";
+  attribute X_INTERFACE_INFO of Vaux9_0_v_n : signal is "xilinx.com:interface:diff_analog_io:1.0 Vaux9_0 V_N";
+  attribute X_INTERFACE_INFO of Vaux9_0_v_p : signal is "xilinx.com:interface:diff_analog_io:1.0 Vaux9_0 V_P";
   attribute X_INTERFACE_INFO of Vp_Vn_0_v_n : signal is "xilinx.com:interface:diff_analog_io:1.0 Vp_Vn_0 V_N";
   attribute X_INTERFACE_INFO of Vp_Vn_0_v_p : signal is "xilinx.com:interface:diff_analog_io:1.0 Vp_Vn_0 V_P";
   attribute X_INTERFACE_INFO of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
@@ -2626,8 +2623,8 @@ architecture STRUCTURE of pwm_controller is
   attribute X_INTERFACE_INFO of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
   attribute X_INTERFACE_INFO of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
 begin
-  Vaux1_0_1_V_N <= Vaux1_0_v_n;
-  Vaux1_0_1_V_P <= Vaux1_0_v_p;
+  Vaux9_0_1_V_N <= Vaux9_0_v_n;
+  Vaux9_0_1_V_P <= Vaux9_0_v_p;
   Vp_Vn_0_1_V_N <= Vp_Vn_0_v_n;
   Vp_Vn_0_1_V_P <= Vp_Vn_0_v_p;
   pwm_o_0 <= pwm_v0_1_pwm_o;
@@ -2948,10 +2945,9 @@ system_ila_0: component pwm_controller_system_ila_0_4
       probe0(0) => busy_out,
       probe1(4 downto 0) => channel_out(4 downto 0),
       probe2(0) => eoc_out,
-      probe3(0) => eos_out,
-      probe4(15 downto 0) => pwm_v0_1_counter_o(15 downto 0),
-      probe5(0) => sync_v1_0_trigger_o,
-      probe6(0) => ip2intc_irpt,
+      probe3(15 downto 0) => pwm_v0_1_counter_o(15 downto 0),
+      probe4(0) => sync_v1_0_trigger_o,
+      probe5(0) => ip2intc_irpt,
       resetn => rst_ps7_0_100M_peripheral_aresetn(0)
     );
 xadc_wiz_0: component pwm_controller_xadc_wiz_0_1
@@ -2961,7 +2957,7 @@ xadc_wiz_0: component pwm_controller_xadc_wiz_0_1
       channel_out(4 downto 0) => channel_out(4 downto 0),
       convst_in => sync_v1_0_trigger_o,
       eoc_out => eoc_out,
-      eos_out => eos_out,
+      eos_out => NLW_xadc_wiz_0_eos_out_UNCONNECTED,
       ip2intc_irpt => ip2intc_irpt,
       s_axi_aclk => processing_system7_0_FCLK_CLK0,
       s_axi_araddr(10 downto 0) => ps7_0_axi_periph_M01_AXI_ARADDR(10 downto 0),
@@ -2982,8 +2978,8 @@ xadc_wiz_0: component pwm_controller_xadc_wiz_0_1
       s_axi_wready => ps7_0_axi_periph_M01_AXI_WREADY,
       s_axi_wstrb(3 downto 0) => ps7_0_axi_periph_M01_AXI_WSTRB(3 downto 0),
       s_axi_wvalid => ps7_0_axi_periph_M01_AXI_WVALID(0),
-      vauxn1 => Vaux1_0_1_V_N,
-      vauxp1 => Vaux1_0_1_V_P,
+      vauxn9 => Vaux9_0_1_V_N,
+      vauxp9 => Vaux9_0_1_V_P,
       vn_in => Vp_Vn_0_1_V_N,
       vp_in => Vp_Vn_0_1_V_P
     );

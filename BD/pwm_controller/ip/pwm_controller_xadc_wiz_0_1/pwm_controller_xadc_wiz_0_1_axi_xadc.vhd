@@ -192,8 +192,8 @@ entity pwm_controller_xadc_wiz_0_1_axi_xadc is
 
     -- Conversion start control signal for Event driven mode
     convst_in       : in  STD_LOGIC;                         -- Convert Start Input
-    vauxp1          : in  STD_LOGIC;                         -- Auxiliary Channel 1
-    vauxn1          : in  STD_LOGIC;
+    vauxp9          : in  STD_LOGIC;                         -- Auxiliary Channel 9
+    vauxn9          : in  STD_LOGIC;
     busy_out        : out  STD_LOGIC;                        -- ADC Busy signal
     channel_out     : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
     eoc_out         : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -269,8 +269,8 @@ component pwm_controller_xadc_wiz_0_1_xadc_core_drp
      Interrupt_status       : out std_logic_vector(0 to IP_INTR_NUM-1);
      ----------------  sysmon macro interface  -------------------
      convst_in              : in  STD_LOGIC;                         -- Convert Start Input
-     vauxp1                 : in  STD_LOGIC;                         -- Auxiliary Channel 1
-     vauxn1                 : in  STD_LOGIC;
+     vauxp9                 : in  STD_LOGIC;                         -- Auxiliary Channel 9
+     vauxn9                 : in  STD_LOGIC;
      busy_out               : out  STD_LOGIC;                        -- ADC Busy signal
      channel_out            : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
      eoc_out                : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -721,8 +721,8 @@ AXI_XADC_CORE_I : pwm_controller_xadc_wiz_0_1_xadc_core_drp
     Interrupt_status             => interrupt_status_i,
     --- external interface signals ------------------
     convst_in                    => convst_in,
-    vauxp1                       => vauxp1,
-    vauxn1                       => vauxn1,
+    vauxp9                       => vauxp9,
+    vauxn9                       => vauxn9,
     busy_out                     => busy_out,
     channel_out                  => channel_out,
     eoc_out                      => eoc_out,

@@ -17,6 +17,8 @@
 #define AXI_XADC_BASE_ADDRESS 0x7FFF8000U
 // XADC register offset
 #define VAUX1_OFFSET 0x244U
+#define VAUX9_OFFSET 0x264U
+#define VAUX_OFFSET  VAUX9_OFFSET
 #define GIER_OFFSET 0x5CU
 #define IPISR_OFFSET 0x60U
 #define IPIER_OFFSET 0x68U
@@ -97,7 +99,7 @@ void DeviceDriverHandler(void *CallBackRef){
 	u32 reg = XADC_mRead(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET);
 	XADC_mWrite(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET, reg);
 
-	adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX1_OFFSET) >> 4;
+	adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX_OFFSET) >> 4;
 
 	err = (int16_t) (ref - adc);
 	x = (kiT*err)>>16;

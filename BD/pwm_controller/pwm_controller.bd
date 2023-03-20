@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x959D15AF66D8055A",
+      "boundary_crc": "0x8A5CD39715558F92",
       "device": "xc7z020clg400-1",
       "name": "pwm_controller",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -208,17 +208,7 @@
       "Vaux1_0": {
         "mode": "Slave",
         "vlnv_bus_definition": "xilinx.com:interface:diff_analog_io:1.0",
-        "vlnv": "xilinx.com:interface:diff_analog_io_rtl:1.0",
-        "port_maps": {
-          "V_N": {
-            "physical_name": "Vaux1_0_v_n",
-            "direction": "I"
-          },
-          "V_P": {
-            "physical_name": "Vaux1_0_v_p",
-            "direction": "I"
-          }
-        }
+        "vlnv": "xilinx.com:interface:diff_analog_io_rtl:1.0"
       },
       "Vp_Vn_0": {
         "mode": "Slave",
@@ -231,6 +221,21 @@
           },
           "V_P": {
             "physical_name": "Vp_Vn_0_v_p",
+            "direction": "I"
+          }
+        }
+      },
+      "Vaux9_0": {
+        "mode": "Slave",
+        "vlnv_bus_definition": "xilinx.com:interface:diff_analog_io:1.0",
+        "vlnv": "xilinx.com:interface:diff_analog_io_rtl:1.0",
+        "port_maps": {
+          "V_N": {
+            "physical_name": "Vaux9_0_v_n",
+            "direction": "I"
+          },
+          "V_P": {
+            "physical_name": "Vaux9_0_v_p",
             "direction": "I"
           }
         }
@@ -2056,7 +2061,7 @@
             "value": "false"
           },
           "SINGLE_CHANNEL_SELECTION": {
-            "value": "VAUXP1_VAUXN1"
+            "value": "VAUXP9_VAUXN9"
           },
           "TIMING_MODE": {
             "value": "Event"
@@ -2839,7 +2844,7 @@
             "value": "1"
           },
           "C_NUM_OF_PROBES": {
-            "value": "7"
+            "value": "6"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -2909,10 +2914,10 @@
       }
     },
     "interface_nets": {
-      "Vaux1_0_1": {
+      "Vaux9_0_1": {
         "interface_ports": [
-          "Vaux1_0",
-          "xadc_wiz_0/Vaux1"
+          "Vaux9_0",
+          "xadc_wiz_0/Vaux9"
         ]
       },
       "Vp_Vn_0_1": {
@@ -3030,25 +3035,11 @@
           }
         }
       },
-      "eos_out": {
-        "ports": [
-          "xadc_wiz_0/eos_out",
-          "system_ila_0/probe3"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
-      },
       "ip2intc_irpt": {
         "ports": [
           "xadc_wiz_0/ip2intc_irpt",
-          "system_ila_0/probe6",
-          "processing_system7_0/IRQ_F2P"
+          "processing_system7_0/IRQ_F2P",
+          "system_ila_0/probe5"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3086,7 +3077,7 @@
         "ports": [
           "pwm_v0_1/counter_o",
           "sync_v1_0/counter_i",
-          "system_ila_0/probe4"
+          "system_ila_0/probe3"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3130,7 +3121,7 @@
         "ports": [
           "sync_v1_0/trigger_o",
           "xadc_wiz_0/convst_in",
-          "system_ila_0/probe5"
+          "system_ila_0/probe4"
         ],
         "hdl_attributes": {
           "DEBUG": {

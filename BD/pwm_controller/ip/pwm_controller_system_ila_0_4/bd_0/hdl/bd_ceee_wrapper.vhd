@@ -33,10 +33,9 @@ entity bd_ceee_wrapper is
     probe0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe1 : in STD_LOGIC_VECTOR ( 4 downto 0 );
     probe2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe3 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe4 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe3 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe4 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe5 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe6 : in STD_LOGIC_VECTOR ( 0 to 0 );
     resetn : in STD_LOGIC
   );
 end bd_ceee_wrapper;
@@ -48,10 +47,9 @@ architecture STRUCTURE of bd_ceee_wrapper is
     probe0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe1 : in STD_LOGIC_VECTOR ( 4 downto 0 );
     probe2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe3 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe4 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe3 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe4 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe5 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe6 : in STD_LOGIC_VECTOR ( 0 to 0 );
     resetn : in STD_LOGIC;
     SLOT_0_AXI_araddr : in STD_LOGIC_VECTOR ( 10 downto 0 );
     SLOT_0_AXI_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -100,10 +98,9 @@ bd_ceee_i: component bd_ceee
       probe0(0) => probe0(0),
       probe1(4 downto 0) => probe1(4 downto 0),
       probe2(0) => probe2(0),
-      probe3(0) => probe3(0),
-      probe4(15 downto 0) => probe4(15 downto 0),
+      probe3(15 downto 0) => probe3(15 downto 0),
+      probe4(0) => probe4(0),
       probe5(0) => probe5(0),
-      probe6(0) => probe6(0),
       resetn => resetn
     );
 end STRUCTURE;

@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Thu Feb 23 12:48:17 2023
+-- Date        : Mon Mar 20 11:02:20 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_xadc_wiz_0_1/pwm_controller_xadc_wiz_0_1_sim_netlist.vhdl
@@ -3320,8 +3320,8 @@ entity pwm_controller_xadc_wiz_0_1_xadc_core_drp is
     vn_in : in STD_LOGIC;
     vp_in : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    vauxn1 : in STD_LOGIC;
-    vauxp1 : in STD_LOGIC;
+    vauxn9 : in STD_LOGIC;
+    vauxp9 : in STD_LOGIC;
     XADC_INST_1 : in STD_LOGIC_VECTOR ( 2 downto 0 );
     reset2ip_reset : in STD_LOGIC;
     local_reg_wrack_d1_reg_0 : in STD_LOGIC;
@@ -3483,7 +3483,7 @@ begin
     );
 XADC_INST: unisim.vcomponents.XADC
     generic map(
-      INIT_40 => X"0211",
+      INIT_40 => X"0219",
       INIT_41 => X"31AF",
       INIT_42 => X"0400",
       INIT_43 => X"0000",
@@ -3544,12 +3544,12 @@ XADC_INST: unisim.vcomponents.XADC
       MUXADDR(4 downto 0) => NLW_XADC_INST_MUXADDR_UNCONNECTED(4 downto 0),
       OT => \^xadc_inst_0\(0),
       RESET => RESET,
-      VAUXN(15 downto 2) => B"00000000000000",
-      VAUXN(1) => vauxn1,
-      VAUXN(0) => '0',
-      VAUXP(15 downto 2) => B"00000000000000",
-      VAUXP(1) => vauxp1,
-      VAUXP(0) => '0',
+      VAUXN(15 downto 10) => B"000000",
+      VAUXN(9) => vauxn9,
+      VAUXN(8 downto 0) => B"000000000",
+      VAUXP(15 downto 10) => B"000000",
+      VAUXP(9) => vauxp9,
+      VAUXP(8 downto 0) => B"000000000",
       VN => vn_in,
       VP => vp_in
     );
@@ -5320,8 +5320,8 @@ entity pwm_controller_xadc_wiz_0_1_axi_xadc is
     s_axi_rready : in STD_LOGIC;
     ip2intc_irpt : out STD_LOGIC;
     convst_in : in STD_LOGIC;
-    vauxp1 : in STD_LOGIC;
-    vauxn1 : in STD_LOGIC;
+    vauxp9 : in STD_LOGIC;
+    vauxn9 : in STD_LOGIC;
     busy_out : out STD_LOGIC;
     channel_out : out STD_LOGIC_VECTOR ( 4 downto 0 );
     eoc_out : out STD_LOGIC;
@@ -5747,8 +5747,8 @@ AXI_XADC_CORE_I: entity work.pwm_controller_xadc_wiz_0_1_xadc_core_drp
       status_reg_rdack0 => status_reg_rdack0,
       status_reg_rdack_d1 => status_reg_rdack_d1,
       \status_reg_reg[10]_0\(10 downto 0) => status_reg(10 downto 0),
-      vauxn1 => vauxn1,
-      vauxp1 => vauxp1,
+      vauxn9 => vauxn9,
+      vauxp9 => vauxp9,
       vn_in => vn_in,
       vp_in => vp_in
     );
@@ -6193,8 +6193,8 @@ entity pwm_controller_xadc_wiz_0_1 is
     s_axi_rready : in STD_LOGIC;
     ip2intc_irpt : out STD_LOGIC;
     convst_in : in STD_LOGIC;
-    vauxp1 : in STD_LOGIC;
-    vauxn1 : in STD_LOGIC;
+    vauxp9 : in STD_LOGIC;
+    vauxn9 : in STD_LOGIC;
     busy_out : out STD_LOGIC;
     channel_out : out STD_LOGIC_VECTOR ( 4 downto 0 );
     eoc_out : out STD_LOGIC;
@@ -6297,8 +6297,8 @@ U0: entity work.pwm_controller_xadc_wiz_0_1_axi_xadc
       s_axi_wready => s_axi_wready,
       s_axi_wstrb(3 downto 0) => s_axi_wstrb(3 downto 0),
       s_axi_wvalid => s_axi_wvalid,
-      vauxn1 => vauxn1,
-      vauxp1 => vauxp1,
+      vauxn9 => vauxn9,
+      vauxp9 => vauxp9,
       vn_in => vn_in,
       vp_in => vp_in
     );

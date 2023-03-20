@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Thu Feb 23 12:48:22 2023
+-- Date        : Mon Mar 20 11:02:25 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top pwm_controller_auto_pc_0 -prefix
---               pwm_controller_auto_pc_0_ pwm_controller_auto_pc_0_sim_netlist.vhdl
--- Design      : pwm_controller_auto_pc_0
+--               pwm_controller_auto_pc_0_ pwm_controller_auto_pc_1_sim_netlist.vhdl
+-- Design      : pwm_controller_auto_pc_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7z020clg400-1
@@ -14647,7 +14647,7 @@ entity pwm_controller_auto_pc_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of pwm_controller_auto_pc_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of pwm_controller_auto_pc_0 : entity is "pwm_controller_auto_pc_0,axi_protocol_converter_v2_1_27_axi_protocol_converter,{}";
+  attribute CHECK_LICENSE_TYPE of pwm_controller_auto_pc_0 : entity is "pwm_controller_auto_pc_1,axi_protocol_converter_v2_1_27_axi_protocol_converter,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of pwm_controller_auto_pc_0 : entity is "yes";
   attribute X_CORE_INFO : string;

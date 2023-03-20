@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="40">
   <CompositeFile CompositeFileTopName="bd_ceee" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1677226146"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1677226146"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1677226146"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1677226146"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1679306476"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1679306476"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1679306476"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1679306476"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth/bd_ceee.vhd" Type="VHDL">
         <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
@@ -14,12 +14,6 @@
         <ProcessingOrder Val="NORMAL"/>
       </File>
       <File Name="sim/bd_ceee.vhd" Type="VHDL">
-        <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SIMULATION"/>
-        <ProcessingOrder Val="NORMAL"/>
-      </File>
-      <File Name="sim/bd_ceee.protoinst">
         <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
@@ -43,6 +37,12 @@
         <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
+        <ProcessingOrder Val="NORMAL"/>
+      </File>
+      <File Name="sim/bd_ceee.protoinst">
+        <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SIMULATION"/>
         <ProcessingOrder Val="NORMAL"/>
       </File>
     </FileCollection>

@@ -1,7 +1,7 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Thu Feb 23 12:48:16 2023
+// Date        : Mon Mar 20 11:02:20 2023
 // Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_xadc_wiz_0_1/pwm_controller_xadc_wiz_0_1_sim_netlist.v
@@ -35,8 +35,8 @@ module pwm_controller_xadc_wiz_0_1
     s_axi_rready,
     ip2intc_irpt,
     convst_in,
-    vauxp1,
-    vauxn1,
+    vauxp9,
+    vauxn9,
     busy_out,
     channel_out,
     eoc_out,
@@ -65,8 +65,8 @@ module pwm_controller_xadc_wiz_0_1
   input s_axi_rready;
   output ip2intc_irpt;
   input convst_in;
-  input vauxp1;
-  input vauxn1;
+  input vauxp9;
+  input vauxn9;
   output busy_out;
   output [4:0]channel_out;
   output eoc_out;
@@ -102,8 +102,8 @@ module pwm_controller_xadc_wiz_0_1
   wire s_axi_wready;
   wire [3:0]s_axi_wstrb;
   wire s_axi_wvalid;
-  wire vauxn1;
-  wire vauxp1;
+  wire vauxn9;
+  wire vauxp9;
   wire vn_in;
   wire vp_in;
   wire [6:0]NLW_U0_alarm_out_UNCONNECTED;
@@ -168,8 +168,8 @@ module pwm_controller_xadc_wiz_0_1
         .s_axi_wready(s_axi_wready),
         .s_axi_wstrb(s_axi_wstrb),
         .s_axi_wvalid(s_axi_wvalid),
-        .vauxn1(vauxn1),
-        .vauxp1(vauxp1),
+        .vauxn9(vauxn9),
+        .vauxp9(vauxp9),
         .vn_in(vn_in),
         .vp_in(vp_in));
 endmodule
@@ -2160,8 +2160,8 @@ module pwm_controller_xadc_wiz_0_1_axi_xadc
     s_axi_rready,
     ip2intc_irpt,
     convst_in,
-    vauxp1,
-    vauxn1,
+    vauxp9,
+    vauxn9,
     busy_out,
     channel_out,
     eoc_out,
@@ -2190,8 +2190,8 @@ module pwm_controller_xadc_wiz_0_1_axi_xadc
   input s_axi_rready;
   (* sigis = "INTR_LEVEL_HIGH" *) output ip2intc_irpt;
   input convst_in;
-  input vauxp1;
-  input vauxn1;
+  input vauxp9;
+  input vauxn9;
   output busy_out;
   output [4:0]channel_out;
   output eoc_out;
@@ -2353,8 +2353,8 @@ module pwm_controller_xadc_wiz_0_1_axi_xadc
   wire status_reg_rdack_d1;
   wire sw_rst_cond;
   wire sw_rst_cond_d1;
-  wire vauxn1;
-  wire vauxp1;
+  wire vauxn9;
+  wire vauxp9;
   wire vn_in;
   wire vp_in;
   wire wrack;
@@ -2541,8 +2541,8 @@ module pwm_controller_xadc_wiz_0_1_axi_xadc
         .status_reg_rdack0(status_reg_rdack0),
         .status_reg_rdack_d1(status_reg_rdack_d1),
         .\status_reg_reg[10]_0 (status_reg),
-        .vauxn1(vauxn1),
-        .vauxp1(vauxp1),
+        .vauxn9(vauxn9),
+        .vauxp9(vauxp9),
         .vn_in(vn_in),
         .vp_in(vp_in));
   GND GND
@@ -5034,8 +5034,8 @@ module pwm_controller_xadc_wiz_0_1_xadc_core_drp
     vn_in,
     vp_in,
     s_axi_wdata,
-    vauxn1,
-    vauxp1,
+    vauxn9,
+    vauxp9,
     XADC_INST_1,
     reset2ip_reset,
     local_reg_wrack_d1_reg_0,
@@ -5085,8 +5085,8 @@ module pwm_controller_xadc_wiz_0_1_xadc_core_drp
   input vn_in;
   input vp_in;
   input [15:0]s_axi_wdata;
-  input vauxn1;
-  input vauxp1;
+  input vauxn9;
+  input vauxp9;
   input [2:0]XADC_INST_1;
   input reset2ip_reset;
   input local_reg_wrack_d1_reg_0;
@@ -5196,8 +5196,8 @@ module pwm_controller_xadc_wiz_0_1_xadc_core_drp
   wire status_reg_rdack0;
   wire status_reg_rdack_d1;
   wire [10:0]\status_reg_reg[10]_0 ;
-  wire vauxn1;
-  wire vauxp1;
+  wire vauxn9;
+  wire vauxp9;
   wire vn_in;
   wire vp_in;
   wire [4:0]NLW_XADC_INST_MUXADDR_UNCONNECTED;
@@ -5249,7 +5249,7 @@ module pwm_controller_xadc_wiz_0_1_xadc_core_drp
         .O(local_reg_wrack_reg_0));
   (* box_type = "PRIMITIVE" *) 
   XADC #(
-    .INIT_40(16'h0211),
+    .INIT_40(16'h0219),
     .INIT_41(16'h31AF),
     .INIT_42(16'h0400),
     .INIT_43(16'h0000),
@@ -5306,8 +5306,8 @@ module pwm_controller_xadc_wiz_0_1_xadc_core_drp
         .MUXADDR(NLW_XADC_INST_MUXADDR_UNCONNECTED[4:0]),
         .OT(XADC_INST_0[0]),
         .RESET(RESET),
-        .VAUXN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,vauxn1,1'b0}),
-        .VAUXP({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,vauxp1,1'b0}),
+        .VAUXN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,vauxn9,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .VAUXP({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,vauxp9,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .VN(vn_in),
         .VP(vp_in));
   LUT2 #(

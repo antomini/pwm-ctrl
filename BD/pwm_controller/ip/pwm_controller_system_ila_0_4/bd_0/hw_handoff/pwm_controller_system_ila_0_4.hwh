@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Feb 24 09:09:06 2023" VIVADOVERSION="2022.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Mar 20 11:01:16 2023" VIVADOVERSION="2022.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="bd_ceee" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -25,12 +25,12 @@
         <CONNECTION INSTANCE="ila_lib" PORT="probe2"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="0" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe3">
+    <PORT DIR="I" LEFT="15" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe3">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_lib" PORT="probe3"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="15" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe4">
+    <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe4">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_lib" PORT="probe4"/>
       </CONNECTIONS>
@@ -38,11 +38,6 @@
     <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe5">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_lib" PORT="probe5"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="0" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe6">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="ila_lib" PORT="probe6"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_resetn">
@@ -1567,22 +1562,22 @@
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="m_slot_0_axi_b_cnt" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_b_cnt">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe11"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe10"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="m_slot_0_axi_r_cnt" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_r_cnt">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe12"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe11"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="m_slot_0_axi_aw_cnt" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_aw_cnt">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe10"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe9"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="m_slot_0_axi_ar_cnt" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_ar_cnt">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe7"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe6"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="10" NAME="slot_0_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_slot_0_axi_awaddr">
@@ -1712,12 +1707,12 @@
         </PORT>
         <PORT DIR="O" LEFT="10" NAME="m_slot_0_axi_araddr" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_araddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe8"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe7"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="2" NAME="m_slot_0_axi_arprot" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_arprot">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe9"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe8"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_slot_0_axi_arvalid" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_arvalid">
@@ -1732,12 +1727,12 @@
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="m_slot_0_axi_rdata" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_rdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe13"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe12"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="m_slot_0_axi_rresp" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_rresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe14"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe13"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_slot_0_axi_rvalid" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_rvalid">
@@ -1877,7 +1872,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="20"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="19"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2022"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -1893,9 +1888,9 @@
         <PARAMETER NAME="C_TRIGOUT_EN" VALUE="0"/>
         <PARAMETER NAME="C_TRIGIN_EN" VALUE="0"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TUSER_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_SLOT_0_AXIS_TDEST_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="C_SLOT_0_AXIS_TID_WIDTH" VALUE="11"/>
-        <PARAMETER NAME="C_SLOT_0_AXI_ID_WIDTH" VALUE="2"/>
+        <PARAMETER NAME="C_SLOT_0_AXIS_TDEST_WIDTH" VALUE="11"/>
+        <PARAMETER NAME="C_SLOT_0_AXIS_TID_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="C_SLOT_0_AXI_ID_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_ARUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_RUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_AWUSER_WIDTH" VALUE="1"/>
@@ -1904,23 +1899,23 @@
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="5"/>
         <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="11"/>
-        <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="2"/>
+        <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="11"/>
+        <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE14_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE15_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE16_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE17_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE18_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE19_WIDTH" VALUE="2"/>
+        <PARAMETER NAME="C_PROBE19_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE20_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE21_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE22_WIDTH" VALUE="1"/>
@@ -5017,12 +5012,12 @@
             <CONNECTION INSTANCE="External_Ports" PORT="probe2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe3">
+        <PORT DIR="I" LEFT="15" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe3">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="probe3"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe4">
+        <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe4">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="probe4"/>
           </CONNECTIONS>
@@ -5032,72 +5027,67 @@
             <CONNECTION INSTANCE="External_Ports" PORT="probe5"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe6">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="probe6"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_ar_cnt">
+        <PORT DIR="I" LEFT="1" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_ar_cnt">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_ar_cnt"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="10" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_araddr">
+        <PORT DIR="I" LEFT="10" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_araddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_araddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="2" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_arprot">
+        <PORT DIR="I" LEFT="2" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_arprot">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_arprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_aw_cnt">
+        <PORT DIR="I" LEFT="1" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_aw_cnt">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_aw_cnt"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_b_cnt">
+        <PORT DIR="I" LEFT="1" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_b_cnt">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_b_cnt"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe12" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_r_cnt">
+        <PORT DIR="I" LEFT="1" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_r_cnt">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_r_cnt"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_rdata">
+        <PORT DIR="I" LEFT="31" NAME="probe12" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_rdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_rdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_rresp">
+        <PORT DIR="I" LEFT="1" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="g_inst_m_slot_0_axi_rresp">
           <CONNECTIONS>
             <CONNECTION INSTANCE="g_inst" PORT="m_slot_0_axi_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_aw_dout">
+        <PORT DIR="I" LEFT="1" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_aw_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="slot_0_aw" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe16" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_w_dout">
+        <PORT DIR="I" LEFT="1" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_w_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="slot_0_w" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe17" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_b_dout">
+        <PORT DIR="I" LEFT="1" NAME="probe16" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_b_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="slot_0_b" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe18" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_ar_dout">
+        <PORT DIR="I" LEFT="1" NAME="probe17" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_ar_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="slot_0_ar" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe19" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_r_dout">
+        <PORT DIR="I" LEFT="1" NAME="probe18" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_r_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="slot_0_r" PORT="dout"/>
           </CONNECTIONS>
@@ -5254,7 +5244,7 @@
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_ar_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe18"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe17"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5409,7 +5399,7 @@
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_aw_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe15"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe14"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5564,7 +5554,7 @@
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_b_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe17"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe16"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5719,7 +5709,7 @@
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_r_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe19"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe18"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5874,7 +5864,7 @@
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="slot_0_w_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_lib" PORT="probe16"/>
+            <CONNECTION INSTANCE="ila_lib" PORT="probe15"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

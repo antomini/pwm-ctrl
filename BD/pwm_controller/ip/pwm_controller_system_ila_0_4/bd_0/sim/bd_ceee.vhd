@@ -33,10 +33,9 @@ entity bd_ceee is
     probe0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe1 : in STD_LOGIC_VECTOR ( 4 downto 0 );
     probe2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe3 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe4 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe3 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe4 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe5 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe6 : in STD_LOGIC_VECTOR ( 0 to 0 );
     resetn : in STD_LOGIC
   );
   attribute CORE_GENERATION_INFO : string;
@@ -52,23 +51,22 @@ architecture STRUCTURE of bd_ceee is
     probe0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe1 : in STD_LOGIC_VECTOR ( 4 downto 0 );
     probe2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe3 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe4 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe3 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe4 : in STD_LOGIC_VECTOR ( 0 to 0 );
     probe5 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe6 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe7 : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    probe8 : in STD_LOGIC_VECTOR ( 10 downto 0 );
-    probe9 : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    probe6 : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    probe7 : in STD_LOGIC_VECTOR ( 10 downto 0 );
+    probe8 : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    probe9 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     probe10 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     probe11 : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    probe12 : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    probe13 : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    probe12 : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    probe13 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     probe14 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     probe15 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     probe16 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     probe17 : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    probe18 : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    probe19 : in STD_LOGIC_VECTOR ( 1 downto 0 )
+    probe18 : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   end component bd_ceee_ila_lib_0;
   component bd_ceee_g_inst_0 is
@@ -195,10 +193,9 @@ architecture STRUCTURE of bd_ceee is
   signal probe0_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal probe1_1 : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal probe2_1 : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal probe3_1 : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal probe4_1 : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal probe3_1 : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal probe4_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal probe5_1 : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal probe6_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal resetn_1 : STD_LOGIC;
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of SLOT_0_AXI_arready : signal is "xilinx.com:interface:aximm:1.0 SLOT_0_AXI ARREADY";
@@ -250,10 +247,9 @@ begin
   probe0_1(0) <= probe0(0);
   probe1_1(4 downto 0) <= probe1(4 downto 0);
   probe2_1(0) <= probe2(0);
-  probe3_1(0) <= probe3(0);
-  probe4_1(15 downto 0) <= probe4(15 downto 0);
+  probe3_1(15 downto 0) <= probe3(15 downto 0);
+  probe4_1(0) <= probe4(0);
   probe5_1(0) <= probe5(0);
-  probe6_1(0) <= probe6(0);
   resetn_1 <= resetn;
 g_inst: component bd_ceee_g_inst_0
      port map (
@@ -302,24 +298,23 @@ ila_lib: component bd_ceee_ila_lib_0
       clk => clk_1,
       probe0(0) => probe0_1(0),
       probe1(4 downto 0) => probe1_1(4 downto 0),
-      probe10(1 downto 0) => net_slot_0_axi_aw_cnt(1 downto 0),
-      probe11(1 downto 0) => net_slot_0_axi_b_cnt(1 downto 0),
-      probe12(1 downto 0) => net_slot_0_axi_r_cnt(1 downto 0),
-      probe13(31 downto 0) => net_slot_0_axi_rdata(31 downto 0),
-      probe14(1 downto 0) => net_slot_0_axi_rresp(1 downto 0),
-      probe15(1 downto 0) => net_slot_0_axi_aw_ctrl(1 downto 0),
-      probe16(1 downto 0) => net_slot_0_axi_w_ctrl(1 downto 0),
-      probe17(1 downto 0) => net_slot_0_axi_b_ctrl(1 downto 0),
-      probe18(1 downto 0) => net_slot_0_axi_ar_ctrl(1 downto 0),
-      probe19(1 downto 0) => net_slot_0_axi_r_ctrl(1 downto 0),
+      probe10(1 downto 0) => net_slot_0_axi_b_cnt(1 downto 0),
+      probe11(1 downto 0) => net_slot_0_axi_r_cnt(1 downto 0),
+      probe12(31 downto 0) => net_slot_0_axi_rdata(31 downto 0),
+      probe13(1 downto 0) => net_slot_0_axi_rresp(1 downto 0),
+      probe14(1 downto 0) => net_slot_0_axi_aw_ctrl(1 downto 0),
+      probe15(1 downto 0) => net_slot_0_axi_w_ctrl(1 downto 0),
+      probe16(1 downto 0) => net_slot_0_axi_b_ctrl(1 downto 0),
+      probe17(1 downto 0) => net_slot_0_axi_ar_ctrl(1 downto 0),
+      probe18(1 downto 0) => net_slot_0_axi_r_ctrl(1 downto 0),
       probe2(0) => probe2_1(0),
-      probe3(0) => probe3_1(0),
-      probe4(15 downto 0) => probe4_1(15 downto 0),
+      probe3(15 downto 0) => probe3_1(15 downto 0),
+      probe4(0) => probe4_1(0),
       probe5(0) => probe5_1(0),
-      probe6(0) => probe6_1(0),
-      probe7(1 downto 0) => net_slot_0_axi_ar_cnt(1 downto 0),
-      probe8(10 downto 0) => net_slot_0_axi_araddr(10 downto 0),
-      probe9(2 downto 0) => net_slot_0_axi_arprot(2 downto 0)
+      probe6(1 downto 0) => net_slot_0_axi_ar_cnt(1 downto 0),
+      probe7(10 downto 0) => net_slot_0_axi_araddr(10 downto 0),
+      probe8(2 downto 0) => net_slot_0_axi_arprot(2 downto 0),
+      probe9(1 downto 0) => net_slot_0_axi_aw_cnt(1 downto 0)
     );
 slot_0_ar: component bd_ceee_slot_0_ar_0
      port map (

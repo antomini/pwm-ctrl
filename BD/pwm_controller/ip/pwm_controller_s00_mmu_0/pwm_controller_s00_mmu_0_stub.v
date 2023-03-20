@@ -1,11 +1,11 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Thu Feb 23 12:48:13 2023
+// Date        : Mon Mar 20 11:02:16 2023
 // Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode synth_stub -rename_top pwm_controller_s00_mmu_0 -prefix
-//               pwm_controller_s00_mmu_0_ pwm_controller_s00_mmu_0_stub.v
-// Design      : pwm_controller_s00_mmu_0
+//               pwm_controller_s00_mmu_0_ pwm_controller_s01_mmu_0_stub.v
+// Design      : pwm_controller_s01_mmu_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1
 // --------------------------------------------------------------------------------
