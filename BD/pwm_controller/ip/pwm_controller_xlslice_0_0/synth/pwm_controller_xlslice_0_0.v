@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "xlslice_v1_0_2_xlslice,Vivado 2022.2" *)
 (* CHECK_LICENSE_TYPE = "pwm_controller_xlslice_0_0,xlslice_v1_0_2_xlslice,{}" *)
-(* CORE_GENERATION_INFO = "pwm_controller_xlslice_0_0,xlslice_v1_0_2_xlslice,{x_ipProduct=Vivado 2022.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlslice,x_ipVersion=1.0,x_ipCoreRevision=2,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,DIN_WIDTH=32,DIN_FROM=31,DIN_TO=16}" *)
+(* CORE_GENERATION_INFO = "pwm_controller_xlslice_0_0,xlslice_v1_0_2_xlslice,{x_ipProduct=Vivado 2022.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlslice,x_ipVersion=1.0,x_ipCoreRevision=2,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,DIN_WIDTH=32,DIN_FROM=15,DIN_TO=0}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module pwm_controller_xlslice_0_0 (
   Din,
@@ -64,8 +64,8 @@ output wire [15 : 0] Dout;
 
   xlslice_v1_0_2_xlslice #(
     .DIN_WIDTH(32),
-    .DIN_FROM(31),
-    .DIN_TO(16)
+    .DIN_FROM(15),
+    .DIN_TO(0)
   ) inst (
     .Din(Din),
     .Dout(Dout)

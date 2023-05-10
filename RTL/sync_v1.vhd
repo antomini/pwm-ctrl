@@ -42,12 +42,12 @@ entity sync_v1 is
         SHIFTER_BITS : positive := 2
     );
     port (
-        -- shifted_d : out std_logic_vector(BIT_NUM-1 downto 0);
-        -- trunc_d : out std_logic_vector(BIT_NUM-1 downto 0);
         counter_i : in std_logic_vector(BIT_NUM-1 downto 0);
         delay_i : in std_logic_vector(DELAY_BITS-1 downto 0);
         shift_i : in std_logic_vector(SHIFTER_BITS-1 downto 0);
         mask_i : in std_logic_vector(BIT_NUM-1 downto 0);
+        shifted_d : out std_logic_vector(BIT_NUM-1 downto 0);
+        trunc_d : out std_logic_vector(BIT_NUM-1 downto 0);
         trigger_o : out std_logic
     );
 end sync_v1;
@@ -70,6 +70,6 @@ begin
         end if;
     end process;
     
-    -- shifted_d <= std_logic_vector(shifted_s);
-    -- trunc_d <= std_logic_vector(trunc_s);
+    shifted_d <= std_logic_vector(shifted_s);
+    trunc_d <= std_logic_vector(trunc_s);
 end Behavioral;

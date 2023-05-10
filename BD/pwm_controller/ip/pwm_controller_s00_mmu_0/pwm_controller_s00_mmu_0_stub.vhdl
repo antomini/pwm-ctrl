@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Mon Mar 20 11:02:16 2023
+-- Date        : Thu Mar 30 17:59:56 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top pwm_controller_s00_mmu_0 -prefix
 --               pwm_controller_s00_mmu_0_ pwm_controller_s01_mmu_0_stub.vhdl

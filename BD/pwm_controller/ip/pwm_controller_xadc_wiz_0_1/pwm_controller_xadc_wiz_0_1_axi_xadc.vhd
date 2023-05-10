@@ -141,6 +141,14 @@ library work;
 --    alarm_out           -- SYSMON alarm output signals of the hard macro
 -------------------------------------------------------------------------------
 
+-------------------------------------------------------------------------------
+--   AXI4STREAM MASTER SIGNALS 
+-------------------------------------------------------------------------------
+--    m_axis_tdata         -- 16 bit Axi4Stream Data
+--    m_axis_tvalid        -- Valid 
+--    m_axis_tid          -- 5 bit Tag ID 
+--    m_axis_tready        -- Ready 
+
 entity pwm_controller_xadc_wiz_0_1_axi_xadc is
    generic
    (
@@ -188,6 +196,12 @@ entity pwm_controller_xadc_wiz_0_1_axi_xadc is
                                                                                 
    -- Input to the system from the axi_xadc core
     ip2intc_irpt    : out std_logic;
+  -- axi4stream master signals 
+    s_axis_aclk     : in  std_logic;
+    m_axis_tdata    : out std_logic_vector(15 downto 0);
+    m_axis_tvalid   : out std_logic;
+    m_axis_tid      : out std_logic_vector(4 downto 0);
+    m_axis_tready   : in  std_logic;
    -- XADC External interface signals
 
     -- Conversion start control signal for Event driven mode
@@ -267,6 +281,13 @@ component pwm_controller_xadc_wiz_0_1_xadc_core_drp
      Sysmon_IP2Bus_RdAck    : out std_logic;
      ---------------- interrupt interface with the system  -----------
      Interrupt_status       : out std_logic_vector(0 to IP_INTR_NUM-1);
+  -- axi4stream master signals 
+     s_axis_aclk            : in  std_logic;
+                    
+     m_axis_tdata           : out std_logic_vector(15 downto 0);
+     m_axis_tvalid          : out std_logic;
+     m_axis_tid             : out std_logic_vector(4 downto 0);
+     m_axis_tready          : in  std_logic;
      ----------------  sysmon macro interface  -------------------
      convst_in              : in  STD_LOGIC;                         -- Convert Start Input
      vauxp9                 : in  STD_LOGIC;                         -- Auxiliary Channel 9
@@ -719,6 +740,12 @@ AXI_XADC_CORE_I : pwm_controller_xadc_wiz_0_1_xadc_core_drp
     Sysmon_IP2Bus_WrAck          => xadc_ip2bus_wrack,
     Sysmon_IP2Bus_RdAck          => xadc_ip2bus_rdack,
     Interrupt_status             => interrupt_status_i,
+  -- axi4stream master signals 
+    s_axis_aclk                  => s_axis_aclk, 
+    m_axis_tdata                 => m_axis_tdata, 
+    m_axis_tvalid                => m_axis_tvalid, 
+    m_axis_tid                   => m_axis_tid, 
+    m_axis_tready                => m_axis_tready, 
     --- external interface signals ------------------
     convst_in                    => convst_in,
     vauxp9                       => vauxp9,

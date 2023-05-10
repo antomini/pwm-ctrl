@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Mon Mar 20 11:02:26 2023
+-- Date        : Tue Mar 21 20:46:57 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_auto_pc_1/pwm_controller_auto_pc_1_stub.vhdl
--- Design      : pwm_controller_auto_pc_1
+-- Command     : write_vhdl -force -mode synth_stub -rename_top pwm_controller_auto_pc_1 -prefix
+--               pwm_controller_auto_pc_1_ pwm_controller_auto_pc_0_stub.vhdl
+-- Design      : pwm_controller_auto_pc_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1
 -- --------------------------------------------------------------------------------

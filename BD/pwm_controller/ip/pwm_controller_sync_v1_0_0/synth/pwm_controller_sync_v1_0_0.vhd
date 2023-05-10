@@ -57,8 +57,10 @@ ENTITY pwm_controller_sync_v1_0_0 IS
   PORT (
     counter_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     delay_i : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-    shift_i : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    shift_i : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
     mask_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    shifted_d : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+    trunc_d : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
     trigger_o : OUT STD_LOGIC
   );
 END pwm_controller_sync_v1_0_0;
@@ -75,8 +77,10 @@ ARCHITECTURE pwm_controller_sync_v1_0_0_arch OF pwm_controller_sync_v1_0_0 IS
     PORT (
       counter_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
       delay_i : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-      shift_i : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      shift_i : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
       mask_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+      shifted_d : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+      trunc_d : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
       trigger_o : OUT STD_LOGIC
     );
   END COMPONENT sync_v1;
@@ -85,7 +89,7 @@ ARCHITECTURE pwm_controller_sync_v1_0_0_arch OF pwm_controller_sync_v1_0_0 IS
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF pwm_controller_sync_v1_0_0_arch : ARCHITECTURE IS "pwm_controller_sync_v1_0_0,sync_v1,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF pwm_controller_sync_v1_0_0_arch: ARCHITECTURE IS "pwm_controller_sync_v1_0_0,sync_v1,{x_ipProduct=Vivado 2022.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=sync_v1,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,BIT_NUM=16,DELAY_BITS=8,SHIFTER_BITS=2}";
+  ATTRIBUTE CORE_GENERATION_INFO OF pwm_controller_sync_v1_0_0_arch: ARCHITECTURE IS "pwm_controller_sync_v1_0_0,sync_v1,{x_ipProduct=Vivado 2022.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=sync_v1,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,BIT_NUM=16,DELAY_BITS=8,SHIFTER_BITS=4}";
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF pwm_controller_sync_v1_0_0_arch: ARCHITECTURE IS "module_ref";
 BEGIN
@@ -93,13 +97,15 @@ BEGIN
     GENERIC MAP (
       BIT_NUM => 16,
       DELAY_BITS => 8,
-      SHIFTER_BITS => 2
+      SHIFTER_BITS => 4
     )
     PORT MAP (
       counter_i => counter_i,
       delay_i => delay_i,
       shift_i => shift_i,
       mask_i => mask_i,
+      shifted_d => shifted_d,
+      trunc_d => trunc_d,
       trigger_o => trigger_o
     );
 END pwm_controller_sync_v1_0_0_arch;

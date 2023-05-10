@@ -126,6 +126,14 @@ use UNISIM.VCOMPONENTS.ALL;
 --    Sysmon_IP2Bus_RdAck    -- read ack from sysmon
 
 -------------------------------------------------------------------------------
+--   AXI4STREAM MASTER SIGNALS 
+-------------------------------------------------------------------------------
+--    m_axis_tdata         -- 16 bit Axi4Stream Data
+--    m_axis_tvalid        -- Valid 
+--    m_axis_tid          -- 5 bit Tag ID 
+--    m_axis_tready        -- Ready 
+
+-------------------------------------------------------------------------------
 -- XADC EXTERNAL INTERFACE --   INPUT Signals
 -------------------------------------------------------------------------------
 --    VAUXN                  -- user selectable differential inputs
@@ -169,6 +177,12 @@ entity pwm_controller_xadc_wiz_0_1_xadc_core_drp is
      Sysmon_IP2Bus_RdAck    : out std_logic;
      ---------------- interrupt interface with the system  -----------
      Interrupt_status       : out std_logic_vector(0 to IP_INTR_NUM-1);
+  -- axi4stream master signals 
+     s_axis_aclk            : in  std_logic;
+     m_axis_tdata           : out std_logic_vector(15 downto 0);
+     m_axis_tvalid          : out std_logic;
+     m_axis_tid             : out std_logic_vector(4 downto 0);
+     m_axis_tready          : in  std_logic;
      ----------------  sysmon macro interface  -------------------
      convst_in              : in  STD_LOGIC;                         -- Convert Start Input
      vauxp9                 : in  STD_LOGIC;                         -- Auxiliary Channel 9
@@ -187,6 +201,63 @@ end entity pwm_controller_xadc_wiz_0_1_xadc_core_drp;
 -- Architecture Section
 -------------------------------------------------------------------------------
 architecture imp of pwm_controller_xadc_wiz_0_1_xadc_core_drp is
+
+  component drp_to_axi4stream
+  port (
+    m_axis_reset    : in  std_logic;                      
+    m_axis_aclk     : in  std_logic;
+    s_axis_aclk     : in  std_logic;
+    mode_change     : in  std_logic;                      
+    mode_change_sig_reset: out std_logic;  
+    -- DRP signals for Arbiter
+    daddr_o         : out std_logic_vector(7 downto 0);    
+    den_o           : out std_logic;
+    di_o            : out std_logic_vector(15 downto 0);
+    dwe_o           : out std_logic;
+    do_i            : in  std_logic_vector(15 downto 0);
+    drdy_i          : in  std_logic;
+    busy_o          : out std_logic;
+    -- Control signals for stream generation
+    channel_in      : in  std_logic_vector(4 downto 0);
+    eoc_in          : in  std_logic;
+    eos_in          : in  std_logic;
+    -- axi4stream master signals for FIFO
+    m_axis_tdata    : out std_logic_vector(15 downto 0);
+    m_axis_tvalid   : out std_logic;
+    m_axis_tid      : out std_logic_vector(4 downto 0);
+    m_axis_tready   : in  std_logic
+  );
+  end component;
+component  drp_arbiter
+  port (
+  reset   : in     std_logic;                  
+  clk     : in     std_logic;                   -- input clock
+  jtaglocked: in     std_logic;                   -- input clock
+  bgrant_A : out    std_logic;  -- bus grant
+  bgrant_B : out    std_logic;  -- bus grant
+  bbusy_A   : in    std_logic;                    -- bus busy
+  bbusy_B   : in    std_logic := '0';                    -- bus busy
+  daddr_A  : in  std_logic_vector(7 downto 0);
+  den_A    : in  std_logic;
+  di_A     : in  std_logic_vector(15 downto 0);
+  dwe_A    : in  std_logic;
+  do_A     : out   std_logic_vector(15 downto 0);
+  drdy_A   : out   std_logic;
+  daddr_B  : in  std_logic_vector(7 downto 0);
+  den_B    : in  std_logic;
+  di_B     : in  std_logic_vector(15 downto 0);
+  dwe_B    : in  std_logic;
+  do_B     : out   std_logic_vector(15 downto 0);
+  drdy_B   : out   std_logic;
+  daddr_C  : out  std_logic_vector(7 downto 0);
+  den_C    : out  std_logic;
+  di_C     : out  std_logic_vector(15 downto 0);
+  dwe_C    : out  std_logic;
+  do_C     : in   std_logic_vector(15 downto 0);
+  drdy_C   : in   std_logic
+);
+	end component;
+
 -------------------------------------------------------------------------------
 -- Constant Declarations
 -------------------------------------------------------------------------------
@@ -208,6 +279,8 @@ constant STATUS_REG_LENGTH : integer := 11;--internal constant
 signal daddr_i        : std_logic_vector(ADDR_SIZE_DRP-1 downto 0);
 signal alm_i          : std_logic_vector(ALARM_NO-1 downto 0);
 signal channel_i      : std_logic_vector(CHANNEL_NO-1 downto 0);
+signal mode_change    : std_logic := '0';
+signal mode_change_sig_reset: std_logic := '0';  
 
 signal mux_addr_no_i  : std_logic_vector(MUX_ADDR_NO-1 downto 0);-- added for XADC
 
@@ -512,12 +585,6 @@ begin
     end if;
 end process CONVST_RST_PROCESS;
 
-   daddr_C <= '0' & daddr_i;
-   di_C <= di_i;
-   dwe_C <= dwe_actual;
-   den_C <= den_actual;
-   do_i <= do_C;
-   drdy_i <= drdy_C;
 
 
 -- Generate the WRITE ACK back to PLB
@@ -896,6 +963,73 @@ end process LOCAL_REG_WRITE_ACK_GEN_PROCESS;
 ------------------------------------------------------------------------
 alarm_out <= alarm_reg(8 downto 1);-- updated from 2 downto 1 to 8 downto 1 for XADC
 ------------------------------------------------------------------------
+
+   daddr_i_int <= '0' & daddr_i;
+
+mode_change_gen: process(Bus2IP_Clk,sysmon_hard_block_reset) is
+begin
+   if (sysmon_hard_block_reset = '1') then
+      mode_change <= '0';
+   elsif (Bus2IP_Clk'event and Bus2IP_Clk='1') then
+     if (daddr_i_int = X"41" and dwe_i = '1' and den_actual = '1') then
+         mode_change <= '1';
+     elsif mode_change_sig_reset = '1' then 
+         mode_change <= '0';
+     end if;
+   end if;
+end process mode_change_gen;
+
+-- Instantiate the axi4stream  and arbiter
+   axi4_stream_inst: drp_to_axi4stream port map (
+      m_axis_reset    => sysmon_hard_block_reset,
+      m_axis_aclk     => Bus2IP_Clk,
+      s_axis_aclk     => s_axis_aclk,
+      mode_change     => mode_change,  
+      mode_change_sig_reset => mode_change_sig_reset,  
+      daddr_o         => daddr_A,   
+      den_o           => den_A,     
+      di_o            => di_A,      
+      dwe_o           => dwe_A,     
+      do_i            => do_A,      
+      drdy_i          => drdy_A,    
+      busy_o          => bbusy_A,    
+      channel_in      => channel_i,
+      eoc_in          => eoc_i,    
+      eos_in          => eos_i,    
+      m_axis_tdata    => m_axis_tdata,  
+      m_axis_tvalid   => m_axis_tvalid, 
+      m_axis_tid      => m_axis_tid,   
+      m_axis_tready   => m_axis_tready 
+   );
+
+   Inst_drp_arbiter: drp_arbiter port map (
+      reset           => sysmon_hard_block_reset,
+      clk             => Bus2IP_Clk ,
+      jtaglocked      => jtaglocked_i,
+      bgrant_A        => open ,
+      bgrant_B        => bgrant_B,
+      bbusy_A         => bbusy_A,
+      bbusy_B         => '0',
+      daddr_A         => daddr_A,
+      den_A           => den_A,
+      di_A            => di_A,
+      dwe_A           => dwe_A,
+      do_A            => do_A,
+      drdy_A          => drdy_A,
+      daddr_B         => daddr_i_int,
+      den_B           => den_actual,
+      di_B            => di_i,
+      dwe_B           => dwe_actual,
+      do_B            => do_i,
+      drdy_B          => drdy_i,
+      daddr_C         => daddr_C,
+      den_C           => den_C,
+      di_C            => di_C,
+      dwe_C           => dwe_C,
+      do_C            => do_C,
+      drdy_C          => drdy_C	
+   );
+
 
 -- Added interface to MUX ADDRESS for external address multiplexer from the
 -- XADC macro to core ports.
