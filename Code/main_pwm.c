@@ -106,7 +106,12 @@ int main() {
 	//uint16_t test_duty = 0xFF;
 	//uint16_t test_adc = 0;
 	while (1) {
-		//test_adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX_OFFSET);
+		if (XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX_B_OFFSET) <= 120) {
+			ref = 2000;
+		}
+		else {
+			ref = 1000;
+		}
 		//AXIREG_mWriteReg(AXI_REG0_BASEADDR, AXI_DUTY_REG, test_duty);
 	}
 }
@@ -152,10 +157,10 @@ void DeviceDriverHandler(void *CallBackRef){
 void setupPWM(void){
 	u16 max = 4000;
 
-	u32 pwmcfg = (1 << PWM_RESETN_BIT) | (0 << PWM_SAWTRI_BIT) | (0 << PWM_ASYNC_BIT)
-					| (1 << UPD_PEAK_BIT) | (0 << UPD_VALLEY_BIT)
-					| (0 << ACQ_FREE_BIT) | (0 << ACQ_MAX_BIT)
-					| (0 << ACQ_CMP_BIT) | (1 << ACQ_HALF_BIT) | (0 << ACQ_ZERO_BIT)
+	u32 pwmcfg = (1 << PWM_RESETN_BIT) | (1 << PWM_SAWTRI_BIT) | (0 << PWM_ASYNC_BIT)
+					| (1 << UPD_PEAK_BIT) | (1 << UPD_VALLEY_BIT)
+					| (0 << ACQ_FREE_BIT) | (1 << ACQ_MAX_BIT)
+					| (0 << ACQ_CMP_BIT) | (0 << ACQ_HALF_BIT) | (1 << ACQ_ZERO_BIT)
 					| (1 << EN_SNOOP_BIT) ;
 
 	AXIREG_mWriteReg(AXI_REG0_BASEADDR, AXI_PWMCFG_REG, pwmcfg);

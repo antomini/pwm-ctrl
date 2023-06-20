@@ -6,73 +6,75 @@
    "Color Coded_ExpandedHierarchyInLayout":"",
    "Color Coded_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 9 -x 2960 -y 1060 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 9 -x 2960 -y 1080 -defaultsOSRD
-preplace port Vp_Vn_0 -pg 1 -lvl 0 -x 0 -y 1000 -defaultsOSRD
-preplace port Vaux5_0 -pg 1 -lvl 0 -x 0 -y 960 -defaultsOSRD
-preplace port Vaux13_0 -pg 1 -lvl 0 -x 0 -y 980 -defaultsOSRD
-preplace port port-id_pwm_o_0 -pg 1 -lvl 9 -x 2960 -y 20 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 4 -x 1270 -y 840 -defaultsOSRD
-preplace inst rst_ps7_0_100M -pg 1 -lvl 4 -x 1270 -y 610 -swap {3 4 0 1 2 5 6 7 8 9} -defaultsOSRD
-preplace inst xadc_wiz_0 -pg 1 -lvl 6 -x 2100 -y 900 -defaultsOSRD
-preplace inst AXIreg_0 -pg 1 -lvl 6 -x 2100 -y 700 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 5 -x 1730 -y 700 -defaultsOSRD
-preplace inst counter_updown_0 -pg 1 -lvl 2 -x 510 -y 390 -defaultsOSRD
-preplace inst trigger_update_0 -pg 1 -lvl 3 -x 830 -y 100 -defaultsOSRD
-preplace inst system_ila_0 -pg 1 -lvl 8 -x 2840 -y 760 -defaultsOSRD
-preplace inst pwm_comparator_0 -pg 1 -lvl 4 -x 1270 -y 370 -defaultsOSRD
-preplace inst trigger_acquisition_0 -pg 1 -lvl 5 -x 1730 -y 210 -defaultsOSRD
-preplace inst AXIS_Snooper_0 -pg 1 -lvl 7 -x 2470 -y 840 -defaultsOSRD
-preplace inst configmap_pwm_0 -pg 1 -lvl 1 -x 160 -y 210 -defaultsOSRD
-preplace netloc AXIreg_0_reg0 1 3 5 1040 960 NJ 960 1880J 600 2270 630 N
-preplace netloc AXIreg_0_reg1 1 1 6 360 210 670 210 NJ 210 1490 20 NJ 20 2260
-preplace netloc AXIreg_0_reg2 1 4 3 1540 30 NJ 30 2250
-preplace netloc AXIreg_0_reg3 1 0 7 20 50 NJ 50 680J 200 970J 40 NJ 40 NJ 40 2240
-preplace netloc adcA_o 1 7 1 2630 810n
-preplace netloc adcB_o 1 7 1 2620 830n
-preplace netloc busy_out 1 6 2 2260J 750 2640
-preplace netloc cmp_o 1 4 4 1540 370 NJ 370 NJ 370 2730
-preplace netloc configmap_pwm_0_acq_cmp_o 1 1 4 NJ 250 NJ 250 NJ 250 1530
-preplace netloc configmap_pwm_0_acq_free_o 1 1 4 300J 220 NJ 220 NJ 220 N
-preplace netloc configmap_pwm_0_acq_hlaf_o 1 1 4 350J 260 NJ 260 NJ 260 1520
-preplace netloc configmap_pwm_0_acq_max_o 1 1 4 NJ 230 NJ 230 NJ 230 1550
-preplace netloc configmap_pwm_0_acq_zero_o 1 1 4 300J 280 NJ 280 1020J 470 1490
-preplace netloc configmap_pwm_0_async_o 1 1 3 320J 290 NJ 290 1010
-preplace netloc configmap_pwm_0_en_snoop_o 1 1 6 350J 300 NJ 300 980J 50 NJ 50 NJ 50 2280
-preplace netloc configmap_pwm_0_peak_o 1 1 2 300 100 NJ
-preplace netloc configmap_pwm_0_resetn_o 1 1 1 340 110n
-preplace netloc configmap_pwm_0_sawtri_o 1 1 2 330 140 NJ
-preplace netloc configmap_pwm_0_valley_o 1 1 2 310 120 NJ
-preplace netloc counter_o 1 2 6 660 350 1030 480 1500 480 NJ 480 NJ 480 2700
-preplace netloc eoc_out 1 6 2 2240J 930 2650
-preplace netloc eos_out 1 6 1 N 940
-preplace netloc half_o 1 4 4 1510 380 NJ 380 NJ 380 2710
-preplace netloc ip2intc_irpt 1 3 5 1050 1040 NJ 1040 NJ 1040 2250 940 2700
-preplace netloc over_o 1 2 6 680J 270 990J 60 NJ 60 NJ 60 NJ 60 2720
-preplace netloc processing_system7_0_FCLK_CLK0 1 1 7 360 480 NJ 480 1010 710 1550 910 1940 610 2290 610 N
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 3 2 1050 720 1490
-preplace netloc pwm_o 1 4 4 NJ 390 NJ 390 NJ 390 2690
-preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 4 3 1510 900 1920 1030 2280
-preplace netloc trigger_acquisition_0_acq_o 1 5 3 1900 590 NJ 590 2650
-preplace netloc trigger_update_0_update_o 1 3 5 1000 490 NJ 490 NJ 490 NJ 490 2680J
-preplace netloc under_o 1 2 6 670J 500 NJ 500 NJ 500 NJ 500 NJ 500 2670
-preplace netloc updown_o 1 2 6 NJ 380 980J 510 NJ 510 NJ 510 NJ 510 2660
-preplace netloc Vaux13_0_1 1 0 6 NJ 980 NJ 980 NJ 980 NJ 980 1540J 890 NJ
-preplace netloc Vaux5_0_1 1 0 6 NJ 960 NJ 960 NJ 960 1000J 970 NJ 970 1890J
-preplace netloc Vp_Vn_0_1 1 0 6 NJ 1000 NJ 1000 NJ 1000 NJ 1000 NJ 1000 1930J
-preplace netloc processing_system7_0_DDR 1 4 5 1520J 1060 NJ 1060 NJ 1060 NJ 1060 NJ
-preplace netloc processing_system7_0_FIXED_IO 1 4 5 1500J 1080 NJ 1080 NJ 1080 NJ 1080 NJ
-preplace netloc processing_system7_0_M_AXI_GP0 1 4 1 1530 570n
-preplace netloc processing_system7_0_M_AXI_GP1 1 4 1 1540 590n
-preplace netloc ps7_0_axi_periph_M00_AXI 1 5 1 N 680
-preplace netloc ps7_0_axi_periph_M01_AXI 1 5 1 1910 700n
-preplace netloc xadc_wiz_0_M_AXIS 1 6 1 2270 810n
-levelinfo -pg 1 0 160 510 830 1270 1730 2100 2470 2840 2960
-pagesize -pg 1 -db -bbox -sgen -120 0 3080 1120
+preplace port DDR -pg 1 -lvl 9 -x 2890 -y 1020 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 9 -x 2890 -y 1000 -defaultsOSRD
+preplace port Vp_Vn_0 -pg 1 -lvl 0 -x 0 -y 1200 -defaultsOSRD
+preplace port Vaux5_0 -pg 1 -lvl 0 -x 0 -y 950 -defaultsOSRD
+preplace port Vaux13_0 -pg 1 -lvl 0 -x 0 -y 1180 -defaultsOSRD
+preplace port port-id_pwm_o_0 -pg 1 -lvl 9 -x 2890 -y 20 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 4 -x 1260 -y 810 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 4 -x 1260 -y 1090 -swap {3 4 0 1 2 5 6 7 8 9} -defaultsOSRD
+preplace inst xadc_wiz_0 -pg 1 -lvl 6 -x 2080 -y 850 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 5 -x 1720 -y 760 -defaultsOSRD
+preplace inst system_ila_0 -pg 1 -lvl 8 -x 2770 -y 790 -defaultsOSRD
+preplace inst AXIS_Snooper_0 -pg 1 -lvl 7 -x 2430 -y 750 -defaultsOSRD
+preplace inst AXIreg_0 -pg 1 -lvl 6 -x 2080 -y 410 -defaultsOSRD
+preplace inst trigger_update_0 -pg 1 -lvl 3 -x 840 -y 320 -defaultsOSRD
+preplace inst pwm_comparator_0 -pg 1 -lvl 4 -x 1260 -y 420 -defaultsOSRD
+preplace inst counter_updown_0 -pg 1 -lvl 2 -x 490 -y 470 -defaultsOSRD
+preplace inst configmap_pwm_0 -pg 1 -lvl 1 -x 160 -y 160 -defaultsOSRD
+preplace inst trigger_acquisition_0 -pg 1 -lvl 5 -x 1720 -y 150 -defaultsOSRD
+preplace inst limiter_unsigned_0 -pg 1 -lvl 3 -x 840 -y 480 -defaultsOSRD
+preplace netloc AXIreg_0_reg0 1 2 5 700 420 990J 310 NJ 310 NJ 310 2230
+preplace netloc adcA_o 1 7 1 2620 720n
+preplace netloc adcB_o 1 7 1 2590 740n
+preplace netloc busy_out 1 6 2 2270 840 2660J
+preplace netloc cmp_o 1 4 4 1530 500 NJ 500 NJ 500 2670
+preplace netloc configmap_pwm_0_en_snoop_o 1 1 6 300 580 NJ 580 NJ 580 1510J 560 NJ 560 2270J
+preplace netloc counter_o 1 2 6 690 540 1010 320 1540 510 NJ 510 NJ 510 2660
+preplace netloc eoc_out 1 6 2 N 850 NJ
+preplace netloc eos_out 1 6 1 N 890
+preplace netloc half_o 1 4 1 1480 120n
+preplace netloc ip2intc_irpt 1 3 5 1040 930 1540J 570 NJ 570 2250 860 2610J
+preplace netloc over_o 1 2 6 680J 560 1020J 540 NJ 540 NJ 540 NJ 540 2640
+preplace netloc processing_system7_0_FCLK_CLK0 1 1 7 340 560 670J 550 1030 940 1560 960 1880 650 2280 650 N
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 3 2 1040 990 1480
+preplace netloc pwm_o 1 4 4 1500J 530 NJ 530 NJ 530 2650
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 4 3 1570 970 1910 710 2240J
+preplace netloc trigger_acquisition_0_acq_o 1 5 3 1900 720 2230J 870 2600
+preplace netloc trigger_update_0_update_o 1 3 5 1000 970 1500J 990 NJ 990 NJ 990 2640J
+preplace netloc under_o 1 2 6 650J 960 NJ 960 1550J 980 NJ 980 NJ 980 2650
+preplace netloc updown_o 1 2 6 660J 980 NJ 980 1490J 1000 NJ 1000 NJ 1000 2670
+preplace netloc AXIreg_0_reg1 1 1 6 340 300 650 220 NJ 220 1510 300 NJ 300 2280
+preplace netloc AXIreg_0_reg2 1 4 3 1570 320 NJ 320 2270
+preplace netloc AXIreg_0_reg3 1 0 7 20 570 NJ 570 NJ 570 NJ 570 1480J 550 NJ 550 2230
+preplace netloc configmap_pwm_0_peak_o 1 1 2 NJ 120 680
+preplace netloc configmap_pwm_0_valley_o 1 1 2 NJ 140 660
+preplace netloc configmap_pwm_0_sawtri_o 1 1 2 320 90 670
+preplace netloc configmap_pwm_0_async_o 1 1 3 NJ 100 NJ 100 1030
+preplace netloc configmap_pwm_0_resetn_o 1 1 1 330 60n
+preplace netloc configmap_pwm_0_acq_free_o 1 1 4 NJ 160 NJ 160 NJ 160 N
+preplace netloc configmap_pwm_0_acq_max_o 1 1 4 NJ 180 NJ 180 NJ 180 N
+preplace netloc configmap_pwm_0_acq_cmp_o 1 1 4 300J 190 NJ 190 NJ 190 1560
+preplace netloc configmap_pwm_0_acq_hlaf_o 1 1 4 310J 200 NJ 200 NJ 200 1520
+preplace netloc configmap_pwm_0_acq_zero_o 1 1 4 340J 210 NJ 210 NJ 210 1500
+preplace netloc limiter_unsigned_0_data_o 1 3 5 1040 520 NJ 520 NJ 520 NJ 520 2630
+preplace netloc Vaux13_0_1 1 0 6 NJ 1180 NJ 1180 NJ 1180 1010J 1190 NJ 1190 1940J
+preplace netloc Vaux5_0_1 1 0 6 NJ 950 NJ 950 NJ 950 NJ 950 NJ 950 1920J
+preplace netloc Vp_Vn_0_1 1 0 6 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ 1200 1930J
+preplace netloc processing_system7_0_DDR 1 4 5 1520J 1020 NJ 1020 NJ 1020 NJ 1020 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 4 5 1510J 1010 NJ 1010 NJ 1010 NJ 1010 2870J
+preplace netloc processing_system7_0_M_AXI_GP0 1 4 1 1530 630n
+preplace netloc processing_system7_0_M_AXI_GP1 1 4 1 1550 650n
+preplace netloc ps7_0_axi_periph_M00_AXI 1 5 1 1870 390n
+preplace netloc ps7_0_axi_periph_M01_AXI 1 5 1 1890 760n
+preplace netloc xadc_wiz_0_M_AXIS 1 6 1 2260 720n
+levelinfo -pg 1 0 160 490 840 1260 1720 2080 2430 2770 2890
+pagesize -pg 1 -db -bbox -sgen -120 0 3010 1220
 ",
    "Color Coded_PinnedPorts":"",
-   "Color Coded_ScaleFactor":"0.958087",
-   "Color Coded_TopLeft":"1793,462",
+   "Color Coded_ScaleFactor":"0.3584",
+   "Color Coded_TopLeft":"-209,-438",
    "Default View_ScaleFactor":"0.373396",
    "Default View_TopLeft":"0,-225",
    "Display-PortTypeClock":"true",

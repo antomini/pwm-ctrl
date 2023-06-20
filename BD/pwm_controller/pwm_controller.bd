@@ -13,7 +13,6 @@
       "processing_system7_0": "",
       "rst_ps7_0_100M": "",
       "xadc_wiz_0": "",
-      "AXIreg_0": "",
       "ps7_0_axi_periph": {
         "xbar": "",
         "s00_couplers": {
@@ -28,13 +27,15 @@
         "s00_mmu": "",
         "s01_mmu": ""
       },
-      "counter_updown_0": "",
-      "trigger_update_0": "",
       "system_ila_0": "",
-      "pwm_comparator_0": "",
-      "trigger_acquisition_0": "",
       "AXIS_Snooper_0": "",
-      "configmap_pwm_0": ""
+      "AXIreg_0": "",
+      "trigger_update_0": "",
+      "pwm_comparator_0": "",
+      "counter_updown_0": "",
+      "configmap_pwm_0": "",
+      "trigger_acquisition_0": "",
+      "limiter_unsigned_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -2119,12 +2120,6 @@
           }
         }
       },
-      "AXIreg_0": {
-        "vlnv": "user.org:user:AXIreg:1.0",
-        "xci_name": "pwm_controller_AXIreg_0_0",
-        "xci_path": "ip/pwm_controller_AXIreg_0_0/pwm_controller_AXIreg_0_0.xci",
-        "inst_hier_path": "AXIreg_0"
-      },
       "ps7_0_axi_periph": {
         "vlnv": "xilinx.com:ip:axi_interconnect:2.1",
         "xci_path": "ip/pwm_controller_ps7_0_axi_periph_0/pwm_controller_ps7_0_axi_periph_0.xci",
@@ -2812,96 +2807,6 @@
           }
         }
       },
-      "counter_updown_0": {
-        "vlnv": "xilinx.com:module_ref:counter_updown:1.0",
-        "xci_name": "pwm_controller_counter_updown_0_0",
-        "xci_path": "ip/pwm_controller_counter_updown_0_0/pwm_controller_counter_updown_0_0.xci",
-        "inst_hier_path": "counter_updown_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "counter_updown",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "counter_o": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          },
-          "updown_o": {
-            "direction": "O"
-          },
-          "over_o": {
-            "direction": "O"
-          },
-          "under_o": {
-            "direction": "O"
-          },
-          "max_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "sawtri_i": {
-            "direction": "I"
-          },
-          "resetn_i": {
-            "direction": "I"
-          },
-          "clk_i": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "pwm_controller_processing_system7_0_0_FCLK_CLK0",
-                "value_src": "default_prop"
-              }
-            }
-          }
-        }
-      },
-      "trigger_update_0": {
-        "vlnv": "xilinx.com:module_ref:trigger_update:1.0",
-        "xci_name": "pwm_controller_trigger_update_0_0",
-        "xci_path": "ip/pwm_controller_trigger_update_0_0/pwm_controller_trigger_update_0_0.xci",
-        "inst_hier_path": "trigger_update_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "trigger_update",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "update_o": {
-            "direction": "O"
-          },
-          "max_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "counter_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "peak_i": {
-            "direction": "I"
-          },
-          "valley_i": {
-            "direction": "I"
-          },
-          "sawtri_i": {
-            "direction": "I"
-          }
-        }
-      },
       "system_ila_0": {
         "vlnv": "xilinx.com:ip:system_ila:1.1",
         "xci_name": "pwm_controller_system_ila_0_0",
@@ -2921,7 +2826,7 @@
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "15"
+            "value": "14"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -3006,121 +2911,6 @@
           },
           "C_PROBE9_TYPE": {
             "value": "0"
-          }
-        }
-      },
-      "pwm_comparator_0": {
-        "vlnv": "xilinx.com:module_ref:pwm_comparator:1.0",
-        "xci_name": "pwm_controller_pwm_comparator_0_0",
-        "xci_path": "ip/pwm_controller_pwm_comparator_0_0/pwm_controller_pwm_comparator_0_0.xci",
-        "inst_hier_path": "pwm_comparator_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "pwm_comparator",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "cmp_o": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          },
-          "half_o": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          },
-          "pwm_o": {
-            "direction": "O"
-          },
-          "cmp_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "counter_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "update_i": {
-            "direction": "I"
-          },
-          "async_i": {
-            "direction": "I"
-          },
-          "clk_i": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "pwm_controller_processing_system7_0_0_FCLK_CLK0",
-                "value_src": "default_prop"
-              }
-            }
-          }
-        }
-      },
-      "trigger_acquisition_0": {
-        "vlnv": "xilinx.com:module_ref:trigger_acquisition:1.0",
-        "xci_name": "pwm_controller_trigger_acquisition_0_0",
-        "xci_path": "ip/pwm_controller_trigger_acquisition_0_0/pwm_controller_trigger_acquisition_0_0.xci",
-        "inst_hier_path": "trigger_acquisition_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "trigger_acquisition",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "acq_o": {
-            "direction": "O"
-          },
-          "free_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "max_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "cmp_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "half_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "counter_i": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "en_free_i": {
-            "direction": "I"
-          },
-          "en_max_i": {
-            "direction": "I"
-          },
-          "en_cmp_i": {
-            "direction": "I"
-          },
-          "en_half_i": {
-            "direction": "I"
-          },
-          "en_zero_i": {
-            "direction": "I"
           }
         }
       },
@@ -3268,6 +3058,161 @@
           }
         }
       },
+      "AXIreg_0": {
+        "vlnv": "user.org:user:AXIreg:1.0",
+        "xci_name": "pwm_controller_AXIreg_0_0",
+        "xci_path": "ip/pwm_controller_AXIreg_0_0/pwm_controller_AXIreg_0_0.xci",
+        "inst_hier_path": "AXIreg_0"
+      },
+      "trigger_update_0": {
+        "vlnv": "xilinx.com:module_ref:trigger_update:1.0",
+        "xci_name": "pwm_controller_trigger_update_0_0",
+        "xci_path": "ip/pwm_controller_trigger_update_0_0/pwm_controller_trigger_update_0_0.xci",
+        "inst_hier_path": "trigger_update_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "trigger_update",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "update_o": {
+            "direction": "O"
+          },
+          "max_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "counter_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "peak_i": {
+            "direction": "I"
+          },
+          "valley_i": {
+            "direction": "I"
+          },
+          "sawtri_i": {
+            "direction": "I"
+          }
+        }
+      },
+      "pwm_comparator_0": {
+        "vlnv": "xilinx.com:module_ref:pwm_comparator:1.0",
+        "xci_name": "pwm_controller_pwm_comparator_0_0",
+        "xci_path": "ip/pwm_controller_pwm_comparator_0_0/pwm_controller_pwm_comparator_0_0.xci",
+        "inst_hier_path": "pwm_comparator_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pwm_comparator",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "cmp_o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "half_o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "pwm_o": {
+            "direction": "O"
+          },
+          "cmp_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "counter_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "update_i": {
+            "direction": "I"
+          },
+          "async_i": {
+            "direction": "I"
+          },
+          "clk_i": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "pwm_controller_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
+              }
+            }
+          }
+        }
+      },
+      "counter_updown_0": {
+        "vlnv": "xilinx.com:module_ref:counter_updown:1.0",
+        "xci_name": "pwm_controller_counter_updown_0_0",
+        "xci_path": "ip/pwm_controller_counter_updown_0_0/pwm_controller_counter_updown_0_0.xci",
+        "inst_hier_path": "counter_updown_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "counter_updown",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "counter_o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "updown_o": {
+            "direction": "O"
+          },
+          "over_o": {
+            "direction": "O"
+          },
+          "under_o": {
+            "direction": "O"
+          },
+          "max_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "sawtri_i": {
+            "direction": "I"
+          },
+          "resetn_i": {
+            "direction": "I"
+          },
+          "clk_i": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "pwm_controller_processing_system7_0_0_FCLK_CLK0",
+                "value_src": "default_prop"
+              }
+            }
+          }
+        }
+      },
       "configmap_pwm_0": {
         "vlnv": "xilinx.com:module_ref:configmap_pwm:1.0",
         "xci_name": "pwm_controller_configmap_pwm_0_0",
@@ -3315,6 +3260,85 @@
           "data_i": {
             "direction": "I",
             "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "trigger_acquisition_0": {
+        "vlnv": "xilinx.com:module_ref:trigger_acquisition:1.0",
+        "xci_name": "pwm_controller_trigger_acquisition_0_0",
+        "xci_path": "ip/pwm_controller_trigger_acquisition_0_0/pwm_controller_trigger_acquisition_0_0.xci",
+        "inst_hier_path": "trigger_acquisition_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "trigger_acquisition",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "acq_o": {
+            "direction": "O"
+          },
+          "free_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "max_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "cmp_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "half_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "counter_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "en_free_i": {
+            "direction": "I"
+          },
+          "en_max_i": {
+            "direction": "I"
+          },
+          "en_cmp_i": {
+            "direction": "I"
+          },
+          "en_half_i": {
+            "direction": "I"
+          },
+          "en_zero_i": {
+            "direction": "I"
+          }
+        }
+      },
+      "limiter_unsigned_0": {
+        "vlnv": "xilinx.com:module_ref:limiter_unsigned:1.0",
+        "xci_name": "pwm_controller_limiter_unsigned_0_0",
+        "xci_path": "ip/pwm_controller_limiter_unsigned_0_0/pwm_controller_limiter_unsigned_0_0.xci",
+        "inst_hier_path": "limiter_unsigned_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "limiter_unsigned",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "data_i": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "data_o": {
+            "direction": "O",
+            "left": "15",
             "right": "0"
           }
         }
@@ -3386,19 +3410,8 @@
       "AXIreg_0_reg0": {
         "ports": [
           "AXIreg_0/reg0",
-          "system_ila_0/probe0",
-          "pwm_comparator_0/cmp_i"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true",
-            "value_src": "undefined"
-          },
-          "MARK_DEBUG": {
-            "value": "true",
-            "value_src": "undefined"
-          }
-        }
+          "limiter_unsigned_0/data_i"
+        ]
       },
       "AXIreg_0_reg1": {
         "ports": [
@@ -3423,7 +3436,7 @@
       "adcA_o": {
         "ports": [
           "AXIS_Snooper_0/adcA_o",
-          "system_ila_0/probe13"
+          "system_ila_0/probe11"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3437,7 +3450,7 @@
       "adcB_o": {
         "ports": [
           "AXIS_Snooper_0/adcB_o",
-          "system_ila_0/probe14"
+          "system_ila_0/probe12"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3451,7 +3464,7 @@
       "busy_out": {
         "ports": [
           "xadc_wiz_0/busy_out",
-          "system_ila_0/probe10"
+          "system_ila_0/probe8"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3466,7 +3479,7 @@
         "ports": [
           "pwm_comparator_0/cmp_o",
           "trigger_acquisition_0/cmp_i",
-          "system_ila_0/probe1"
+          "system_ila_0/probe0"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3548,9 +3561,9 @@
         "ports": [
           "counter_updown_0/counter_o",
           "trigger_update_0/counter_i",
-          "pwm_comparator_0/counter_i",
           "trigger_acquisition_0/counter_i",
-          "system_ila_0/probe2"
+          "pwm_comparator_0/counter_i",
+          "system_ila_0/probe1"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3574,7 +3587,7 @@
       "eoc_out": {
         "ports": [
           "xadc_wiz_0/eoc_out",
-          "system_ila_0/probe11"
+          "system_ila_0/probe9"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3593,8 +3606,14 @@
       "half_o": {
         "ports": [
           "pwm_comparator_0/half_o",
-          "trigger_acquisition_0/half_i",
-          "system_ila_0/probe3"
+          "trigger_acquisition_0/half_i"
+        ]
+      },
+      "ip2intc_irpt": {
+        "ports": [
+          "xadc_wiz_0/ip2intc_irpt",
+          "processing_system7_0/IRQ_F2P",
+          "system_ila_0/probe10"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3605,11 +3624,11 @@
           }
         }
       },
-      "ip2intc_irpt": {
+      "limiter_unsigned_0_data_o": {
         "ports": [
-          "xadc_wiz_0/ip2intc_irpt",
-          "processing_system7_0/IRQ_F2P",
-          "system_ila_0/probe12"
+          "limiter_unsigned_0/data_o",
+          "pwm_comparator_0/cmp_i",
+          "system_ila_0/probe13"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3623,7 +3642,7 @@
       "over_o": {
         "ports": [
           "counter_updown_0/over_o",
-          "system_ila_0/probe4"
+          "system_ila_0/probe2"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3651,7 +3670,6 @@
           "rst_ps7_0_100M/slowest_sync_clk",
           "processing_system7_0/M_AXI_GP1_ACLK",
           "xadc_wiz_0/s_axi_aclk",
-          "AXIreg_0/s00_axi_aclk",
           "ps7_0_axi_periph/ACLK",
           "ps7_0_axi_periph/M01_ACLK",
           "ps7_0_axi_periph/S01_ACLK",
@@ -3660,10 +3678,11 @@
           "processing_system7_0/S_AXI_HP0_ACLK",
           "xadc_wiz_0/s_axis_aclk",
           "ps7_0_axi_periph/M02_ACLK",
-          "counter_updown_0/clk_i",
           "system_ila_0/clk",
+          "AXIS_Snooper_0/s_axis_aclk",
+          "AXIreg_0/s00_axi_aclk",
           "pwm_comparator_0/clk_i",
-          "AXIS_Snooper_0/s_axis_aclk"
+          "counter_updown_0/clk_i"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -3675,7 +3694,7 @@
       "pwm_o": {
         "ports": [
           "pwm_comparator_0/pwm_o",
-          "system_ila_0/probe5"
+          "system_ila_0/probe3"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3690,14 +3709,14 @@
         "ports": [
           "rst_ps7_0_100M/peripheral_aresetn",
           "xadc_wiz_0/s_axi_aresetn",
-          "AXIreg_0/s00_axi_aresetn",
           "ps7_0_axi_periph/ARESETN",
           "ps7_0_axi_periph/M01_ARESETN",
           "ps7_0_axi_periph/S01_ARESETN",
           "ps7_0_axi_periph/M00_ARESETN",
           "ps7_0_axi_periph/S00_ARESETN",
           "ps7_0_axi_periph/M02_ARESETN",
-          "AXIS_Snooper_0/s_axis_aresetn"
+          "AXIS_Snooper_0/s_axis_aresetn",
+          "AXIreg_0/s00_axi_aresetn"
         ]
       },
       "shifted_d": {
@@ -3714,7 +3733,7 @@
         "ports": [
           "trigger_acquisition_0/acq_o",
           "xadc_wiz_0/convst_in",
-          "system_ila_0/probe9"
+          "system_ila_0/probe7"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3729,7 +3748,7 @@
         "ports": [
           "trigger_update_0/update_o",
           "pwm_comparator_0/update_i",
-          "system_ila_0/probe6"
+          "system_ila_0/probe4"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3753,7 +3772,7 @@
       "under_o": {
         "ports": [
           "counter_updown_0/under_o",
-          "system_ila_0/probe7"
+          "system_ila_0/probe5"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -3777,7 +3796,7 @@
       "updown_o": {
         "ports": [
           "counter_updown_0/updown_o",
-          "system_ila_0/probe8"
+          "system_ila_0/probe6"
         ],
         "hdl_attributes": {
           "DEBUG": {

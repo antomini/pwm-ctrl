@@ -56,10 +56,10 @@ USE ieee.numeric_std.ALL;
 ENTITY pwm_controller_system_ila_0_0 IS
   PORT (
     clk : IN STD_LOGIC;
-    probe0 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    probe0 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     probe1 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-    probe2 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-    probe3 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    probe2 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    probe3 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe4 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe5 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe6 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
@@ -67,10 +67,9 @@ ENTITY pwm_controller_system_ila_0_0 IS
     probe8 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe9 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     probe10 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    probe11 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    probe12 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    probe13 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-    probe14 : IN STD_LOGIC_VECTOR(15 DOWNTO 0)
+    probe11 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    probe12 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    probe13 : IN STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
 END pwm_controller_system_ila_0_0;
 
@@ -80,10 +79,10 @@ ARCHITECTURE pwm_controller_system_ila_0_0_arch OF pwm_controller_system_ila_0_0
   COMPONENT bd_0def IS
     PORT (
       clk : IN STD_LOGIC;
-      probe0 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      probe0 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
       probe1 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-      probe2 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-      probe3 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+      probe2 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+      probe3 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
       probe4 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
       probe5 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
       probe6 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
@@ -91,10 +90,9 @@ ARCHITECTURE pwm_controller_system_ila_0_0_arch OF pwm_controller_system_ila_0_0
       probe8 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
       probe9 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
       probe10 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-      probe11 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-      probe12 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-      probe13 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-      probe14 : IN STD_LOGIC_VECTOR(15 DOWNTO 0)
+      probe11 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+      probe12 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+      probe13 : IN STD_LOGIC_VECTOR(15 DOWNTO 0)
     );
   END COMPONENT bd_0def;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
@@ -118,7 +116,6 @@ BEGIN
       probe10 => probe10,
       probe11 => probe11,
       probe12 => probe12,
-      probe13 => probe13,
-      probe14 => probe14
+      probe13 => probe13
     );
 END pwm_controller_system_ila_0_0_arch;

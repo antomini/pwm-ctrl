@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="40">
   <CompositeFile CompositeFileTopName="pwm_controller" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1686934920"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1686934920"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1686934920"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1686934920"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1687300622"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1687300622"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1687300622"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1687300622"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth/pwm_controller.vhd" Type="VHDL">
         <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xE3CA0FFB34F5F1BB",
+      "boundary_crc": "0x5850667A66F1C2EB",
       "design_src": "SBD",
       "device": "xc7z020clg400-1",
       "name": "bd_0def",
@@ -43,7 +43,7 @@
       },
       "probe0": {
         "direction": "I",
-        "left": "31",
+        "left": "15",
         "right": "0"
       },
       "probe1": {
@@ -53,12 +53,12 @@
       },
       "probe2": {
         "direction": "I",
-        "left": "15",
+        "left": "0",
         "right": "0"
       },
       "probe3": {
         "direction": "I",
-        "left": "15",
+        "left": "0",
         "right": "0"
       },
       "probe4": {
@@ -98,20 +98,15 @@
       },
       "probe11": {
         "direction": "I",
-        "left": "0",
+        "left": "15",
         "right": "0"
       },
       "probe12": {
         "direction": "I",
-        "left": "0",
-        "right": "0"
-      },
-      "probe13": {
-        "direction": "I",
         "left": "15",
         "right": "0"
       },
-      "probe14": {
+      "probe13": {
         "direction": "I",
         "left": "15",
         "right": "0"
@@ -152,13 +147,13 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "15"
+            "value": "14"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
           },
           "C_PROBE0_WIDTH": {
-            "value": "32"
+            "value": "16"
           },
           "C_PROBE10_TYPE": {
             "value": "0"
@@ -170,24 +165,18 @@
             "value": "0"
           },
           "C_PROBE11_WIDTH": {
-            "value": "1"
+            "value": "16"
           },
           "C_PROBE12_TYPE": {
             "value": "0"
           },
           "C_PROBE12_WIDTH": {
-            "value": "1"
+            "value": "16"
           },
           "C_PROBE13_TYPE": {
             "value": "0"
           },
           "C_PROBE13_WIDTH": {
-            "value": "16"
-          },
-          "C_PROBE14_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE14_WIDTH": {
             "value": "16"
           },
           "C_PROBE1_TYPE": {
@@ -200,13 +189,13 @@
             "value": "0"
           },
           "C_PROBE2_WIDTH": {
-            "value": "16"
+            "value": "1"
           },
           "C_PROBE3_TYPE": {
             "value": "0"
           },
           "C_PROBE3_WIDTH": {
-            "value": "16"
+            "value": "1"
           },
           "C_PROBE4_TYPE": {
             "value": "0"
@@ -294,12 +283,6 @@
         "ports": [
           "probe13",
           "ila_lib/probe13"
-        ]
-      },
-      "probe14_1": {
-        "ports": [
-          "probe14",
-          "ila_lib/probe14"
         ]
       },
       "probe1_1": {
