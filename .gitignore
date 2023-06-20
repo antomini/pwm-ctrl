@@ -1,0 +1,8 @@
+.Xil/
+pwm_project/
+vivado.jou
+vivado.log
+*.jou
+*.log
+*.str
+xrc.log

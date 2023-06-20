@@ -4,23 +4,31 @@
 #include "xil_exception.h"
 #include "xscugic.h"
 #include "AXIreg.h"
+#include <stdbool.h>
 
 // AXIreg_0 base address definition
-#define AXI_REG0_BASEADDR 	XPAR_AXIREG_0_S00_AXI_BASEADDR
+#define AXI_REG0_BASEADDR 		XPAR_AXIREG_0_S00_AXI_BASEADDR
 // AXIreg offsets redefined for their use
-#define AXI_DUTY_REG 		AXIREG_S00_AXI_SLV_REG0_OFFSET
-#define AXI_TOPMASK_REG 	AXIREG_S00_AXI_SLV_REG1_OFFSET
-#define AXI_SYNCFG_REG 		AXIREG_S00_AXI_SLV_REG2_OFFSET
-#define AXI_PWMCFG_REG 		AXIREG_S00_AXI_SLV_REG3_OFFSET
+#define AXI_DUTY_REG 			AXIREG_S00_AXI_SLV_REG0_OFFSET
+#define AXI_MAX_REG 			AXIREG_S00_AXI_SLV_REG1_OFFSET
+#define AXI_FREEACQ_REG 		AXIREG_S00_AXI_SLV_REG2_OFFSET
+#define AXI_PWMCFG_REG 			AXIREG_S00_AXI_SLV_REG3_OFFSET
 
 // Setup of the PWM controller
-#define TOP_OFFSET		0
-#define MASK_OFFSET		16
-#define SHIFTER_OFFSET	8
-#define RESET_BIT		0
-#define SAWTRI_BIT		1
+#define PWM_RESETN_BIT		0
+#define PWM_SAWTRI_BIT		1
+#define PWM_ASYNC_BIT		2
+#define UPD_PEAK_BIT		3
+#define UPD_VALLEY_BIT		4
+#define ACQ_FREE_BIT		5
+#define ACQ_MAX_BIT			6
+#define ACQ_CMP_BIT 		7
+#define ACQ_HALF_BIT		8
+#define ACQ_ZERO_BIT		9
+#define EN_SNOOP_BIT		10
 void setupPWM(void);
 
+/*
 // AXIreg_1 base address definition
 #define AXI_REG1_BASEADDR 	XPAR_AXIREG_1_S00_AXI_BASEADDR
 // AXIreg offsets redefined for their use
@@ -31,16 +39,21 @@ void setupPWM(void);
 
 // DSP Control Register bits
 #define RS_OFFSET 31
+#define ADCEN_OFFSET 30
 #define	POSTSHIFT_OFFSET 0
 // Setup of the DSP
 void setupDsp(void);
+*/
 
 // XADC base address definition and register offsets
 #define AXI_XADC_BASE_ADDRESS 0x7FFF8000U
 // XADC register offset
 #define VAUX1_OFFSET 0x244U
+#define VAUX5_OFFSET 0x254U
 #define VAUX9_OFFSET 0x264U
-#define VAUX_OFFSET  VAUX9_OFFSET
+#define VAUX13_OFFSET 0x274U
+#define VAUX_A_OFFSET  VAUX5_OFFSET
+#define VAUX_B_OFFSET  VAUX13_OFFSET
 #define GIER_OFFSET 0x5CU
 #define IPISR_OFFSET 0x60U
 #define IPIER_OFFSET 0x68U
@@ -57,7 +70,7 @@ void setupDsp(void);
 void setupInterruptXADC(void);
 
 // GIC parameters to use with the drivers
-#define INTC_DEVICE_INT_ID 61
+#define INTC_DEVICE_INT_ID 	61
 // GIC setup function
 void setupGIC(void);
 // Device Driver Interrupt Handlers
@@ -67,19 +80,20 @@ static uint16_t adc = 0;
 static uint16_t ref = 0x777;
 static int16_t err = 0;
 
-static uint16_t kp = 56590; //1.727x2^15
-static uint16_t kiT = 16685; //0.5092x2^15
-static int32_t x = 0; //integrator input
-static int32_t acc = 0; //integrator output
-//static int32_t acc_max = 0xFFFF;
-//static int32_t acc_min = 0;
-//static int8_t sat = 0; // saturation flag
+static uint16_t kp = 15253; 	//x2^14
+static uint16_t kiT = 4495; 	//x2^14
+static int32_t xi = 0; 			//integrator input
+static int32_t yi = 0; 			//integrator output
+static int32_t yold = 0; 		//accumulator output
+static int32_t acc_max = 0x0FFF;
+static int32_t acc_min = 0;
 
 static int32_t y = 0; // controller output
 static int32_t y_max = 0xFFFF;
 static int32_t y_min = 0;
 
 static uint32_t duty = 0;
+static bool open = 1;
 
 int main() {
 
@@ -87,7 +101,7 @@ int main() {
 	setupInterruptXADC();
 
 	setupPWM();
-	setupDsp();
+	//setupDsp();
 
 	//uint16_t test_duty = 0xFF;
 	//uint16_t test_adc = 0;
@@ -99,32 +113,20 @@ int main() {
 
 void DeviceDriverHandler(void *CallBackRef){
 	u32 reg = XADC_mRead(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET);
-	XADC_mWrite(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET, reg);
+	//XADC_mWrite(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET, reg);
 
-	adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX_OFFSET) >> 4;
+	adc = XADC_mRead(AXI_XADC_BASE_ADDRESS, VAUX_A_OFFSET) >> 4;
 
-	err = (int16_t) (ref - adc);
-	x = (kiT*err)>>15;
-	acc = acc + x;
-
-	/* Anti-Windup Integrator
-	if ((sat < 0 && err < 0)||(sat > 0 && err > 0)) {
-		// do nothing
+	if(open==1) {
+		y = ref;
 	}
 	else {
-		acc = acc + x;
-		if (acc < acc_min){
-			acc = acc_min;
-			sat = -1;
-		}
-		else if (acc > acc_max) {
-			acc = acc_max;
-			sat = 1;
-		}
+		err = (int16_t) (ref - adc);
+		xi = (kiT*err)>>14;
+		yi = yold + xi;
+		y = yi + ((kp*err) >> 14);
 	}
-	*/
 
-	y = acc + ((kp*err) >> 15);
 	if (y < y_min) {
 		y = y_min;
 	}
@@ -134,24 +136,33 @@ void DeviceDriverHandler(void *CallBackRef){
 
 	duty = (uint32_t) y;
 	AXIREG_mWriteReg(AXI_REG0_BASEADDR, AXI_DUTY_REG, duty);
+
+	// Update variables
+	if ((yi <= acc_max) && (yi >= acc_min)) {
+		yold = yi;
+	}
+	else {
+	}
+
+	// >>> CLEAR THE INTERRUPT BIT >>>
+	XADC_mWrite(AXI_XADC_BASE_ADDRESS, IPISR_OFFSET, reg);
+	// <<< CLEAR THE INTERRUPT BIT <<<
 }
 
 void setupPWM(void){
-	u16 top = 0xFFF;
-	u16 mask = 0xFFF;
-	u16 delay = 0x0;
-	u16 shift = 0x0;
+	u16 max = 4000;
 
-	u32 topmask = (u32) top | (mask << MASK_OFFSET);
-	u32 syncfg = (u32) delay + (shift << 8);
-	u32 pwmcfg = (1 << RESET_BIT) | (0 << SAWTRI_BIT);
+	u32 pwmcfg = (1 << PWM_RESETN_BIT) | (0 << PWM_SAWTRI_BIT) | (0 << PWM_ASYNC_BIT)
+					| (1 << UPD_PEAK_BIT) | (0 << UPD_VALLEY_BIT)
+					| (0 << ACQ_FREE_BIT) | (0 << ACQ_MAX_BIT)
+					| (0 << ACQ_CMP_BIT) | (1 << ACQ_HALF_BIT) | (0 << ACQ_ZERO_BIT)
+					| (1 << EN_SNOOP_BIT) ;
 
-
-	AXIREG_mWriteReg(AXI_REG0_BASEADDR, AXI_SYNCFG_REG, syncfg);
 	AXIREG_mWriteReg(AXI_REG0_BASEADDR, AXI_PWMCFG_REG, pwmcfg);
-	AXIREG_mWriteReg(AXI_REG0_BASEADDR, AXI_TOPMASK_REG, topmask);
+	AXIREG_mWriteReg(AXI_REG0_BASEADDR, AXI_MAX_REG, max);
 }
 
+/*
 void setupDsp(void){
 	u32 reg = 0;
 	AXIREG_mWriteReg(AXI_REG1_BASEADDR, AXI_REF_REG, ref);
@@ -161,6 +172,7 @@ void setupDsp(void){
 	reg |= (1 << RS_OFFSET) | (15 << POSTSHIFT_OFFSET);
 	AXIREG_mWriteReg(AXI_REG1_BASEADDR, AXI_CTRL_REG, reg);
 }
+*/
 
 void setupGIC(void){
 	static XScuGic InterruptController; // Instance of the Interrupt Controller

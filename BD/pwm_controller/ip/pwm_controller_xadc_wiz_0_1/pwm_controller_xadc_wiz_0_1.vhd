@@ -90,8 +90,10 @@ entity pwm_controller_xadc_wiz_0_1 is
     m_axis_tid      : out std_logic_vector(4 downto 0);
     m_axis_tready   : in  std_logic;
     convst_in       : in  STD_LOGIC;                         -- Convert Start Input
-    vauxp9          : in  STD_LOGIC;                         -- Auxiliary Channel 9
-    vauxn9          : in  STD_LOGIC;
+    vauxp5          : in  STD_LOGIC;                         -- Auxiliary Channel 5
+    vauxn5          : in  STD_LOGIC;
+    vauxp13         : in  STD_LOGIC;                         -- Auxiliary Channel 13
+    vauxn13         : in  STD_LOGIC;
     busy_out        : out  STD_LOGIC;                        -- ADC Busy signal
     channel_out     : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
     eoc_out         : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -105,7 +107,7 @@ end pwm_controller_xadc_wiz_0_1;
 architecture xilinx of pwm_controller_xadc_wiz_0_1 is
 
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of xilinx : architecture is "pwm_controller_xadc_wiz_0_1,xadc_wiz_v3_3_8,{component_name=pwm_controller_xadc_wiz_0_1,enable_axi=true,enable_axi4stream=true,dclk_frequency=100,enable_busy=true,enable_convst=true,enable_convstclk=false,enable_dclk=true,enable_drp=false,enable_eoc=true,enable_eos=true,enable_vbram_alaram=false,enable_vccddro_alaram=false,enable_Vccint_Alaram=false,enable_Vccaux_alaram=falseenable_vccpaux_alaram=false,enable_vccpint_alaram=false,ot_alaram=false,user_temp_alaram=false,timing_mode=event_driven,channel_averaging=None,sequencer_mode=off,startup_channel_selection=single_channel}";
+  attribute CORE_GENERATION_INFO of xilinx : architecture is "pwm_controller_xadc_wiz_0_1,xadc_wiz_v3_3_8,{component_name=pwm_controller_xadc_wiz_0_1,enable_axi=true,enable_axi4stream=true,dclk_frequency=100,enable_busy=true,enable_convst=true,enable_convstclk=false,enable_dclk=true,enable_drp=false,enable_eoc=true,enable_eos=true,enable_vbram_alaram=false,enable_vccddro_alaram=false,enable_Vccint_Alaram=false,enable_Vccaux_alaram=falseenable_vccpaux_alaram=false,enable_vccpint_alaram=false,ot_alaram=false,user_temp_alaram=false,timing_mode=event_driven,channel_averaging=None,sequencer_mode=on,startup_channel_selection=simultaneous_sampling}";
 
 
   component pwm_controller_xadc_wiz_0_1_axi_xadc 
@@ -165,8 +167,10 @@ architecture xilinx of pwm_controller_xadc_wiz_0_1 is
 
     -- Conversion start control signal for Event driven mode
     convst_in       : in  STD_LOGIC;                         -- Convert Start Input
-    vauxp9          : in  STD_LOGIC;                         -- Auxiliary Channel 9
-    vauxn9          : in  STD_LOGIC;
+    vauxp5          : in  STD_LOGIC;                         -- Auxiliary Channel 5
+    vauxn5          : in  STD_LOGIC;
+    vauxp13         : in  STD_LOGIC;                         -- Auxiliary Channel 13
+    vauxn13         : in  STD_LOGIC;
     busy_out        : out  STD_LOGIC;                        -- ADC Busy signal
     channel_out     : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
     eoc_out         : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -221,8 +225,10 @@ begin
     m_axis_tid      => m_axis_tid,
     m_axis_tready   => m_axis_tready,
     convst_in => convst_in, 
-    vauxp9 => vauxp9,
-    vauxn9 => vauxn9,
+    vauxp5 => vauxp5,
+    vauxn5 => vauxn5,
+    vauxp13 => vauxp13,
+    vauxn13 => vauxn13,
     busy_out => busy_out,
     channel_out => channel_out,
     eoc_out => eoc_out,

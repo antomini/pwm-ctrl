@@ -33,27 +33,21 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity delayshift_v0 is
     Generic (
-        DLY_WIDTH : positive := 8;
+        DLY_WIDTH : positive := 16;
         SHIFT_WIDTH : positive := 4;
         DATA_WIDTH : positive := 32
     );
     Port ( 
-        data_in : in STD_LOGIC_VECTOR(DATA_WIDTH-1 downto 0);
-        dly_out : out STD_LOGIC_VECTOR(DLY_WIDTH-1 downto 0);
-        rel_out : out STD_LOGIC_VECTOR(DLY_WIDTH downto 0);
-        shift_out : out STD_LOGIC_VECTOR(SHIFT_WIDTH-1 downto 0)
+        data_in : in STD_LOGIC_VECTOR(DATA_WIDTH -1 downto 0);
+        dly_out : out STD_LOGIC_VECTOR(DLY_WIDTH -1 downto 0);
+        shift_out : out STD_LOGIC_VECTOR(SHIFT_WIDTH -1 downto 0)
     );
 end delayshift_v0;
 
 architecture Behavioral of delayshift_v0 is
-    signal dly_s : std_logic_vector(DLY_WIDTH-1 downto 0);
-    signal rel_s : unsigned(DLY_WIDTH downto 0);
 begin
-    dly_s <= data_in(DLY_WIDTH-1 downto 0);
-    rel_s <= unsigned('0'&dly_s) + 150;
-    
-    dly_out <= dly_s;
-    shift_out <= data_in(SHIFT_WIDTH+DLY_WIDTH-1 downto DLY_WIDTH);
-    rel_out <= std_logic_vector(rel_s);
+
+    dly_out <= data_in(DLY_WIDTH-1 downto 0);
+    shift_out <= data_in(SHIFT_WIDTH + DLY_WIDTH -1 downto DLY_WIDTH);
     
 end Behavioral;

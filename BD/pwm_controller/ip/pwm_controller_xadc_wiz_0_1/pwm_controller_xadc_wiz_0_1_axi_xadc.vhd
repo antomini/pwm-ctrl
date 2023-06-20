@@ -206,8 +206,10 @@ entity pwm_controller_xadc_wiz_0_1_axi_xadc is
 
     -- Conversion start control signal for Event driven mode
     convst_in       : in  STD_LOGIC;                         -- Convert Start Input
-    vauxp9          : in  STD_LOGIC;                         -- Auxiliary Channel 9
-    vauxn9          : in  STD_LOGIC;
+    vauxp5          : in  STD_LOGIC;                         -- Auxiliary Channel 5
+    vauxn5          : in  STD_LOGIC;
+    vauxp13         : in  STD_LOGIC;                         -- Auxiliary Channel 13
+    vauxn13         : in  STD_LOGIC;
     busy_out        : out  STD_LOGIC;                        -- ADC Busy signal
     channel_out     : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
     eoc_out         : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -290,8 +292,10 @@ component pwm_controller_xadc_wiz_0_1_xadc_core_drp
      m_axis_tready          : in  std_logic;
      ----------------  sysmon macro interface  -------------------
      convst_in              : in  STD_LOGIC;                         -- Convert Start Input
-     vauxp9                 : in  STD_LOGIC;                         -- Auxiliary Channel 9
-     vauxn9                 : in  STD_LOGIC;
+     vauxp5                 : in  STD_LOGIC;                         -- Auxiliary Channel 5
+     vauxn5                 : in  STD_LOGIC;
+     vauxp13                : in  STD_LOGIC;                         -- Auxiliary Channel 13
+     vauxn13                : in  STD_LOGIC;
      busy_out               : out  STD_LOGIC;                        -- ADC Busy signal
      channel_out            : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
      eoc_out                : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -748,8 +752,10 @@ AXI_XADC_CORE_I : pwm_controller_xadc_wiz_0_1_xadc_core_drp
     m_axis_tready                => m_axis_tready, 
     --- external interface signals ------------------
     convst_in                    => convst_in,
-    vauxp9                       => vauxp9,
-    vauxn9                       => vauxn9,
+    vauxp5                       => vauxp5,
+    vauxn5                       => vauxn5,
+    vauxp13                      => vauxp13,
+    vauxn13                      => vauxn13,
     busy_out                     => busy_out,
     channel_out                  => channel_out,
     eoc_out                      => eoc_out,

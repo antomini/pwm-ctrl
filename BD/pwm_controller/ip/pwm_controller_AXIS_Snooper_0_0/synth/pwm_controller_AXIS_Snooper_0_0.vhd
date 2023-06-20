@@ -55,8 +55,11 @@ USE ieee.numeric_std.ALL;
 
 ENTITY pwm_controller_AXIS_Snooper_0_0 IS
   PORT (
-    adc_out : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-    id_out : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+    adcA_o : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+    adcB_o : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+    idA_o : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+    idB_o : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+    en_out_i : IN STD_LOGIC;
     s_axis_aclk : IN STD_LOGIC;
     s_axis_aresetn : IN STD_LOGIC;
     s_axis_tvalid : IN STD_LOGIC;
@@ -71,13 +74,17 @@ ARCHITECTURE pwm_controller_AXIS_Snooper_0_0_arch OF pwm_controller_AXIS_Snooper
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF pwm_controller_AXIS_Snooper_0_0_arch: ARCHITECTURE IS "yes";
   COMPONENT AXIS_Snooper IS
     GENERIC (
-      DATA_WIDTH : INTEGER;
       ID_WIDTH : INTEGER;
-      SNOOP_ID : INTEGER
+      SNOOP_ID_A : INTEGER;
+      SNOOP_ID_B : INTEGER;
+      DATA_WIDTH : INTEGER
     );
     PORT (
-      adc_out : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-      id_out : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+      adcA_o : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+      adcB_o : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+      idA_o : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+      idB_o : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+      en_out_i : IN STD_LOGIC;
       s_axis_aclk : IN STD_LOGIC;
       s_axis_aresetn : IN STD_LOGIC;
       s_axis_tvalid : IN STD_LOGIC;
@@ -91,30 +98,34 @@ ARCHITECTURE pwm_controller_AXIS_Snooper_0_0_arch OF pwm_controller_AXIS_Snooper
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF pwm_controller_AXIS_Snooper_0_0_arch : ARCHITECTURE IS "pwm_controller_AXIS_Snooper_0_0,AXIS_Snooper,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF pwm_controller_AXIS_Snooper_0_0_arch: ARCHITECTURE IS "pwm_controller_AXIS_Snooper_0_0,AXIS_Snooper,{x_ipProduct=Vivado 2022.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=AXIS_Snooper,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,DATA_WIDTH=16,ID_WIDTH=5,SNOOP_ID=25}";
+  ATTRIBUTE CORE_GENERATION_INFO OF pwm_controller_AXIS_Snooper_0_0_arch: ARCHITECTURE IS "pwm_controller_AXIS_Snooper_0_0,AXIS_Snooper,{x_ipProduct=Vivado 2022.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=AXIS_Snooper,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,ID_WIDTH=5,SNOOP_ID_A=21,SNOOP_ID_B=29,DATA_WIDTH=16}";
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF pwm_controller_AXIS_Snooper_0_0_arch: ARCHITECTURE IS "module_ref";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
-  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_aclk: SIGNAL IS "XIL_INTERFACENAME s_axis_aclk, ASSOCIATED_BUSIF s_axis, ASSOCIATED_RESET s_axis_aresetn, FREQ_HZ 1e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN pwm_controller_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_aclk: SIGNAL IS "XIL_INTERFACENAME s_axis_aclk, ASSOCIATED_BUSIF s_axis, ASSOCIATED_RESET s_axis_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN pwm_controller_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_aclk: SIGNAL IS "xilinx.com:signal:clock:1.0 s_axis_aclk CLK";
   ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_aresetn: SIGNAL IS "XIL_INTERFACENAME s_axis_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_aresetn: SIGNAL IS "xilinx.com:signal:reset:1.0 s_axis_aresetn RST";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 s_axis TDATA";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_tid: SIGNAL IS "xilinx.com:interface:axis:1.0 s_axis TID";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 s_axis TREADY";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_tvalid: SIGNAL IS "XIL_INTERFACENAME s_axis, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 5, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 1e+08, PHASE 0.0, CLK_DOMAIN pwm_controller_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_tvalid: SIGNAL IS "XIL_INTERFACENAME s_axis, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 5, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN pwm_controller_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 s_axis TVALID";
 BEGIN
   U0 : AXIS_Snooper
     GENERIC MAP (
-      DATA_WIDTH => 16,
       ID_WIDTH => 5,
-      SNOOP_ID => 25
+      SNOOP_ID_A => 21,
+      SNOOP_ID_B => 29,
+      DATA_WIDTH => 16
     )
     PORT MAP (
-      adc_out => adc_out,
-      id_out => id_out,
+      adcA_o => adcA_o,
+      adcB_o => adcB_o,
+      idA_o => idA_o,
+      idB_o => idB_o,
+      en_out_i => en_out_i,
       s_axis_aclk => s_axis_aclk,
       s_axis_aresetn => s_axis_aresetn,
       s_axis_tvalid => s_axis_tvalid,

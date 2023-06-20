@@ -33,22 +33,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity pwmconfig_v0 is
     Generic (
-        RES_BIT : natural := 0;
+        RESET_BIT : natural := 0;
         SAWTRI_BIT : natural := 1;
+        ASYNC_BIT : natural := 2;
+        DIRECT_BIT : natural := 3;
         DATA_WIDTH : positive := 32
     );
     Port ( 
         data_in : in STD_LOGIC_VECTOR(DATA_WIDTH-1 downto 0);
         resetn_out : out STD_LOGIC;
-        sawtri_out : out STD_LOGIC
+        sawtri_out : out STD_LOGIC;
+        async_out : out STD_LOGIC;
+        direct_out : out STD_LOGIC
     );
 end pwmconfig_v0;
 
 architecture Behavioral of pwmconfig_v0 is
 
 begin
-    resetn_out <= data_in(RES_BIT);
+    resetn_out <= data_in(RESET_BIT);
     sawtri_out <= data_in(SAWTRI_BIT);
-
+    async_out <= data_in(ASYNC_BIT);
+    direct_out <= data_in(DIRECT_BIT);
 
 end Behavioral;

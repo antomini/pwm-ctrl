@@ -185,8 +185,10 @@ entity pwm_controller_xadc_wiz_0_1_xadc_core_drp is
      m_axis_tready          : in  std_logic;
      ----------------  sysmon macro interface  -------------------
      convst_in              : in  STD_LOGIC;                         -- Convert Start Input
-     vauxp9                 : in  STD_LOGIC;                         -- Auxiliary Channel 9
-     vauxn9                 : in  STD_LOGIC;
+     vauxp5                 : in  STD_LOGIC;                         -- Auxiliary Channel 5
+     vauxn5                 : in  STD_LOGIC;
+     vauxp13                : in  STD_LOGIC;                         -- Auxiliary Channel 13
+     vauxn13                : in  STD_LOGIC;
      busy_out               : out  STD_LOGIC;                        -- ADC Busy signal
      channel_out            : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
      eoc_out                : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -1082,8 +1084,8 @@ end process mode_change_gen;
         aux_channel_p(4) <= '0';
         aux_channel_n(4) <= '0';
 
-        aux_channel_p(5) <= '0';
-        aux_channel_n(5) <= '0';
+        aux_channel_p(5) <= vauxp5;
+        aux_channel_n(5) <= vauxn5;
 
         aux_channel_p(6) <= '0';
         aux_channel_n(6) <= '0';
@@ -1094,8 +1096,8 @@ end process mode_change_gen;
         aux_channel_p(8) <= '0';
         aux_channel_n(8) <= '0';
 
-        aux_channel_p(9) <= vauxp9;
-        aux_channel_n(9) <= vauxn9;
+        aux_channel_p(9) <= '0';
+        aux_channel_n(9) <= '0';
 
         aux_channel_p(10) <= '0';
         aux_channel_n(10) <= '0';
@@ -1106,8 +1108,8 @@ end process mode_change_gen;
         aux_channel_p(12) <= '0';
         aux_channel_n(12) <= '0';
 
-        aux_channel_p(13) <= '0';
-        aux_channel_n(13) <= '0';
+        aux_channel_p(13) <= vauxp13;
+        aux_channel_n(13) <= vauxn13;
 
         aux_channel_p(14) <= '0';
         aux_channel_n(14) <= '0';
@@ -1117,11 +1119,11 @@ end process mode_change_gen;
 
  XADC_INST : XADC
      generic map(
-        INIT_40 => X"0219", -- config reg 0
-        INIT_41 => X"31AF", -- config reg 1
+        INIT_40 => X"0200", -- config reg 0
+        INIT_41 => X"410F", -- config reg 1
         INIT_42 => X"0400", -- config reg 2
-        INIT_48 => X"0100", -- Sequencer channel selection
-        INIT_49 => X"0000", -- Sequencer channel selection
+        INIT_48 => X"0000", -- Sequencer channel selection
+        INIT_49 => X"0020", -- Sequencer channel selection
         INIT_4A => X"0000", -- Sequencer Average selection
         INIT_4B => X"0000", -- Sequencer Average selection
         INIT_4C => X"0000", -- Sequencer Bipolar selection

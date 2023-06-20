@@ -35,28 +35,41 @@ entity pwm_v1 is
     generic (
         BIT_NUM : positive := 16
     );
-    Port ( 
-        clk_i : in STD_LOGIC;
-        resetn_i : in STD_LOGIC;
-        duty_i : in STD_LOGIC_VECTOR (BIT_NUM-1 downto 0);
-        top_i : in STD_LOGIC_VECTOR (BIT_NUM-1 downto 0);
-        sawtri_i : in STD_LOGIC;
-        pwm_o : out STD_LOGIC;
+    Port (
+        -- Debug Ports
+        
+        -- End Debug
+        clk_i : in std_logic;
+        resetn_i : in std_logic := '0';
+        sawtri_i : in std_logic := '0';
+        async_i : in std_logic := '0';
+        top_i : in std_logic_vector (BIT_NUM-1 downto 0);
+        cmp_i : in std_logic_vector (BIT_NUM-1 downto 0);
+        update_i : in std_logic;
+        pwm_o : out std_logic;
         updown_o : out std_logic;
-        counter_o : out STD_LOGIC_vector (BIT_NUM-1 downto 0)
+        trigger_o : out std_logic;
+        cmp_o : out std_logic_vector (BIT_NUM-1 downto 0);
+        counter_o : out std_logic_vector (BIT_NUM-1 downto 0)
     );
 end pwm_v1;
 
 architecture Behavioral of pwm_v1 is
     signal counter_r : unsigned(BIT_NUM-1 downto 0);
+    signal update_s : std_logic;
+    signal cmp_r : unsigned(BIT_NUM-1 downto 0);
+    signal cmp_s : unsigned(BIT_NUM-1 downto 0);
     signal updown_s : std_logic;
     signal updown_r : std_logic;
     signal reloadn_s : std_logic;
     signal over_s : std_logic;
     signal under_s : std_logic;
     signal range_s : std_logic_vector(1 downto 0);
-    --signal enable_s : std_logic;
+
 begin
+
+    -- Begin Counter Section --
+    
     COUNTER_LOGIC : process(clk_i)
     begin
         if rising_edge(clk_i) then
@@ -141,17 +154,42 @@ begin
             end case;
         end case;
     end process;
-                        
-    COMPARATOR_LOGIC : process(counter_r, duty_i)
+    
+    -- End Counter Section --
+    
+    -- Begin Comparator Section --
+    COMPARATOR_REG : process(clk_i)
     begin
-        if(counter_r < unsigned(duty_i)) then
+        if rising_edge(clk_i) then
+            if update_i = '1' then
+                cmp_r <= unsigned(cmp_i);
+            end if;
+        end if;
+    end process;
+    cmp_s <= unsigned(cmp_i) when (async_i = '1') else cmp_r;
+    
+    COMPARATOR_LOGIC : process(counter_r, cmp_i)
+    begin
+        if(counter_r < unsigned(cmp_i)) then
             pwm_o <= '1';
         else
             pwm_o <= '0';
         end if;
     end process;
     
+    HALF_TRIGGER : process(cmp_r, counter_r)
+    begin
+        if counter_r = (cmp_r srl 1) then
+            trigger_o <= '1';
+        else
+            trigger_o <= '0';
+        end if;
+    end process;
+    
+    -- End Comparator Section --
+    
     counter_o <= std_logic_vector(counter_r);
     updown_o <= updown_s;
+    cmp_o <= std_logic_vector(cmp_s);
     
 end Behavioral;
