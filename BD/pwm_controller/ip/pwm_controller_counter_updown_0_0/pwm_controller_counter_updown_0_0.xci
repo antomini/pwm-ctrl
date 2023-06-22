@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "pwm_controller_counter_updown_0_0",
-    "cell_name": "counter_updown_0",
+    "cell_name": "DPWM/counter_updown_0",
     "component_reference": "xilinx.com:module_ref:counter_updown:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

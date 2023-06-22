@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Fri Jun 16 18:54:12 2023
+-- Date        : Thu Jun 22 02:14:14 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_configmap_pwm_0_0/pwm_controller_configmap_pwm_0_0_sim_netlist.vhdl
@@ -27,6 +27,8 @@ entity pwm_controller_configmap_pwm_0_0 is
     acq_half_o : out STD_LOGIC;
     acq_zero_o : out STD_LOGIC;
     en_snoop_o : out STD_LOGIC;
+    dsp_start_o : out STD_LOGIC;
+    dsp_bypass_o : out STD_LOGIC;
     data_i : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   attribute NotValidForBitStream : boolean;
@@ -44,13 +46,15 @@ end pwm_controller_configmap_pwm_0_0;
 architecture STRUCTURE of pwm_controller_configmap_pwm_0_0 is
   signal \^data_i\ : STD_LOGIC_VECTOR ( 31 downto 0 );
 begin
-  \^data_i\(10 downto 0) <= data_i(10 downto 0);
+  \^data_i\(12 downto 0) <= data_i(12 downto 0);
   acq_cmp_o <= \^data_i\(7);
   acq_free_o <= \^data_i\(5);
   acq_half_o <= \^data_i\(8);
   acq_max_o <= \^data_i\(6);
   acq_zero_o <= \^data_i\(9);
   async_o <= \^data_i\(2);
+  dsp_bypass_o <= \^data_i\(12);
+  dsp_start_o <= \^data_i\(11);
   en_snoop_o <= \^data_i\(10);
   resetn_o <= \^data_i\(0);
   sawtri_o <= \^data_i\(1);

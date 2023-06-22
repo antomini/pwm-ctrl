@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "pwm_controller_configmap_pwm_0_0",
-    "cell_name": "configmap_pwm_0",
+    "cell_name": "DPWM_SLICE/configmap_pwm_0",
     "component_reference": "xilinx.com:module_ref:configmap_pwm:1.0",
     "ip_revision": "1",
     "gen_directory": ".",
@@ -19,6 +19,8 @@
         "ACQ_HALF_BIT": [ { "value": "8", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "ACQ_ZERO_BIT": [ { "value": "9", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "EN_SNOOP_BIT": [ { "value": "10", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "DSP_START_BIT": [ { "value": "11", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "DSP_BYPASS_BIT": [ { "value": "12", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "DATA_WIDTH": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "pwm_controller_configmap_pwm_0_0", "resolve_type": "user", "usage": "all" } ]
       },
@@ -34,6 +36,8 @@
         "ACQ_HALF_BIT": [ { "value": "8", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "ACQ_ZERO_BIT": [ { "value": "9", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "EN_SNOOP_BIT": [ { "value": "10", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "DSP_START_BIT": [ { "value": "11", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "DSP_BYPASS_BIT": [ { "value": "12", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "DATA_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
@@ -75,6 +79,8 @@
         "acq_half_o": [ { "direction": "out" } ],
         "acq_zero_o": [ { "direction": "out" } ],
         "en_snoop_o": [ { "direction": "out" } ],
+        "dsp_start_o": [ { "direction": "out" } ],
+        "dsp_bypass_o": [ { "direction": "out" } ],
         "data_i": [ { "direction": "in", "size_left": "31", "size_right": "0" } ]
       }
     }

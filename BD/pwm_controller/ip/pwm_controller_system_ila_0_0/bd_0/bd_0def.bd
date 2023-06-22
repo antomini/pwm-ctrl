@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x5850667A66F1C2EB",
+      "boundary_crc": "0xE56DC4318EA1B13D",
       "design_src": "SBD",
       "device": "xc7z020clg400-1",
       "name": "bd_0def",
@@ -83,30 +83,10 @@
       },
       "probe8": {
         "direction": "I",
-        "left": "0",
+        "left": "11",
         "right": "0"
       },
       "probe9": {
-        "direction": "I",
-        "left": "0",
-        "right": "0"
-      },
-      "probe10": {
-        "direction": "I",
-        "left": "0",
-        "right": "0"
-      },
-      "probe11": {
-        "direction": "I",
-        "left": "15",
-        "right": "0"
-      },
-      "probe12": {
-        "direction": "I",
-        "left": "15",
-        "right": "0"
-      },
-      "probe13": {
         "direction": "I",
         "left": "15",
         "right": "0"
@@ -129,7 +109,7 @@
             "value": "false"
           },
           "C_DATA_DEPTH": {
-            "value": "32768"
+            "value": "65536"
           },
           "C_EN_STRG_QUAL": {
             "value": "0"
@@ -147,36 +127,12 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "14"
+            "value": "10"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
           },
           "C_PROBE0_WIDTH": {
-            "value": "16"
-          },
-          "C_PROBE10_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE10_WIDTH": {
-            "value": "1"
-          },
-          "C_PROBE11_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE11_WIDTH": {
-            "value": "16"
-          },
-          "C_PROBE12_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE12_WIDTH": {
-            "value": "16"
-          },
-          "C_PROBE13_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE13_WIDTH": {
             "value": "16"
           },
           "C_PROBE1_TYPE": {
@@ -225,13 +181,13 @@
             "value": "0"
           },
           "C_PROBE8_WIDTH": {
-            "value": "1"
+            "value": "12"
           },
           "C_PROBE9_TYPE": {
             "value": "0"
           },
           "C_PROBE9_WIDTH": {
-            "value": "1"
+            "value": "16"
           },
           "C_TIME_TAG_WIDTH": {
             "value": "32"
@@ -259,30 +215,6 @@
         "ports": [
           "probe0",
           "ila_lib/probe0"
-        ]
-      },
-      "probe10_1": {
-        "ports": [
-          "probe10",
-          "ila_lib/probe10"
-        ]
-      },
-      "probe11_1": {
-        "ports": [
-          "probe11",
-          "ila_lib/probe11"
-        ]
-      },
-      "probe12_1": {
-        "ports": [
-          "probe12",
-          "ila_lib/probe12"
-        ]
-      },
-      "probe13_1": {
-        "ports": [
-          "probe13",
-          "ila_lib/probe13"
         ]
       },
       "probe1_1": {

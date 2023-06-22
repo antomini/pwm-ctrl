@@ -66,6 +66,8 @@ ENTITY pwm_controller_configmap_pwm_0_0 IS
     acq_half_o : OUT STD_LOGIC;
     acq_zero_o : OUT STD_LOGIC;
     en_snoop_o : OUT STD_LOGIC;
+    dsp_start_o : OUT STD_LOGIC;
+    dsp_bypass_o : OUT STD_LOGIC;
     data_i : IN STD_LOGIC_VECTOR(31 DOWNTO 0)
   );
 END pwm_controller_configmap_pwm_0_0;
@@ -86,6 +88,8 @@ ARCHITECTURE pwm_controller_configmap_pwm_0_0_arch OF pwm_controller_configmap_p
       ACQ_HALF_BIT : INTEGER;
       ACQ_ZERO_BIT : INTEGER;
       EN_SNOOP_BIT : INTEGER;
+      DSP_START_BIT : INTEGER;
+      DSP_BYPASS_BIT : INTEGER;
       DATA_WIDTH : INTEGER
     );
     PORT (
@@ -100,6 +104,8 @@ ARCHITECTURE pwm_controller_configmap_pwm_0_0_arch OF pwm_controller_configmap_p
       acq_half_o : OUT STD_LOGIC;
       acq_zero_o : OUT STD_LOGIC;
       en_snoop_o : OUT STD_LOGIC;
+      dsp_start_o : OUT STD_LOGIC;
+      dsp_bypass_o : OUT STD_LOGIC;
       data_i : IN STD_LOGIC_VECTOR(31 DOWNTO 0)
     );
   END COMPONENT configmap_pwm;
@@ -117,6 +123,8 @@ BEGIN
       ACQ_HALF_BIT => 8,
       ACQ_ZERO_BIT => 9,
       EN_SNOOP_BIT => 10,
+      DSP_START_BIT => 11,
+      DSP_BYPASS_BIT => 12,
       DATA_WIDTH => 32
     )
     PORT MAP (
@@ -131,6 +139,8 @@ BEGIN
       acq_half_o => acq_half_o,
       acq_zero_o => acq_zero_o,
       en_snoop_o => en_snoop_o,
+      dsp_start_o => dsp_start_o,
+      dsp_bypass_o => dsp_bypass_o,
       data_i => data_i
     );
 END pwm_controller_configmap_pwm_0_0_arch;

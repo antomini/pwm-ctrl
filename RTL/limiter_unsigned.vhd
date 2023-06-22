@@ -34,30 +34,29 @@ use IEEE.NUMERIC_STD.ALL;
 entity limiter_unsigned is
     Generic (
         LIMIT : unsigned := x"FFFF";
-        INPUT_WIDTH : positive := 32;
-        OUTPUT_WIDTH : positive := 16
+        DATA_WIDTH : positive := 16
         );
     Port (
         -- >>> INPUT >>>
-        data_i : in std_logic_vector (INPUT_WIDTH-1 downto 0);
+        data_i : in std_logic_vector (DATA_WIDTH-1 downto 0);
         -- <<< INPUT <<<
         -- >>> OUTPUT >>>
-        data_o : out std_logic_vector (OUTPUT_WIDTH-1 downto 0)
+        data_o : out std_logic_vector (DATA_WIDTH-1 downto 0)
         -- <<< OUTPUT <<<
         );
 end limiter_unsigned;
 
 architecture Behavioral of limiter_unsigned is
-    constant limit_c : unsigned(OUTPUT_WIDTH-1 downto 0) := LIMIT;
+    constant limit_c : unsigned(DATA_WIDTH-1 downto 0) := LIMIT;
 begin
-    -- >>> UNSIGNED UPPER LIMITER >>>
+    -- >>> UNSIGNED LIMITER >>>
     LIMITER_LOGIC : process(data_i)
     begin
         if unsigned(data_i) > limit_c then
             data_o <= std_logic_vector(limit_c);
         else 
-            data_o <= data_i(data_o'range);
+            data_o <= data_i;
         end if;
     end process;
-    -- <<< UNSIGNED UPPER LIMITER <<<
+    -- <<< UNSIGNED LIMITER <<<
 end Behavioral;

@@ -1,0 +1,26 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-247,-147",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace portBus coef_zeropad -pg 1 -lvl 3 -x 550 -y 50 -defaultsOSRD
+preplace portBus Din -pg 1 -lvl 0 -x 0 -y 50 -defaultsOSRD
+preplace portBus Din1 -pg 1 -lvl 0 -x 0 -y 150 -defaultsOSRD
+preplace portBus data_o -pg 1 -lvl 3 -x 550 -y 150 -defaultsOSRD
+preplace inst zeropad_fix_0 -pg 1 -lvl 2 -x 390 -y 50 -defaultsOSRD
+preplace inst xlslice_0 -pg 1 -lvl 1 -x 130 -y 50 -defaultsOSRD
+preplace inst xlslice_1 -pg 1 -lvl 1 -x 130 -y 150 -defaultsOSRD
+preplace inst zeropad_fix_1 -pg 1 -lvl 2 -x 390 -y 150 -defaultsOSRD
+preplace netloc xlslice_0_Dout 1 1 1 NJ 50
+preplace netloc zeropad_fix_0_data_o 1 2 1 NJ 50
+preplace netloc AXIreg_1_reg0 1 0 1 NJ 50
+preplace netloc Din1_1 1 0 1 NJ 150
+preplace netloc xlslice_1_Dout 1 1 1 NJ 150
+preplace netloc zeropad_fix_1_data_o 1 2 1 NJ 150
+levelinfo -pg 1 0 130 390 550
+pagesize -pg 1 -db -bbox -sgen -130 -10 740 210
+"
+}
+

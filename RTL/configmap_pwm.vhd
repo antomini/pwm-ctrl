@@ -44,6 +44,8 @@ entity configmap_pwm is
         ACQ_HALF_BIT    : natural := 8;
         ACQ_ZERO_BIT    : natural := 9;
         EN_SNOOP_BIT    : natural := 10;
+        DSP_START_BIT   : natural := 11;
+        DSP_BYPASS_BIT  : natural := 12;
         DATA_WIDTH      : positive := 32
     );
     Port (
@@ -59,6 +61,8 @@ entity configmap_pwm is
         acq_half_o : out STD_LOGIC;
         acq_zero_o : out STD_LOGIC;
         en_snoop_o : out STD_LOGIC;
+        dsp_start_o : out STD_LOGIC;
+        dsp_bypass_o : out STD_LOGIC;
         -- <<< OUTPUT <<<
         -- >>> INPUT >>>
         data_i : in STD_LOGIC_VECTOR(DATA_WIDTH-1 downto 0)
@@ -83,5 +87,8 @@ begin
     acq_zero_o <= data_i(ACQ_ZERO_BIT);
     
     en_snoop_o <= data_i(EN_SNOOP_BIT);
+    
+    dsp_start_o <= data_i(DSP_START_BIT);
+    dsp_bypass_o <= data_i(DSP_BYPASS_BIT);
 
 end Behavioral;

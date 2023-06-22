@@ -1,0 +1,60 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.565556",
+   "Default View_TopLeft":"-336,0",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port S00_AXI -pg 1 -lvl 0 -x 0 -y 610 -defaultsOSRD
+preplace port port-id_clk_i -pg 1 -lvl 0 -x 0 -y 630 -defaultsOSRD
+preplace port port-id_s00_axi_aresetn -pg 1 -lvl 0 -x 0 -y 650 -defaultsOSRD
+preplace port port-id_update_i -pg 1 -lvl 5 -x 1310 -y 490 -defaultsOSRD
+preplace port port-id_pwm_o -pg 1 -lvl 5 -x 1310 -y 510 -defaultsOSRD
+preplace port port-id_en_snoop_o -pg 1 -lvl 5 -x 1310 -y 780 -defaultsOSRD
+preplace port port-id_updown_o -pg 1 -lvl 5 -x 1310 -y 680 -defaultsOSRD
+preplace port port-id_over_o -pg 1 -lvl 5 -x 1310 -y 700 -defaultsOSRD
+preplace port port-id_under_o -pg 1 -lvl 5 -x 1310 -y 720 -defaultsOSRD
+preplace port port-id_acq_o -pg 1 -lvl 5 -x 1310 -y 300 -defaultsOSRD
+preplace portBus counter_o -pg 1 -lvl 5 -x 1310 -y 470 -defaultsOSRD
+preplace portBus cmp_i -pg 1 -lvl 5 -x 1310 -y 450 -defaultsOSRD
+preplace portBus data_o -pg 1 -lvl 5 -x 1310 -y 740 -defaultsOSRD
+preplace inst AXIreg_0 -pg 1 -lvl 1 -x 150 -y 630 -defaultsOSRD
+preplace inst trigger_update_0 -pg 1 -lvl 3 -x 830 -y 110 -defaultsOSRD
+preplace inst pwm_comparator_0 -pg 1 -lvl 3 -x 830 -y 490 -defaultsOSRD
+preplace inst configmap_pwm_0 -pg 1 -lvl 2 -x 440 -y 310 -defaultsOSRD
+preplace inst limiter_unsigned_0 -pg 1 -lvl 3 -x 830 -y 840 -defaultsOSRD
+preplace inst counter_updown_0 -pg 1 -lvl 3 -x 830 -y 690 -defaultsOSRD
+preplace inst trigger_acquisition_0 -pg 1 -lvl 4 -x 1150 -y 300 -defaultsOSRD
+preplace netloc AXIreg_0_reg0 1 1 2 280J 840 NJ
+preplace netloc AXIreg_0_reg1 1 1 3 NJ 620 630 10 1020
+preplace netloc AXIreg_0_reg2 1 1 3 300 470 620J 210 NJ
+preplace netloc AXIreg_0_reg3 1 1 1 290 310n
+preplace netloc configmap_pwm_0_peak_o 1 2 1 580 110n
+preplace netloc configmap_pwm_0_valley_o 1 2 1 590 130n
+preplace netloc configmap_pwm_0_sawtri_o 1 2 1 650 150n
+preplace netloc half_o 1 3 1 990 270n
+preplace netloc configmap_pwm_0_async_o 1 2 1 610 250n
+preplace netloc configmap_pwm_0_resetn_o 1 2 1 600 210n
+preplace netloc configmap_pwm_0_acq_free_o 1 2 2 N 310 NJ
+preplace netloc configmap_pwm_0_acq_max_o 1 2 2 N 330 NJ
+preplace netloc configmap_pwm_0_acq_cmp_o 1 2 2 N 350 NJ
+preplace netloc configmap_pwm_0_acq_hlaf_o 1 2 2 N 370 NJ
+preplace netloc configmap_pwm_0_acq_zero_o 1 2 2 N 390 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 720 NJ 720 640
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 0 1 NJ 650
+preplace netloc trigger_update_0_update_o 1 2 3 680 600 1000 490 NJ
+preplace netloc counter_o 1 2 3 660 290 1020 470 NJ
+preplace netloc cmp_o 1 3 2 1010 450 NJ
+preplace netloc pwm_o 1 3 2 NJ 510 NJ
+preplace netloc limiter_unsigned_0_data_o 1 2 3 670 590 1010 740 NJ
+preplace netloc configmap_pwm_0_en_snoop_o 1 2 3 580J 780 NJ 780 NJ
+preplace netloc updown_o 1 3 2 NJ 680 NJ
+preplace netloc over_o 1 3 2 NJ 700 NJ
+preplace netloc under_o 1 3 2 NJ 720 NJ
+preplace netloc trigger_acquisition_0_acq_o 1 4 1 NJ 300
+preplace netloc ps7_0_axi_periph_M00_AXI 1 0 1 NJ 610
+levelinfo -pg 1 0 150 440 830 1150 1310
+pagesize -pg 1 -db -bbox -sgen -170 0 1480 900
+"
+}
+

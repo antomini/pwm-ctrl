@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Fri Jun 16 18:54:12 2023
+-- Date        : Wed Jun 21 09:21:24 2023
 -- Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_AXIreg_0_0/pwm_controller_AXIreg_0_0_sim_netlist.vhdl
--- Design      : pwm_controller_AXIreg_0_0
+-- Command     : write_vhdl -force -mode funcsim -rename_top pwm_controller_AXIreg_0_0 -prefix
+--               pwm_controller_AXIreg_0_0_ pwm_controller_AXIreg_1_0_sim_netlist.vhdl
+-- Design      : pwm_controller_AXIreg_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7z020clg400-1
@@ -38,8 +38,6 @@ entity pwm_controller_AXIreg_0_0_AXIreg_v1_0_S00_AXI is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of pwm_controller_AXIreg_0_0_AXIreg_v1_0_S00_AXI : entity is "AXIreg_v1_0_S00_AXI";
 end pwm_controller_AXIreg_0_0_AXIreg_v1_0_S00_AXI;
 
 architecture STRUCTURE of pwm_controller_AXIreg_0_0_AXIreg_v1_0_S00_AXI is
@@ -2223,8 +2221,6 @@ entity pwm_controller_AXIreg_0_0_AXIreg_v1_0 is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of pwm_controller_AXIreg_0_0_AXIreg_v1_0 : entity is "AXIreg_v1_0";
 end pwm_controller_AXIreg_0_0_AXIreg_v1_0;
 
 architecture STRUCTURE of pwm_controller_AXIreg_0_0_AXIreg_v1_0 is
@@ -2289,7 +2285,7 @@ entity pwm_controller_AXIreg_0_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of pwm_controller_AXIreg_0_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of pwm_controller_AXIreg_0_0 : entity is "pwm_controller_AXIreg_0_0,AXIreg_v1_0,{}";
+  attribute CHECK_LICENSE_TYPE of pwm_controller_AXIreg_0_0 : entity is "pwm_controller_AXIreg_1_0,AXIreg_v1_0,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of pwm_controller_AXIreg_0_0 : entity is "yes";
   attribute x_core_info : string;
@@ -2317,7 +2313,7 @@ architecture STRUCTURE of pwm_controller_AXIreg_0_0 is
   attribute x_interface_info of s00_axi_araddr : signal is "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR";
   attribute x_interface_info of s00_axi_arprot : signal is "xilinx.com:interface:aximm:1.0 S00_AXI ARPROT";
   attribute x_interface_info of s00_axi_awaddr : signal is "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR";
-  attribute x_interface_parameter of s00_axi_awaddr : signal is "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN pwm_controller_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  attribute x_interface_parameter of s00_axi_awaddr : signal is "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN pwm_controller_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
   attribute x_interface_info of s00_axi_awprot : signal is "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT";
   attribute x_interface_info of s00_axi_bresp : signal is "xilinx.com:interface:aximm:1.0 S00_AXI BRESP";
   attribute x_interface_info of s00_axi_rdata : signal is "xilinx.com:interface:aximm:1.0 S00_AXI RDATA";

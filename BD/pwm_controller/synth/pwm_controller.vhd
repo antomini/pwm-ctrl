@@ -1,12 +1,720 @@
 --Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
---Date        : Wed Jun 21 00:37:00 2023
+--Date        : Thu Jun 22 23:43:43 2023
 --Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target pwm_controller.bd
 --Design      : pwm_controller
 --Purpose     : IP block netlist
 ----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity ADC_SNOOPER_imp_YX3GGP is
+  port (
+    adcA_msb : out STD_LOGIC_VECTOR ( 11 downto 0 );
+    adcA_slicepad : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    adcB_msb : out STD_LOGIC_VECTOR ( 11 downto 0 );
+    en_out_i : in STD_LOGIC;
+    s_axis_aclk : in STD_LOGIC;
+    s_axis_aresetn : in STD_LOGIC;
+    s_axis_tdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    s_axis_tid : in STD_LOGIC_VECTOR ( 4 downto 0 );
+    s_axis_tready : out STD_LOGIC;
+    s_axis_tvalid : in STD_LOGIC
+  );
+end ADC_SNOOPER_imp_YX3GGP;
+
+architecture STRUCTURE of ADC_SNOOPER_imp_YX3GGP is
+  component pwm_controller_xlslice_0_0 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 11 downto 0 )
+  );
+  end component pwm_controller_xlslice_0_0;
+  component pwm_controller_xlslice_0_1 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 11 downto 0 )
+  );
+  end component pwm_controller_xlslice_0_1;
+  component pwm_controller_zeropad_left_0_1 is
+  port (
+    data_o : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    data_i : in STD_LOGIC_VECTOR ( 11 downto 0 )
+  );
+  end component pwm_controller_zeropad_left_0_1;
+  component pwm_controller_zeropad_left_0_0 is
+  port (
+    data_o : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    data_i : in STD_LOGIC_VECTOR ( 11 downto 0 )
+  );
+  end component pwm_controller_zeropad_left_0_0;
+  component pwm_controller_AXIS_Snooper_0_0 is
+  port (
+    adcA_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    adcB_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    idA_o : out STD_LOGIC_VECTOR ( 4 downto 0 );
+    idB_o : out STD_LOGIC_VECTOR ( 4 downto 0 );
+    en_out_i : in STD_LOGIC;
+    s_axis_aclk : in STD_LOGIC;
+    s_axis_aresetn : in STD_LOGIC;
+    s_axis_tvalid : in STD_LOGIC;
+    s_axis_tready : out STD_LOGIC;
+    s_axis_tdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    s_axis_tid : in STD_LOGIC_VECTOR ( 4 downto 0 )
+  );
+  end component pwm_controller_AXIS_Snooper_0_0;
+  signal ADC_SLICEPAD_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal AXIS_Snooper_0_adcA_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal AXIS_Snooper_0_adcB_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal Conn1_TDATA : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal Conn1_TID : STD_LOGIC_VECTOR ( 4 downto 0 );
+  signal Conn1_TREADY : STD_LOGIC;
+  signal Conn1_TVALID : STD_LOGIC;
+  signal Dout : STD_LOGIC_VECTOR ( 11 downto 0 );
+  attribute DEBUG : string;
+  attribute DEBUG of Dout : signal is "true";
+  signal Dout_1 : STD_LOGIC_VECTOR ( 11 downto 0 );
+  signal en_out_i_1 : STD_LOGIC;
+  signal s_axis_aclk_1 : STD_LOGIC;
+  signal s_axis_aresetn_1 : STD_LOGIC;
+  signal NLW_AXIS_Snooper_0_idA_o_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
+  signal NLW_AXIS_Snooper_0_idB_o_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
+  signal NLW_zeropad_left_1_data_o_UNCONNECTED : STD_LOGIC_VECTOR ( 16 downto 0 );
+begin
+  Conn1_TDATA(15 downto 0) <= s_axis_tdata(15 downto 0);
+  Conn1_TID(4 downto 0) <= s_axis_tid(4 downto 0);
+  Conn1_TVALID <= s_axis_tvalid;
+  adcA_msb(11 downto 0) <= Dout(11 downto 0);
+  adcA_slicepad(16 downto 0) <= ADC_SLICEPAD_data_o(16 downto 0);
+  adcB_msb(11 downto 0) <= Dout_1(11 downto 0);
+  en_out_i_1 <= en_out_i;
+  s_axis_aclk_1 <= s_axis_aclk;
+  s_axis_aresetn_1 <= s_axis_aresetn;
+  s_axis_tready <= Conn1_TREADY;
+AXIS_Snooper_0: component pwm_controller_AXIS_Snooper_0_0
+     port map (
+      adcA_o(15 downto 0) => AXIS_Snooper_0_adcA_o(15 downto 0),
+      adcB_o(15 downto 0) => AXIS_Snooper_0_adcB_o(15 downto 0),
+      en_out_i => en_out_i_1,
+      idA_o(4 downto 0) => NLW_AXIS_Snooper_0_idA_o_UNCONNECTED(4 downto 0),
+      idB_o(4 downto 0) => NLW_AXIS_Snooper_0_idB_o_UNCONNECTED(4 downto 0),
+      s_axis_aclk => s_axis_aclk_1,
+      s_axis_aresetn => s_axis_aresetn_1,
+      s_axis_tdata(15 downto 0) => Conn1_TDATA(15 downto 0),
+      s_axis_tid(4 downto 0) => Conn1_TID(4 downto 0),
+      s_axis_tready => Conn1_TREADY,
+      s_axis_tvalid => Conn1_TVALID
+    );
+xlslice_0: component pwm_controller_xlslice_0_0
+     port map (
+      Din(15 downto 0) => AXIS_Snooper_0_adcA_o(15 downto 0),
+      Dout(11 downto 0) => Dout(11 downto 0)
+    );
+xlslice_1: component pwm_controller_xlslice_0_1
+     port map (
+      Din(15 downto 0) => AXIS_Snooper_0_adcB_o(15 downto 0),
+      Dout(11 downto 0) => Dout_1(11 downto 0)
+    );
+zeropad_left_0: component pwm_controller_zeropad_left_0_0
+     port map (
+      data_i(11 downto 0) => Dout(11 downto 0),
+      data_o(16 downto 0) => ADC_SLICEPAD_data_o(16 downto 0)
+    );
+zeropad_left_1: component pwm_controller_zeropad_left_0_1
+     port map (
+      data_i(11 downto 0) => Dout_1(11 downto 0),
+      data_o(16 downto 0) => NLW_zeropad_left_1_data_o_UNCONNECTED(16 downto 0)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity DPWM_SLICE_imp_J8D3HN is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    Din1 : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    acq_cmp_o : out STD_LOGIC;
+    acq_free_o : out STD_LOGIC;
+    acq_half_o : out STD_LOGIC;
+    acq_max_o : out STD_LOGIC;
+    acq_zero_o : out STD_LOGIC;
+    async_o : out STD_LOGIC;
+    data_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    dsp_bypass_o : out STD_LOGIC;
+    dsp_start_o : out STD_LOGIC;
+    en_snoop_o : out STD_LOGIC;
+    free_i : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    max_i : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    resetn_o : out STD_LOGIC;
+    sawtri_o : out STD_LOGIC;
+    upd_peak_o : out STD_LOGIC;
+    upd_valley_o : out STD_LOGIC
+  );
+end DPWM_SLICE_imp_J8D3HN;
+
+architecture STRUCTURE of DPWM_SLICE_imp_J8D3HN is
+  component pwm_controller_xlslice_1_0 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_xlslice_1_0;
+  component pwm_controller_xlslice_0_5 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_xlslice_0_5;
+  component pwm_controller_configmap_pwm_0_0 is
+  port (
+    resetn_o : out STD_LOGIC;
+    sawtri_o : out STD_LOGIC;
+    async_o : out STD_LOGIC;
+    upd_peak_o : out STD_LOGIC;
+    upd_valley_o : out STD_LOGIC;
+    acq_free_o : out STD_LOGIC;
+    acq_max_o : out STD_LOGIC;
+    acq_cmp_o : out STD_LOGIC;
+    acq_half_o : out STD_LOGIC;
+    acq_zero_o : out STD_LOGIC;
+    en_snoop_o : out STD_LOGIC;
+    dsp_start_o : out STD_LOGIC;
+    dsp_bypass_o : out STD_LOGIC;
+    data_i : in STD_LOGIC_VECTOR ( 31 downto 0 )
+  );
+  end component pwm_controller_configmap_pwm_0_0;
+  signal AXIreg_0_reg1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal AXIreg_0_reg2 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal configmap_pwm_0_acq_cmp_o : STD_LOGIC;
+  signal configmap_pwm_0_acq_free_o : STD_LOGIC;
+  signal configmap_pwm_0_acq_half_o : STD_LOGIC;
+  signal configmap_pwm_0_acq_max_o : STD_LOGIC;
+  signal configmap_pwm_0_acq_zero_o : STD_LOGIC;
+  signal configmap_pwm_0_async_o : STD_LOGIC;
+  signal configmap_pwm_0_dsp_bypass_o : STD_LOGIC;
+  signal configmap_pwm_0_dsp_start_o : STD_LOGIC;
+  signal configmap_pwm_0_en_snoop_o : STD_LOGIC;
+  signal configmap_pwm_0_resetn_o : STD_LOGIC;
+  signal configmap_pwm_0_sawtri_o : STD_LOGIC;
+  signal configmap_pwm_0_upd_peak_o : STD_LOGIC;
+  signal configmap_pwm_0_upd_valley_o : STD_LOGIC;
+  signal data_i_1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+begin
+  AXIreg_0_reg1(31 downto 0) <= Din1(31 downto 0);
+  AXIreg_0_reg2(31 downto 0) <= Din(31 downto 0);
+  acq_cmp_o <= configmap_pwm_0_acq_cmp_o;
+  acq_free_o <= configmap_pwm_0_acq_free_o;
+  acq_half_o <= configmap_pwm_0_acq_half_o;
+  acq_max_o <= configmap_pwm_0_acq_max_o;
+  acq_zero_o <= configmap_pwm_0_acq_zero_o;
+  async_o <= configmap_pwm_0_async_o;
+  data_i_1(31 downto 0) <= data_i(31 downto 0);
+  dsp_bypass_o <= configmap_pwm_0_dsp_bypass_o;
+  dsp_start_o <= configmap_pwm_0_dsp_start_o;
+  en_snoop_o <= configmap_pwm_0_en_snoop_o;
+  resetn_o <= configmap_pwm_0_resetn_o;
+  sawtri_o <= configmap_pwm_0_sawtri_o;
+  upd_peak_o <= configmap_pwm_0_upd_peak_o;
+  upd_valley_o <= configmap_pwm_0_upd_valley_o;
+configmap_pwm_0: component pwm_controller_configmap_pwm_0_0
+     port map (
+      acq_cmp_o => configmap_pwm_0_acq_cmp_o,
+      acq_free_o => configmap_pwm_0_acq_free_o,
+      acq_half_o => configmap_pwm_0_acq_half_o,
+      acq_max_o => configmap_pwm_0_acq_max_o,
+      acq_zero_o => configmap_pwm_0_acq_zero_o,
+      async_o => configmap_pwm_0_async_o,
+      data_i(31 downto 0) => data_i_1(31 downto 0),
+      dsp_bypass_o => configmap_pwm_0_dsp_bypass_o,
+      dsp_start_o => configmap_pwm_0_dsp_start_o,
+      en_snoop_o => configmap_pwm_0_en_snoop_o,
+      resetn_o => configmap_pwm_0_resetn_o,
+      sawtri_o => configmap_pwm_0_sawtri_o,
+      upd_peak_o => configmap_pwm_0_upd_peak_o,
+      upd_valley_o => configmap_pwm_0_upd_valley_o
+    );
+xlslice_1: component pwm_controller_xlslice_0_5
+     port map (
+      Din(31 downto 0) => AXIreg_0_reg1(31 downto 0),
+      Dout(15 downto 0) => max_i(15 downto 0)
+    );
+xlslice_2: component pwm_controller_xlslice_1_0
+     port map (
+      Din(31 downto 0) => AXIreg_0_reg2(31 downto 0),
+      Dout(15 downto 0) => free_i(15 downto 0)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity DPWM_imp_16A0TOR is
+  port (
+    acq_o : out STD_LOGIC;
+    async_i : in STD_LOGIC;
+    clk_i : in STD_LOGIC;
+    cmp_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    cmp_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    counter_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    en_cmp_i : in STD_LOGIC;
+    en_free_i : in STD_LOGIC;
+    en_half_i : in STD_LOGIC;
+    en_max_i : in STD_LOGIC;
+    en_zero_i : in STD_LOGIC;
+    free_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    max_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    over_o : out STD_LOGIC;
+    peak_i : in STD_LOGIC;
+    pwm_o_0 : out STD_LOGIC;
+    resetn_i : in STD_LOGIC;
+    sawtri_i : in STD_LOGIC;
+    under_o : out STD_LOGIC;
+    update_i : out STD_LOGIC;
+    updown_o : out STD_LOGIC;
+    valley_i : in STD_LOGIC
+  );
+end DPWM_imp_16A0TOR;
+
+architecture STRUCTURE of DPWM_imp_16A0TOR is
+  component pwm_controller_trigger_update_0_0 is
+  port (
+    update_o : out STD_LOGIC;
+    max_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    counter_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    peak_i : in STD_LOGIC;
+    valley_i : in STD_LOGIC;
+    sawtri_i : in STD_LOGIC
+  );
+  end component pwm_controller_trigger_update_0_0;
+  component pwm_controller_pwm_comparator_0_0 is
+  port (
+    cmp_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    half_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    pwm_o : out STD_LOGIC;
+    cmp_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    counter_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    update_i : in STD_LOGIC;
+    async_i : in STD_LOGIC;
+    clk_i : in STD_LOGIC
+  );
+  end component pwm_controller_pwm_comparator_0_0;
+  component pwm_controller_counter_updown_0_0 is
+  port (
+    counter_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    updown_o : out STD_LOGIC;
+    over_o : out STD_LOGIC;
+    under_o : out STD_LOGIC;
+    max_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    sawtri_i : in STD_LOGIC;
+    resetn_i : in STD_LOGIC;
+    clk_i : in STD_LOGIC
+  );
+  end component pwm_controller_counter_updown_0_0;
+  component pwm_controller_trigger_acquisition_0_0 is
+  port (
+    acq_o : out STD_LOGIC;
+    free_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    max_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    cmp_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    half_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    counter_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    en_free_i : in STD_LOGIC;
+    en_max_i : in STD_LOGIC;
+    en_cmp_i : in STD_LOGIC;
+    en_half_i : in STD_LOGIC;
+    en_zero_i : in STD_LOGIC
+  );
+  end component pwm_controller_trigger_acquisition_0_0;
+  signal AXIreg_0_reg2 : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal async_i_1 : STD_LOGIC;
+  signal \^cmp_o\ : STD_LOGIC_VECTOR ( 15 downto 0 );
+  attribute DEBUG : string;
+  attribute DEBUG of \^cmp_o\ : signal is "true";
+  signal configmap_pwm_0_sawtri_o : STD_LOGIC;
+  signal \^counter_o\ : STD_LOGIC_VECTOR ( 15 downto 0 );
+  attribute DEBUG of \^counter_o\ : signal is "true";
+  signal en_cmp_i_1 : STD_LOGIC;
+  signal en_free_i_1 : STD_LOGIC;
+  signal en_half_i_1 : STD_LOGIC;
+  signal en_max_i_1 : STD_LOGIC;
+  signal en_zero_i_1 : STD_LOGIC;
+  signal half_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal limiter_unsigned_3_data_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  attribute DEBUG of limiter_unsigned_3_data_o : signal is "true";
+  signal max_i_1 : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal peak_i_1 : STD_LOGIC;
+  signal processing_system7_0_FCLK_CLK0 : STD_LOGIC;
+  signal pwm_o : STD_LOGIC;
+  attribute DEBUG of pwm_o : signal is "true";
+  signal resetn_i_1 : STD_LOGIC;
+  signal trigger_acquisition_0_acq_o : STD_LOGIC;
+  attribute DEBUG of trigger_acquisition_0_acq_o : signal is "true";
+  signal trigger_update_0_update_o : STD_LOGIC;
+  attribute DEBUG of trigger_update_0_update_o : signal is "true";
+  signal valley_i_1 : STD_LOGIC;
+begin
+  AXIreg_0_reg2(15 downto 0) <= free_i(15 downto 0);
+  acq_o <= trigger_acquisition_0_acq_o;
+  async_i_1 <= async_i;
+  cmp_o(15 downto 0) <= \^cmp_o\(15 downto 0);
+  configmap_pwm_0_sawtri_o <= sawtri_i;
+  counter_o(15 downto 0) <= \^counter_o\(15 downto 0);
+  en_cmp_i_1 <= en_cmp_i;
+  en_free_i_1 <= en_free_i;
+  en_half_i_1 <= en_half_i;
+  en_max_i_1 <= en_max_i;
+  en_zero_i_1 <= en_zero_i;
+  limiter_unsigned_3_data_o(15 downto 0) <= cmp_i(15 downto 0);
+  max_i_1(15 downto 0) <= max_i(15 downto 0);
+  peak_i_1 <= peak_i;
+  processing_system7_0_FCLK_CLK0 <= clk_i;
+  pwm_o_0 <= pwm_o;
+  resetn_i_1 <= resetn_i;
+  update_i <= trigger_update_0_update_o;
+  valley_i_1 <= valley_i;
+counter_updown_0: component pwm_controller_counter_updown_0_0
+     port map (
+      clk_i => processing_system7_0_FCLK_CLK0,
+      counter_o(15 downto 0) => \^counter_o\(15 downto 0),
+      max_i(15 downto 0) => max_i_1(15 downto 0),
+      over_o => over_o,
+      resetn_i => resetn_i_1,
+      sawtri_i => configmap_pwm_0_sawtri_o,
+      under_o => under_o,
+      updown_o => updown_o
+    );
+pwm_comparator_0: component pwm_controller_pwm_comparator_0_0
+     port map (
+      async_i => async_i_1,
+      clk_i => processing_system7_0_FCLK_CLK0,
+      cmp_i(15 downto 0) => limiter_unsigned_3_data_o(15 downto 0),
+      cmp_o(15 downto 0) => \^cmp_o\(15 downto 0),
+      counter_i(15 downto 0) => \^counter_o\(15 downto 0),
+      half_o(15 downto 0) => half_o(15 downto 0),
+      pwm_o => pwm_o,
+      update_i => trigger_update_0_update_o
+    );
+trigger_acquisition_0: component pwm_controller_trigger_acquisition_0_0
+     port map (
+      acq_o => trigger_acquisition_0_acq_o,
+      cmp_i(15 downto 0) => \^cmp_o\(15 downto 0),
+      counter_i(15 downto 0) => \^counter_o\(15 downto 0),
+      en_cmp_i => en_cmp_i_1,
+      en_free_i => en_free_i_1,
+      en_half_i => en_half_i_1,
+      en_max_i => en_max_i_1,
+      en_zero_i => en_zero_i_1,
+      free_i(15 downto 0) => AXIreg_0_reg2(15 downto 0),
+      half_i(15 downto 0) => half_o(15 downto 0),
+      max_i(15 downto 0) => max_i_1(15 downto 0)
+    );
+trigger_update_0: component pwm_controller_trigger_update_0_0
+     port map (
+      counter_i(15 downto 0) => \^counter_o\(15 downto 0),
+      max_i(15 downto 0) => max_i_1(15 downto 0),
+      peak_i => peak_i_1,
+      sawtri_i => configmap_pwm_0_sawtri_o,
+      update_o => trigger_update_0_update_o,
+      valley_i => valley_i_1
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity DSP_SLICEPAD_imp_5QZW03 is
+  port (
+    conf_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    ki_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    ki_slicepad : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    kp_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    kp_slicepad : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    ref_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    ref_slice : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    ref_slicepad : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    shift_slice : out STD_LOGIC_VECTOR ( 3 downto 0 )
+  );
+end DSP_SLICEPAD_imp_5QZW03;
+
+architecture STRUCTURE of DSP_SLICEPAD_imp_5QZW03 is
+  component pwm_controller_xlslice_0_2 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_xlslice_0_2;
+  component pwm_controller_zeropad_left_1_0 is
+  port (
+    data_o : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    data_i : in STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_zeropad_left_1_0;
+  component pwm_controller_zeropad_left_0_2 is
+  port (
+    data_o : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    data_i : in STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_zeropad_left_0_2;
+  component pwm_controller_xlslice_0_4 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_xlslice_0_4;
+  component pwm_controller_xlslice_0_7 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_xlslice_0_7;
+  component pwm_controller_zeropad_left_0_3 is
+  port (
+    data_o : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    data_i : in STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_zeropad_left_0_3;
+  component pwm_controller_xlslice_1_1 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 3 downto 0 )
+  );
+  end component pwm_controller_xlslice_1_1;
+  signal AXIreg_1_reg0 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal Din1_1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal Din_1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal Din_2 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal xlslice_0_Dout : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal xlslice_1_Dout : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal xlslice_2_Dout : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal xlslice_3_Dout : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal zeropad_left_0_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal zeropad_left_1_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal zeropad_left_2_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
+begin
+  AXIreg_1_reg0(31 downto 0) <= kp_i(31 downto 0);
+  Din1_1(31 downto 0) <= conf_i(31 downto 0);
+  Din_1(31 downto 0) <= ref_i(31 downto 0);
+  Din_2(31 downto 0) <= ki_i(31 downto 0);
+  ki_slicepad(16 downto 0) <= zeropad_left_2_data_o(16 downto 0);
+  kp_slicepad(16 downto 0) <= zeropad_left_1_data_o(16 downto 0);
+  ref_slice(15 downto 0) <= xlslice_3_Dout(15 downto 0);
+  ref_slicepad(16 downto 0) <= zeropad_left_0_data_o(16 downto 0);
+  shift_slice(3 downto 0) <= xlslice_2_Dout(3 downto 0);
+xlslice_0: component pwm_controller_xlslice_0_2
+     port map (
+      Din(31 downto 0) => AXIreg_1_reg0(31 downto 0),
+      Dout(15 downto 0) => xlslice_0_Dout(15 downto 0)
+    );
+xlslice_1: component pwm_controller_xlslice_0_7
+     port map (
+      Din(31 downto 0) => Din_2(31 downto 0),
+      Dout(15 downto 0) => xlslice_1_Dout(15 downto 0)
+    );
+xlslice_2: component pwm_controller_xlslice_1_1
+     port map (
+      Din(31 downto 0) => Din1_1(31 downto 0),
+      Dout(3 downto 0) => xlslice_2_Dout(3 downto 0)
+    );
+xlslice_3: component pwm_controller_xlslice_0_4
+     port map (
+      Din(31 downto 0) => Din_1(31 downto 0),
+      Dout(15 downto 0) => xlslice_3_Dout(15 downto 0)
+    );
+zeropad_left_0: component pwm_controller_zeropad_left_0_2
+     port map (
+      data_i(15 downto 0) => xlslice_3_Dout(15 downto 0),
+      data_o(16 downto 0) => zeropad_left_0_data_o(16 downto 0)
+    );
+zeropad_left_1: component pwm_controller_zeropad_left_1_0
+     port map (
+      data_i(15 downto 0) => xlslice_0_Dout(15 downto 0),
+      data_o(16 downto 0) => zeropad_left_1_data_o(16 downto 0)
+    );
+zeropad_left_2: component pwm_controller_zeropad_left_0_3
+     port map (
+      data_i(15 downto 0) => xlslice_1_Dout(15 downto 0),
+      data_o(16 downto 0) => zeropad_left_2_data_o(16 downto 0)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity DSP_imp_MU6FP7 is
+  port (
+    add_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    clk_i : in STD_LOGIC;
+    direct_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    dsp_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    ki_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    kp_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    ref_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    sel_i : in STD_LOGIC;
+    shift_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    snh_i : in STD_LOGIC;
+    start_i : in STD_LOGIC
+  );
+end DSP_imp_MU6FP7;
+
+architecture STRUCTURE of DSP_imp_MU6FP7 is
+  component pwm_controller_limiter_signed_0_0 is
+  port (
+    data_i : in STD_LOGIC_VECTOR ( 34 downto 0 );
+    data_o : out STD_LOGIC_VECTOR ( 34 downto 0 )
+  );
+  end component pwm_controller_limiter_signed_0_0;
+  component pwm_controller_shiftprog_signed_0_0 is
+  port (
+    data_i : in STD_LOGIC_VECTOR ( 34 downto 0 );
+    shift_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    data_o : out STD_LOGIC_VECTOR ( 34 downto 0 )
+  );
+  end component pwm_controller_shiftprog_signed_0_0;
+  component pwm_controller_xlslice_0_6 is
+  port (
+    Din : in STD_LOGIC_VECTOR ( 34 downto 0 );
+    Dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_xlslice_0_6;
+  component pwm_controller_xlconstant_0_0 is
+  port (
+    dout : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component pwm_controller_xlconstant_0_0;
+  component pwm_controller_mux2_0_1 is
+  port (
+    sel_i : in STD_LOGIC;
+    data1_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    data2_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    data_o : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component pwm_controller_mux2_0_1;
+  component pwm_controller_registerFDSE_0_0 is
+  port (
+    data_o : out STD_LOGIC_VECTOR ( 34 downto 0 );
+    data_i : in STD_LOGIC_VECTOR ( 34 downto 0 );
+    en_i : in STD_LOGIC;
+    clk_i : in STD_LOGIC
+  );
+  end component pwm_controller_registerFDSE_0_0;
+  component pwm_controller_DSP_stdpipe_0_0 is
+  port (
+    acc_o : out STD_LOGIC_VECTOR ( 34 downto 0 );
+    coef_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    ref_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    add_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    alu_i : in STD_LOGIC_VECTOR ( 34 downto 0 );
+    start_i : in STD_LOGIC;
+    sub_i : in STD_LOGIC;
+    clk_i : in STD_LOGIC
+  );
+  end component pwm_controller_DSP_stdpipe_0_0;
+  component pwm_controller_DSP_stdpipe_0_1 is
+  port (
+    acc_o : out STD_LOGIC_VECTOR ( 34 downto 0 );
+    coef_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    ref_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    add_i : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    alu_i : in STD_LOGIC_VECTOR ( 34 downto 0 );
+    start_i : in STD_LOGIC;
+    sub_i : in STD_LOGIC;
+    clk_i : in STD_LOGIC
+  );
+  end component pwm_controller_DSP_stdpipe_0_1;
+  signal ADC_SLICEPAD_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal DSP_SLICEPAD_coef_slicepad : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal DSP_SLICEPAD_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal DSP_stdpipe_0_acc_o : STD_LOGIC_VECTOR ( 34 downto 0 );
+  signal DSP_stdpipe_1_acc_o : STD_LOGIC_VECTOR ( 34 downto 0 );
+  signal coef_i_1 : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal configmap_pwm_0_dsp_start_o : STD_LOGIC;
+  signal data1_i_1 : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal en_i_1 : STD_LOGIC;
+  attribute DEBUG : string;
+  attribute DEBUG of en_i_1 : signal is "true";
+  signal limiter_signed_0_data_o : STD_LOGIC_VECTOR ( 34 downto 0 );
+  signal mux2_0_data_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  attribute DEBUG of mux2_0_data_o : signal is "true";
+  signal processing_system7_0_FCLK_CLK0 : STD_LOGIC;
+  signal registerFDSE_0_data_o : STD_LOGIC_VECTOR ( 34 downto 0 );
+  signal sel_i_1 : STD_LOGIC;
+  signal shift_i_1 : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal shiftprog_signed_0_data_o : STD_LOGIC_VECTOR ( 34 downto 0 );
+  signal xlconstant_0_dout : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal xlslice_0_Dout : STD_LOGIC_VECTOR ( 15 downto 0 );
+begin
+  ADC_SLICEPAD_data_o(16 downto 0) <= add_i(16 downto 0);
+  DSP_SLICEPAD_coef_slicepad(16 downto 0) <= kp_i(16 downto 0);
+  DSP_SLICEPAD_data_o(16 downto 0) <= ref_i(16 downto 0);
+  coef_i_1(16 downto 0) <= ki_i(16 downto 0);
+  configmap_pwm_0_dsp_start_o <= start_i;
+  data1_i_1(15 downto 0) <= direct_i(15 downto 0);
+  dsp_o(15 downto 0) <= mux2_0_data_o(15 downto 0);
+  en_i_1 <= snh_i;
+  processing_system7_0_FCLK_CLK0 <= clk_i;
+  sel_i_1 <= sel_i;
+  shift_i_1(3 downto 0) <= shift_i(3 downto 0);
+DSP_stdpipe_0: component pwm_controller_DSP_stdpipe_0_0
+     port map (
+      acc_o(34 downto 0) => DSP_stdpipe_0_acc_o(34 downto 0),
+      add_i(16 downto 0) => ADC_SLICEPAD_data_o(16 downto 0),
+      alu_i(34 downto 0) => DSP_stdpipe_1_acc_o(34 downto 0),
+      clk_i => processing_system7_0_FCLK_CLK0,
+      coef_i(16 downto 0) => DSP_SLICEPAD_coef_slicepad(16 downto 0),
+      ref_i(16 downto 0) => DSP_SLICEPAD_data_o(16 downto 0),
+      start_i => configmap_pwm_0_dsp_start_o,
+      sub_i => xlconstant_0_dout(0)
+    );
+DSP_stdpipe_1: component pwm_controller_DSP_stdpipe_0_1
+     port map (
+      acc_o(34 downto 0) => DSP_stdpipe_1_acc_o(34 downto 0),
+      add_i(16 downto 0) => ADC_SLICEPAD_data_o(16 downto 0),
+      alu_i(34 downto 0) => registerFDSE_0_data_o(34 downto 0),
+      clk_i => processing_system7_0_FCLK_CLK0,
+      coef_i(16 downto 0) => coef_i_1(16 downto 0),
+      ref_i(16 downto 0) => DSP_SLICEPAD_data_o(16 downto 0),
+      start_i => configmap_pwm_0_dsp_start_o,
+      sub_i => xlconstant_0_dout(0)
+    );
+limiter_signed_0: component pwm_controller_limiter_signed_0_0
+     port map (
+      data_i(34 downto 0) => shiftprog_signed_0_data_o(34 downto 0),
+      data_o(34 downto 0) => limiter_signed_0_data_o(34 downto 0)
+    );
+mux2_0: component pwm_controller_mux2_0_1
+     port map (
+      data1_i(15 downto 0) => data1_i_1(15 downto 0),
+      data2_i(15 downto 0) => xlslice_0_Dout(15 downto 0),
+      data_o(15 downto 0) => mux2_0_data_o(15 downto 0),
+      sel_i => sel_i_1
+    );
+registerFDSE_0: component pwm_controller_registerFDSE_0_0
+     port map (
+      clk_i => processing_system7_0_FCLK_CLK0,
+      data_i(34 downto 0) => DSP_stdpipe_1_acc_o(34 downto 0),
+      data_o(34 downto 0) => registerFDSE_0_data_o(34 downto 0),
+      en_i => en_i_1
+    );
+shiftprog_signed_0: component pwm_controller_shiftprog_signed_0_0
+     port map (
+      data_i(34 downto 0) => DSP_stdpipe_0_acc_o(34 downto 0),
+      data_o(34 downto 0) => shiftprog_signed_0_data_o(34 downto 0),
+      shift_i(3 downto 0) => shift_i_1(3 downto 0)
+    );
+xlconstant_0: component pwm_controller_xlconstant_0_0
+     port map (
+      dout(0) => xlconstant_0_dout(0)
+    );
+xlslice_0: component pwm_controller_xlslice_0_6
+     port map (
+      Din(34 downto 0) => limiter_signed_0_data_o(34 downto 0),
+      Dout(15 downto 0) => xlslice_0_Dout(15 downto 0)
+    );
+end STRUCTURE;
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
@@ -227,107 +935,107 @@ entity m02_couplers_imp_1T1QCR4 is
   port (
     M_ACLK : in STD_LOGIC;
     M_ARESETN : in STD_LOGIC;
-    M_AXI_araddr : out STD_LOGIC;
-    M_AXI_arprot : out STD_LOGIC;
+    M_AXI_araddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXI_arprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
     M_AXI_arready : in STD_LOGIC;
     M_AXI_arvalid : out STD_LOGIC;
-    M_AXI_awaddr : out STD_LOGIC;
-    M_AXI_awprot : out STD_LOGIC;
+    M_AXI_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXI_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
     M_AXI_awready : in STD_LOGIC;
     M_AXI_awvalid : out STD_LOGIC;
     M_AXI_bready : out STD_LOGIC;
-    M_AXI_bresp : in STD_LOGIC;
+    M_AXI_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M_AXI_bvalid : in STD_LOGIC;
-    M_AXI_rdata : in STD_LOGIC;
+    M_AXI_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     M_AXI_rready : out STD_LOGIC;
-    M_AXI_rresp : in STD_LOGIC;
+    M_AXI_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M_AXI_rvalid : in STD_LOGIC;
-    M_AXI_wdata : out STD_LOGIC;
+    M_AXI_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     M_AXI_wready : in STD_LOGIC;
-    M_AXI_wstrb : out STD_LOGIC;
+    M_AXI_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
     M_AXI_wvalid : out STD_LOGIC;
     S_ACLK : in STD_LOGIC;
     S_ARESETN : in STD_LOGIC;
-    S_AXI_araddr : in STD_LOGIC;
-    S_AXI_arprot : in STD_LOGIC;
+    S_AXI_araddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
     S_AXI_arready : out STD_LOGIC;
     S_AXI_arvalid : in STD_LOGIC;
-    S_AXI_awaddr : in STD_LOGIC;
-    S_AXI_awprot : in STD_LOGIC;
+    S_AXI_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
     S_AXI_awready : out STD_LOGIC;
     S_AXI_awvalid : in STD_LOGIC;
     S_AXI_bready : in STD_LOGIC;
-    S_AXI_bresp : out STD_LOGIC;
+    S_AXI_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     S_AXI_bvalid : out STD_LOGIC;
-    S_AXI_rdata : out STD_LOGIC;
+    S_AXI_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     S_AXI_rready : in STD_LOGIC;
-    S_AXI_rresp : out STD_LOGIC;
+    S_AXI_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     S_AXI_rvalid : out STD_LOGIC;
-    S_AXI_wdata : in STD_LOGIC;
+    S_AXI_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     S_AXI_wready : out STD_LOGIC;
-    S_AXI_wstrb : in STD_LOGIC;
+    S_AXI_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
     S_AXI_wvalid : in STD_LOGIC
   );
 end m02_couplers_imp_1T1QCR4;
 
 architecture STRUCTURE of m02_couplers_imp_1T1QCR4 is
-  signal m02_couplers_to_m02_couplers_ARADDR : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_ARPROT : STD_LOGIC;
+  signal m02_couplers_to_m02_couplers_ARADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal m02_couplers_to_m02_couplers_ARPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal m02_couplers_to_m02_couplers_ARREADY : STD_LOGIC;
   signal m02_couplers_to_m02_couplers_ARVALID : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_AWADDR : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_AWPROT : STD_LOGIC;
+  signal m02_couplers_to_m02_couplers_AWADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal m02_couplers_to_m02_couplers_AWPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal m02_couplers_to_m02_couplers_AWREADY : STD_LOGIC;
   signal m02_couplers_to_m02_couplers_AWVALID : STD_LOGIC;
   signal m02_couplers_to_m02_couplers_BREADY : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_BRESP : STD_LOGIC;
+  signal m02_couplers_to_m02_couplers_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal m02_couplers_to_m02_couplers_BVALID : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_RDATA : STD_LOGIC;
+  signal m02_couplers_to_m02_couplers_RDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal m02_couplers_to_m02_couplers_RREADY : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_RRESP : STD_LOGIC;
+  signal m02_couplers_to_m02_couplers_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal m02_couplers_to_m02_couplers_RVALID : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_WDATA : STD_LOGIC;
+  signal m02_couplers_to_m02_couplers_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal m02_couplers_to_m02_couplers_WREADY : STD_LOGIC;
-  signal m02_couplers_to_m02_couplers_WSTRB : STD_LOGIC;
+  signal m02_couplers_to_m02_couplers_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal m02_couplers_to_m02_couplers_WVALID : STD_LOGIC;
 begin
-  M_AXI_araddr <= m02_couplers_to_m02_couplers_ARADDR;
-  M_AXI_arprot <= m02_couplers_to_m02_couplers_ARPROT;
+  M_AXI_araddr(31 downto 0) <= m02_couplers_to_m02_couplers_ARADDR(31 downto 0);
+  M_AXI_arprot(2 downto 0) <= m02_couplers_to_m02_couplers_ARPROT(2 downto 0);
   M_AXI_arvalid <= m02_couplers_to_m02_couplers_ARVALID;
-  M_AXI_awaddr <= m02_couplers_to_m02_couplers_AWADDR;
-  M_AXI_awprot <= m02_couplers_to_m02_couplers_AWPROT;
+  M_AXI_awaddr(31 downto 0) <= m02_couplers_to_m02_couplers_AWADDR(31 downto 0);
+  M_AXI_awprot(2 downto 0) <= m02_couplers_to_m02_couplers_AWPROT(2 downto 0);
   M_AXI_awvalid <= m02_couplers_to_m02_couplers_AWVALID;
   M_AXI_bready <= m02_couplers_to_m02_couplers_BREADY;
   M_AXI_rready <= m02_couplers_to_m02_couplers_RREADY;
-  M_AXI_wdata <= m02_couplers_to_m02_couplers_WDATA;
-  M_AXI_wstrb <= m02_couplers_to_m02_couplers_WSTRB;
+  M_AXI_wdata(31 downto 0) <= m02_couplers_to_m02_couplers_WDATA(31 downto 0);
+  M_AXI_wstrb(3 downto 0) <= m02_couplers_to_m02_couplers_WSTRB(3 downto 0);
   M_AXI_wvalid <= m02_couplers_to_m02_couplers_WVALID;
   S_AXI_arready <= m02_couplers_to_m02_couplers_ARREADY;
   S_AXI_awready <= m02_couplers_to_m02_couplers_AWREADY;
-  S_AXI_bresp <= m02_couplers_to_m02_couplers_BRESP;
+  S_AXI_bresp(1 downto 0) <= m02_couplers_to_m02_couplers_BRESP(1 downto 0);
   S_AXI_bvalid <= m02_couplers_to_m02_couplers_BVALID;
-  S_AXI_rdata <= m02_couplers_to_m02_couplers_RDATA;
-  S_AXI_rresp <= m02_couplers_to_m02_couplers_RRESP;
+  S_AXI_rdata(31 downto 0) <= m02_couplers_to_m02_couplers_RDATA(31 downto 0);
+  S_AXI_rresp(1 downto 0) <= m02_couplers_to_m02_couplers_RRESP(1 downto 0);
   S_AXI_rvalid <= m02_couplers_to_m02_couplers_RVALID;
   S_AXI_wready <= m02_couplers_to_m02_couplers_WREADY;
-  m02_couplers_to_m02_couplers_ARADDR <= S_AXI_araddr;
-  m02_couplers_to_m02_couplers_ARPROT <= S_AXI_arprot;
+  m02_couplers_to_m02_couplers_ARADDR(31 downto 0) <= S_AXI_araddr(31 downto 0);
+  m02_couplers_to_m02_couplers_ARPROT(2 downto 0) <= S_AXI_arprot(2 downto 0);
   m02_couplers_to_m02_couplers_ARREADY <= M_AXI_arready;
   m02_couplers_to_m02_couplers_ARVALID <= S_AXI_arvalid;
-  m02_couplers_to_m02_couplers_AWADDR <= S_AXI_awaddr;
-  m02_couplers_to_m02_couplers_AWPROT <= S_AXI_awprot;
+  m02_couplers_to_m02_couplers_AWADDR(31 downto 0) <= S_AXI_awaddr(31 downto 0);
+  m02_couplers_to_m02_couplers_AWPROT(2 downto 0) <= S_AXI_awprot(2 downto 0);
   m02_couplers_to_m02_couplers_AWREADY <= M_AXI_awready;
   m02_couplers_to_m02_couplers_AWVALID <= S_AXI_awvalid;
   m02_couplers_to_m02_couplers_BREADY <= S_AXI_bready;
-  m02_couplers_to_m02_couplers_BRESP <= M_AXI_bresp;
+  m02_couplers_to_m02_couplers_BRESP(1 downto 0) <= M_AXI_bresp(1 downto 0);
   m02_couplers_to_m02_couplers_BVALID <= M_AXI_bvalid;
-  m02_couplers_to_m02_couplers_RDATA <= M_AXI_rdata;
+  m02_couplers_to_m02_couplers_RDATA(31 downto 0) <= M_AXI_rdata(31 downto 0);
   m02_couplers_to_m02_couplers_RREADY <= S_AXI_rready;
-  m02_couplers_to_m02_couplers_RRESP <= M_AXI_rresp;
+  m02_couplers_to_m02_couplers_RRESP(1 downto 0) <= M_AXI_rresp(1 downto 0);
   m02_couplers_to_m02_couplers_RVALID <= M_AXI_rvalid;
-  m02_couplers_to_m02_couplers_WDATA <= S_AXI_wdata;
+  m02_couplers_to_m02_couplers_WDATA(31 downto 0) <= S_AXI_wdata(31 downto 0);
   m02_couplers_to_m02_couplers_WREADY <= M_AXI_wready;
-  m02_couplers_to_m02_couplers_WSTRB <= S_AXI_wstrb;
+  m02_couplers_to_m02_couplers_WSTRB(3 downto 0) <= S_AXI_wstrb(3 downto 0);
   m02_couplers_to_m02_couplers_WVALID <= S_AXI_wvalid;
 end STRUCTURE;
 library IEEE;
@@ -1012,24 +1720,24 @@ entity pwm_controller_ps7_0_axi_periph_0 is
     M01_AXI_wvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
     M02_ACLK : in STD_LOGIC;
     M02_ARESETN : in STD_LOGIC;
-    M02_AXI_araddr : out STD_LOGIC;
-    M02_AXI_arprot : out STD_LOGIC;
+    M02_AXI_araddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M02_AXI_arprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
     M02_AXI_arready : in STD_LOGIC;
     M02_AXI_arvalid : out STD_LOGIC;
-    M02_AXI_awaddr : out STD_LOGIC;
-    M02_AXI_awprot : out STD_LOGIC;
+    M02_AXI_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M02_AXI_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
     M02_AXI_awready : in STD_LOGIC;
     M02_AXI_awvalid : out STD_LOGIC;
     M02_AXI_bready : out STD_LOGIC;
-    M02_AXI_bresp : in STD_LOGIC;
+    M02_AXI_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M02_AXI_bvalid : in STD_LOGIC;
-    M02_AXI_rdata : in STD_LOGIC;
+    M02_AXI_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     M02_AXI_rready : out STD_LOGIC;
-    M02_AXI_rresp : in STD_LOGIC;
+    M02_AXI_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M02_AXI_rvalid : in STD_LOGIC;
-    M02_AXI_wdata : out STD_LOGIC;
+    M02_AXI_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     M02_AXI_wready : in STD_LOGIC;
-    M02_AXI_wstrb : out STD_LOGIC;
+    M02_AXI_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
     M02_AXI_wvalid : out STD_LOGIC;
     S00_ACLK : in STD_LOGIC;
     S00_ARESETN : in STD_LOGIC;
@@ -1435,24 +2143,24 @@ architecture STRUCTURE of pwm_controller_ps7_0_axi_periph_0 is
   signal m01_couplers_to_ps7_0_axi_periph_WREADY : STD_LOGIC_VECTOR ( 0 to 0 );
   signal m01_couplers_to_ps7_0_axi_periph_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal m01_couplers_to_ps7_0_axi_periph_WVALID : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal m02_couplers_to_ps7_0_axi_periph_ARADDR : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_ARPROT : STD_LOGIC;
+  signal m02_couplers_to_ps7_0_axi_periph_ARADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal m02_couplers_to_ps7_0_axi_periph_ARPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal m02_couplers_to_ps7_0_axi_periph_ARREADY : STD_LOGIC;
   signal m02_couplers_to_ps7_0_axi_periph_ARVALID : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_AWADDR : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_AWPROT : STD_LOGIC;
+  signal m02_couplers_to_ps7_0_axi_periph_AWADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal m02_couplers_to_ps7_0_axi_periph_AWPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal m02_couplers_to_ps7_0_axi_periph_AWREADY : STD_LOGIC;
   signal m02_couplers_to_ps7_0_axi_periph_AWVALID : STD_LOGIC;
   signal m02_couplers_to_ps7_0_axi_periph_BREADY : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_BRESP : STD_LOGIC;
+  signal m02_couplers_to_ps7_0_axi_periph_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal m02_couplers_to_ps7_0_axi_periph_BVALID : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_RDATA : STD_LOGIC;
+  signal m02_couplers_to_ps7_0_axi_periph_RDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal m02_couplers_to_ps7_0_axi_periph_RREADY : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_RRESP : STD_LOGIC;
+  signal m02_couplers_to_ps7_0_axi_periph_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal m02_couplers_to_ps7_0_axi_periph_RVALID : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_WDATA : STD_LOGIC;
+  signal m02_couplers_to_ps7_0_axi_periph_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal m02_couplers_to_ps7_0_axi_periph_WREADY : STD_LOGIC;
-  signal m02_couplers_to_ps7_0_axi_periph_WSTRB : STD_LOGIC;
+  signal m02_couplers_to_ps7_0_axi_periph_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal m02_couplers_to_ps7_0_axi_periph_WVALID : STD_LOGIC;
   signal ps7_0_axi_periph_ACLK_net : STD_LOGIC;
   signal ps7_0_axi_periph_ARESETN_net : STD_LOGIC;
@@ -1615,11 +2323,11 @@ architecture STRUCTURE of pwm_controller_ps7_0_axi_periph_0 is
   signal xbar_to_m02_couplers_AWREADY : STD_LOGIC;
   signal xbar_to_m02_couplers_AWVALID : STD_LOGIC_VECTOR ( 2 to 2 );
   signal xbar_to_m02_couplers_BREADY : STD_LOGIC_VECTOR ( 2 to 2 );
-  signal xbar_to_m02_couplers_BRESP : STD_LOGIC;
+  signal xbar_to_m02_couplers_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal xbar_to_m02_couplers_BVALID : STD_LOGIC;
-  signal xbar_to_m02_couplers_RDATA : STD_LOGIC;
+  signal xbar_to_m02_couplers_RDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal xbar_to_m02_couplers_RREADY : STD_LOGIC_VECTOR ( 2 to 2 );
-  signal xbar_to_m02_couplers_RRESP : STD_LOGIC;
+  signal xbar_to_m02_couplers_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal xbar_to_m02_couplers_RVALID : STD_LOGIC;
   signal xbar_to_m02_couplers_WDATA : STD_LOGIC_VECTOR ( 95 downto 64 );
   signal xbar_to_m02_couplers_WREADY : STD_LOGIC;
@@ -1648,16 +2356,16 @@ begin
   M01_AXI_wdata(31 downto 0) <= m01_couplers_to_ps7_0_axi_periph_WDATA(31 downto 0);
   M01_AXI_wstrb(3 downto 0) <= m01_couplers_to_ps7_0_axi_periph_WSTRB(3 downto 0);
   M01_AXI_wvalid(0) <= m01_couplers_to_ps7_0_axi_periph_WVALID(0);
-  M02_AXI_araddr <= m02_couplers_to_ps7_0_axi_periph_ARADDR;
-  M02_AXI_arprot <= m02_couplers_to_ps7_0_axi_periph_ARPROT;
+  M02_AXI_araddr(31 downto 0) <= m02_couplers_to_ps7_0_axi_periph_ARADDR(31 downto 0);
+  M02_AXI_arprot(2 downto 0) <= m02_couplers_to_ps7_0_axi_periph_ARPROT(2 downto 0);
   M02_AXI_arvalid <= m02_couplers_to_ps7_0_axi_periph_ARVALID;
-  M02_AXI_awaddr <= m02_couplers_to_ps7_0_axi_periph_AWADDR;
-  M02_AXI_awprot <= m02_couplers_to_ps7_0_axi_periph_AWPROT;
+  M02_AXI_awaddr(31 downto 0) <= m02_couplers_to_ps7_0_axi_periph_AWADDR(31 downto 0);
+  M02_AXI_awprot(2 downto 0) <= m02_couplers_to_ps7_0_axi_periph_AWPROT(2 downto 0);
   M02_AXI_awvalid <= m02_couplers_to_ps7_0_axi_periph_AWVALID;
   M02_AXI_bready <= m02_couplers_to_ps7_0_axi_periph_BREADY;
   M02_AXI_rready <= m02_couplers_to_ps7_0_axi_periph_RREADY;
-  M02_AXI_wdata <= m02_couplers_to_ps7_0_axi_periph_WDATA;
-  M02_AXI_wstrb <= m02_couplers_to_ps7_0_axi_periph_WSTRB;
+  M02_AXI_wdata(31 downto 0) <= m02_couplers_to_ps7_0_axi_periph_WDATA(31 downto 0);
+  M02_AXI_wstrb(3 downto 0) <= m02_couplers_to_ps7_0_axi_periph_WSTRB(3 downto 0);
   M02_AXI_wvalid <= m02_couplers_to_ps7_0_axi_periph_WVALID;
   S00_AXI_1_ARADDR(31 downto 0) <= S00_AXI_araddr(31 downto 0);
   S00_AXI_1_ARBURST(1 downto 0) <= S00_AXI_arburst(1 downto 0);
@@ -1753,10 +2461,10 @@ begin
   m01_couplers_to_ps7_0_axi_periph_WREADY(0) <= M01_AXI_wready(0);
   m02_couplers_to_ps7_0_axi_periph_ARREADY <= M02_AXI_arready;
   m02_couplers_to_ps7_0_axi_periph_AWREADY <= M02_AXI_awready;
-  m02_couplers_to_ps7_0_axi_periph_BRESP <= M02_AXI_bresp;
+  m02_couplers_to_ps7_0_axi_periph_BRESP(1 downto 0) <= M02_AXI_bresp(1 downto 0);
   m02_couplers_to_ps7_0_axi_periph_BVALID <= M02_AXI_bvalid;
-  m02_couplers_to_ps7_0_axi_periph_RDATA <= M02_AXI_rdata;
-  m02_couplers_to_ps7_0_axi_periph_RRESP <= M02_AXI_rresp;
+  m02_couplers_to_ps7_0_axi_periph_RDATA(31 downto 0) <= M02_AXI_rdata(31 downto 0);
+  m02_couplers_to_ps7_0_axi_periph_RRESP(1 downto 0) <= M02_AXI_rresp(1 downto 0);
   m02_couplers_to_ps7_0_axi_periph_RVALID <= M02_AXI_rvalid;
   m02_couplers_to_ps7_0_axi_periph_WREADY <= M02_AXI_wready;
   ps7_0_axi_periph_ACLK_net <= ACLK;
@@ -1851,45 +2559,45 @@ m02_couplers: entity work.m02_couplers_imp_1T1QCR4
      port map (
       M_ACLK => ps7_0_axi_periph_ACLK_net,
       M_ARESETN => ps7_0_axi_periph_ARESETN_net,
-      M_AXI_araddr => m02_couplers_to_ps7_0_axi_periph_ARADDR,
-      M_AXI_arprot => m02_couplers_to_ps7_0_axi_periph_ARPROT,
+      M_AXI_araddr(31 downto 0) => m02_couplers_to_ps7_0_axi_periph_ARADDR(31 downto 0),
+      M_AXI_arprot(2 downto 0) => m02_couplers_to_ps7_0_axi_periph_ARPROT(2 downto 0),
       M_AXI_arready => m02_couplers_to_ps7_0_axi_periph_ARREADY,
       M_AXI_arvalid => m02_couplers_to_ps7_0_axi_periph_ARVALID,
-      M_AXI_awaddr => m02_couplers_to_ps7_0_axi_periph_AWADDR,
-      M_AXI_awprot => m02_couplers_to_ps7_0_axi_periph_AWPROT,
+      M_AXI_awaddr(31 downto 0) => m02_couplers_to_ps7_0_axi_periph_AWADDR(31 downto 0),
+      M_AXI_awprot(2 downto 0) => m02_couplers_to_ps7_0_axi_periph_AWPROT(2 downto 0),
       M_AXI_awready => m02_couplers_to_ps7_0_axi_periph_AWREADY,
       M_AXI_awvalid => m02_couplers_to_ps7_0_axi_periph_AWVALID,
       M_AXI_bready => m02_couplers_to_ps7_0_axi_periph_BREADY,
-      M_AXI_bresp => m02_couplers_to_ps7_0_axi_periph_BRESP,
+      M_AXI_bresp(1 downto 0) => m02_couplers_to_ps7_0_axi_periph_BRESP(1 downto 0),
       M_AXI_bvalid => m02_couplers_to_ps7_0_axi_periph_BVALID,
-      M_AXI_rdata => m02_couplers_to_ps7_0_axi_periph_RDATA,
+      M_AXI_rdata(31 downto 0) => m02_couplers_to_ps7_0_axi_periph_RDATA(31 downto 0),
       M_AXI_rready => m02_couplers_to_ps7_0_axi_periph_RREADY,
-      M_AXI_rresp => m02_couplers_to_ps7_0_axi_periph_RRESP,
+      M_AXI_rresp(1 downto 0) => m02_couplers_to_ps7_0_axi_periph_RRESP(1 downto 0),
       M_AXI_rvalid => m02_couplers_to_ps7_0_axi_periph_RVALID,
-      M_AXI_wdata => m02_couplers_to_ps7_0_axi_periph_WDATA,
+      M_AXI_wdata(31 downto 0) => m02_couplers_to_ps7_0_axi_periph_WDATA(31 downto 0),
       M_AXI_wready => m02_couplers_to_ps7_0_axi_periph_WREADY,
-      M_AXI_wstrb => m02_couplers_to_ps7_0_axi_periph_WSTRB,
+      M_AXI_wstrb(3 downto 0) => m02_couplers_to_ps7_0_axi_periph_WSTRB(3 downto 0),
       M_AXI_wvalid => m02_couplers_to_ps7_0_axi_periph_WVALID,
       S_ACLK => ps7_0_axi_periph_ACLK_net,
       S_ARESETN => ps7_0_axi_periph_ARESETN_net,
-      S_AXI_araddr => xbar_to_m02_couplers_ARADDR(64),
-      S_AXI_arprot => xbar_to_m02_couplers_ARPROT(6),
+      S_AXI_araddr(31 downto 0) => xbar_to_m02_couplers_ARADDR(95 downto 64),
+      S_AXI_arprot(2 downto 0) => xbar_to_m02_couplers_ARPROT(8 downto 6),
       S_AXI_arready => xbar_to_m02_couplers_ARREADY,
       S_AXI_arvalid => xbar_to_m02_couplers_ARVALID(2),
-      S_AXI_awaddr => xbar_to_m02_couplers_AWADDR(64),
-      S_AXI_awprot => xbar_to_m02_couplers_AWPROT(6),
+      S_AXI_awaddr(31 downto 0) => xbar_to_m02_couplers_AWADDR(95 downto 64),
+      S_AXI_awprot(2 downto 0) => xbar_to_m02_couplers_AWPROT(8 downto 6),
       S_AXI_awready => xbar_to_m02_couplers_AWREADY,
       S_AXI_awvalid => xbar_to_m02_couplers_AWVALID(2),
       S_AXI_bready => xbar_to_m02_couplers_BREADY(2),
-      S_AXI_bresp => xbar_to_m02_couplers_BRESP,
+      S_AXI_bresp(1 downto 0) => xbar_to_m02_couplers_BRESP(1 downto 0),
       S_AXI_bvalid => xbar_to_m02_couplers_BVALID,
-      S_AXI_rdata => xbar_to_m02_couplers_RDATA,
+      S_AXI_rdata(31 downto 0) => xbar_to_m02_couplers_RDATA(31 downto 0),
       S_AXI_rready => xbar_to_m02_couplers_RREADY(2),
-      S_AXI_rresp => xbar_to_m02_couplers_RRESP,
+      S_AXI_rresp(1 downto 0) => xbar_to_m02_couplers_RRESP(1 downto 0),
       S_AXI_rvalid => xbar_to_m02_couplers_RVALID,
-      S_AXI_wdata => xbar_to_m02_couplers_WDATA(64),
+      S_AXI_wdata(31 downto 0) => xbar_to_m02_couplers_WDATA(95 downto 64),
       S_AXI_wready => xbar_to_m02_couplers_WREADY,
-      S_AXI_wstrb => xbar_to_m02_couplers_WSTRB(8),
+      S_AXI_wstrb(3 downto 0) => xbar_to_m02_couplers_WSTRB(11 downto 8),
       S_AXI_wvalid => xbar_to_m02_couplers_WVALID(2)
     );
 s00_couplers: entity work.s00_couplers_imp_1VOK962
@@ -2213,52 +2921,19 @@ xbar: component pwm_controller_xbar_0
       m_axi_bready(2) => xbar_to_m02_couplers_BREADY(2),
       m_axi_bready(1) => xbar_to_m01_couplers_BREADY(1),
       m_axi_bready(0) => xbar_to_m00_couplers_BREADY(0),
-      m_axi_bresp(5) => xbar_to_m02_couplers_BRESP,
-      m_axi_bresp(4) => xbar_to_m02_couplers_BRESP,
+      m_axi_bresp(5 downto 4) => xbar_to_m02_couplers_BRESP(1 downto 0),
       m_axi_bresp(3 downto 2) => xbar_to_m01_couplers_BRESP(1 downto 0),
       m_axi_bresp(1 downto 0) => xbar_to_m00_couplers_BRESP(1 downto 0),
       m_axi_bvalid(2) => xbar_to_m02_couplers_BVALID,
       m_axi_bvalid(1) => xbar_to_m01_couplers_BVALID(0),
       m_axi_bvalid(0) => xbar_to_m00_couplers_BVALID,
-      m_axi_rdata(95) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(94) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(93) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(92) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(91) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(90) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(89) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(88) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(87) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(86) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(85) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(84) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(83) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(82) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(81) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(80) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(79) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(78) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(77) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(76) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(75) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(74) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(73) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(72) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(71) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(70) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(69) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(68) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(67) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(66) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(65) => xbar_to_m02_couplers_RDATA,
-      m_axi_rdata(64) => xbar_to_m02_couplers_RDATA,
+      m_axi_rdata(95 downto 64) => xbar_to_m02_couplers_RDATA(31 downto 0),
       m_axi_rdata(63 downto 32) => xbar_to_m01_couplers_RDATA(31 downto 0),
       m_axi_rdata(31 downto 0) => xbar_to_m00_couplers_RDATA(31 downto 0),
       m_axi_rready(2) => xbar_to_m02_couplers_RREADY(2),
       m_axi_rready(1) => xbar_to_m01_couplers_RREADY(1),
       m_axi_rready(0) => xbar_to_m00_couplers_RREADY(0),
-      m_axi_rresp(5) => xbar_to_m02_couplers_RRESP,
-      m_axi_rresp(4) => xbar_to_m02_couplers_RRESP,
+      m_axi_rresp(5 downto 4) => xbar_to_m02_couplers_RRESP(1 downto 0),
       m_axi_rresp(3 downto 2) => xbar_to_m01_couplers_RRESP(1 downto 0),
       m_axi_rresp(1 downto 0) => xbar_to_m00_couplers_RRESP(1 downto 0),
       m_axi_rvalid(2) => xbar_to_m02_couplers_RVALID,
@@ -2352,7 +3027,7 @@ entity pwm_controller is
     pwm_o_0 : out STD_LOGIC
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of pwm_controller : entity is "pwm_controller,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pwm_controller,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=23,numReposBlks=17,numNonXlnxBlks=1,numHierBlks=6,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=7,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=9,da_clkrst_cnt=5,da_ps7_cnt=1,synth_mode=OOC_per_IP}";
+  attribute CORE_GENERATION_INFO of pwm_controller : entity is "pwm_controller,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pwm_controller,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=49,numReposBlks=38,numNonXlnxBlks=2,numHierBlks=11,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=17,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=10,da_clkrst_cnt=5,da_ps7_cnt=1,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of pwm_controller : entity is "pwm_controller.hwdef";
 end pwm_controller;
@@ -2567,40 +3242,35 @@ architecture STRUCTURE of pwm_controller is
     busy_out : out STD_LOGIC
   );
   end component pwm_controller_xadc_wiz_0_1;
-  component pwm_controller_system_ila_0_0 is
+  component pwm_controller_AXIreg_1_0 is
   port (
-    clk : in STD_LOGIC;
-    probe0 : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    probe1 : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    probe2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe3 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe4 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe5 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe6 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe7 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe8 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe9 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe10 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe11 : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    probe12 : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    probe13 : in STD_LOGIC_VECTOR ( 15 downto 0 )
+    reg0 : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    reg1 : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    reg2 : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    reg3 : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s00_axi_aclk : in STD_LOGIC;
+    s00_axi_aresetn : in STD_LOGIC;
+    s00_axi_awaddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_awvalid : in STD_LOGIC;
+    s00_axi_awready : out STD_LOGIC;
+    s00_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s00_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_wvalid : in STD_LOGIC;
+    s00_axi_wready : out STD_LOGIC;
+    s00_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_bvalid : out STD_LOGIC;
+    s00_axi_bready : in STD_LOGIC;
+    s00_axi_araddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_arvalid : in STD_LOGIC;
+    s00_axi_arready : out STD_LOGIC;
+    s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s00_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_rvalid : out STD_LOGIC;
+    s00_axi_rready : in STD_LOGIC
   );
-  end component pwm_controller_system_ila_0_0;
-  component pwm_controller_AXIS_Snooper_0_0 is
-  port (
-    adcA_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    adcB_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    idA_o : out STD_LOGIC_VECTOR ( 4 downto 0 );
-    idB_o : out STD_LOGIC_VECTOR ( 4 downto 0 );
-    en_out_i : in STD_LOGIC;
-    s_axis_aclk : in STD_LOGIC;
-    s_axis_aresetn : in STD_LOGIC;
-    s_axis_tvalid : in STD_LOGIC;
-    s_axis_tready : out STD_LOGIC;
-    s_axis_tdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    s_axis_tid : in STD_LOGIC_VECTOR ( 4 downto 0 )
-  );
-  end component pwm_controller_AXIS_Snooper_0_0;
+  end component pwm_controller_AXIreg_1_0;
   component pwm_controller_AXIreg_0_0 is
   port (
     reg0 : out STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -2630,129 +3300,76 @@ architecture STRUCTURE of pwm_controller is
     s00_axi_rready : in STD_LOGIC
   );
   end component pwm_controller_AXIreg_0_0;
-  component pwm_controller_trigger_update_0_0 is
+  component pwm_controller_system_ila_0_0 is
   port (
-    update_o : out STD_LOGIC;
-    max_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    counter_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    peak_i : in STD_LOGIC;
-    valley_i : in STD_LOGIC;
-    sawtri_i : in STD_LOGIC
+    clk : in STD_LOGIC;
+    probe0 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe1 : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    probe2 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    probe3 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    probe4 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    probe5 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    probe6 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    probe7 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    probe8 : in STD_LOGIC_VECTOR ( 11 downto 0 );
+    probe9 : in STD_LOGIC_VECTOR ( 15 downto 0 )
   );
-  end component pwm_controller_trigger_update_0_0;
-  component pwm_controller_pwm_comparator_0_0 is
-  port (
-    cmp_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    half_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    pwm_o : out STD_LOGIC;
-    cmp_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    counter_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    update_i : in STD_LOGIC;
-    async_i : in STD_LOGIC;
-    clk_i : in STD_LOGIC
-  );
-  end component pwm_controller_pwm_comparator_0_0;
-  component pwm_controller_counter_updown_0_0 is
-  port (
-    counter_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    updown_o : out STD_LOGIC;
-    over_o : out STD_LOGIC;
-    under_o : out STD_LOGIC;
-    max_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    sawtri_i : in STD_LOGIC;
-    resetn_i : in STD_LOGIC;
-    clk_i : in STD_LOGIC
-  );
-  end component pwm_controller_counter_updown_0_0;
-  component pwm_controller_configmap_pwm_0_0 is
-  port (
-    resetn_o : out STD_LOGIC;
-    sawtri_o : out STD_LOGIC;
-    async_o : out STD_LOGIC;
-    upd_peak_o : out STD_LOGIC;
-    upd_valley_o : out STD_LOGIC;
-    acq_free_o : out STD_LOGIC;
-    acq_max_o : out STD_LOGIC;
-    acq_cmp_o : out STD_LOGIC;
-    acq_half_o : out STD_LOGIC;
-    acq_zero_o : out STD_LOGIC;
-    en_snoop_o : out STD_LOGIC;
-    data_i : in STD_LOGIC_VECTOR ( 31 downto 0 )
-  );
-  end component pwm_controller_configmap_pwm_0_0;
-  component pwm_controller_trigger_acquisition_0_0 is
-  port (
-    acq_o : out STD_LOGIC;
-    free_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    max_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    cmp_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    half_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    counter_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    en_free_i : in STD_LOGIC;
-    en_max_i : in STD_LOGIC;
-    en_cmp_i : in STD_LOGIC;
-    en_half_i : in STD_LOGIC;
-    en_zero_i : in STD_LOGIC
-  );
-  end component pwm_controller_trigger_acquisition_0_0;
-  component pwm_controller_limiter_unsigned_0_0 is
-  port (
-    data_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    data_o : out STD_LOGIC_VECTOR ( 15 downto 0 )
-  );
-  end component pwm_controller_limiter_unsigned_0_0;
+  end component pwm_controller_system_ila_0_0;
+  signal ADC_SLICEPAD_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
   signal AXIreg_0_reg0 : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal AXIreg_0_reg1 : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal AXIreg_0_reg2 : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal AXIreg_0_reg3 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal AXIreg_1_reg0 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal AXIreg_1_reg1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal AXIreg_1_reg2 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal DPWM_SLICE_en_snoop_o : STD_LOGIC;
+  signal DSP_SLICEPAD_Dout : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal DSP_SLICEPAD_Dout1 : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal DSP_SLICEPAD_coef_slicepad : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal DSP_SLICEPAD_data_o : STD_LOGIC_VECTOR ( 16 downto 0 );
   signal Vaux13_0_1_V_N : STD_LOGIC;
   signal Vaux13_0_1_V_P : STD_LOGIC;
   signal Vaux5_0_1_V_N : STD_LOGIC;
   signal Vaux5_0_1_V_P : STD_LOGIC;
   signal Vp_Vn_0_1_V_N : STD_LOGIC;
   signal Vp_Vn_0_1_V_P : STD_LOGIC;
-  signal adcA_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal acq_o : STD_LOGIC;
   attribute DEBUG : string;
-  attribute DEBUG of adcA_o : signal is "true";
+  attribute DEBUG of acq_o : signal is "true";
   attribute MARK_DEBUG : boolean;
-  attribute MARK_DEBUG of adcA_o : signal is std.standard.true;
-  signal adcB_o : STD_LOGIC_VECTOR ( 15 downto 0 );
-  attribute DEBUG of adcB_o : signal is "true";
-  attribute MARK_DEBUG of adcB_o : signal is std.standard.true;
+  attribute MARK_DEBUG of acq_o : signal is std.standard.true;
+  signal adcA : STD_LOGIC_VECTOR ( 11 downto 0 );
+  attribute DEBUG of adcA : signal is "true";
+  attribute MARK_DEBUG of adcA : signal is std.standard.true;
+  signal async_i_1 : STD_LOGIC;
   signal busy_out : STD_LOGIC;
   attribute DEBUG of busy_out : signal is "true";
   attribute MARK_DEBUG of busy_out : signal is std.standard.true;
   signal cmp_o : STD_LOGIC_VECTOR ( 15 downto 0 );
   attribute DEBUG of cmp_o : signal is "true";
   attribute MARK_DEBUG of cmp_o : signal is std.standard.true;
-  signal configmap_pwm_0_acq_cmp_o : STD_LOGIC;
-  signal configmap_pwm_0_acq_free_o : STD_LOGIC;
-  signal configmap_pwm_0_acq_hlaf_o : STD_LOGIC;
-  signal configmap_pwm_0_acq_max_o : STD_LOGIC;
-  signal configmap_pwm_0_acq_zero_o : STD_LOGIC;
-  signal configmap_pwm_0_async_o : STD_LOGIC;
-  signal configmap_pwm_0_en_snoop_o : STD_LOGIC;
-  signal configmap_pwm_0_peak_o : STD_LOGIC;
-  signal configmap_pwm_0_resetn_o : STD_LOGIC;
-  signal configmap_pwm_0_sawtri_o : STD_LOGIC;
-  signal configmap_pwm_0_valley_o : STD_LOGIC;
   signal counter_o : STD_LOGIC_VECTOR ( 15 downto 0 );
   attribute DEBUG of counter_o : signal is "true";
   attribute MARK_DEBUG of counter_o : signal is std.standard.true;
+  signal data1_i_1 : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal dsp_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  attribute DEBUG of dsp_o : signal is "true";
+  attribute MARK_DEBUG of dsp_o : signal is std.standard.true;
+  signal en_cmp_i_1 : STD_LOGIC;
+  signal en_free_i_1 : STD_LOGIC;
+  signal en_half_i_1 : STD_LOGIC;
+  signal en_max_i_1 : STD_LOGIC;
+  signal en_zero_i_1 : STD_LOGIC;
   signal eoc_out : STD_LOGIC;
   attribute DEBUG of eoc_out : signal is "true";
   attribute MARK_DEBUG of eoc_out : signal is std.standard.true;
-  signal eos_out : STD_LOGIC;
-  signal half_o : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal free_i : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal ip2intc_irpt : STD_LOGIC;
   attribute DEBUG of ip2intc_irpt : signal is "true";
   attribute MARK_DEBUG of ip2intc_irpt : signal is std.standard.true;
-  signal limiter_unsigned_0_data_o : STD_LOGIC_VECTOR ( 15 downto 0 );
-  attribute DEBUG of limiter_unsigned_0_data_o : signal is "true";
-  attribute MARK_DEBUG of limiter_unsigned_0_data_o : signal is std.standard.true;
-  signal over_o : STD_LOGIC;
-  attribute DEBUG of over_o : signal is "true";
-  attribute MARK_DEBUG of over_o : signal is std.standard.true;
+  signal max_i : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal peak_i_1 : STD_LOGIC;
   signal processing_system7_0_DDR_ADDR : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal processing_system7_0_DDR_BA : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal processing_system7_0_DDR_CAS_N : STD_LOGIC;
@@ -2888,28 +3505,46 @@ architecture STRUCTURE of pwm_controller is
   signal ps7_0_axi_periph_M01_AXI_WREADY : STD_LOGIC;
   signal ps7_0_axi_periph_M01_AXI_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal ps7_0_axi_periph_M01_AXI_WVALID : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal ps7_0_axi_periph_M02_AXI_ARADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_ARPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_ARREADY : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_ARVALID : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_AWADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_AWPROT : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_AWREADY : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_AWVALID : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_BREADY : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_BRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_BVALID : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_RDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_RREADY : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_RRESP : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_RVALID : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_WDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_WREADY : STD_LOGIC;
+  signal ps7_0_axi_periph_M02_AXI_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal ps7_0_axi_periph_M02_AXI_WVALID : STD_LOGIC;
   signal pwm_o : STD_LOGIC;
   attribute DEBUG of pwm_o : signal is "true";
   attribute MARK_DEBUG of pwm_o : signal is std.standard.true;
+  signal resetn_i_1 : STD_LOGIC;
   signal rst_ps7_0_100M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal trigger_acquisition_0_acq_o : STD_LOGIC;
-  attribute DEBUG of trigger_acquisition_0_acq_o : signal is "true";
-  attribute MARK_DEBUG of trigger_acquisition_0_acq_o : signal is std.standard.true;
-  signal trigger_update_0_update_o : STD_LOGIC;
-  attribute DEBUG of trigger_update_0_update_o : signal is "true";
-  attribute MARK_DEBUG of trigger_update_0_update_o : signal is std.standard.true;
-  signal under_o : STD_LOGIC;
-  attribute DEBUG of under_o : signal is "true";
-  attribute MARK_DEBUG of under_o : signal is std.standard.true;
-  signal updown_o : STD_LOGIC;
-  attribute DEBUG of updown_o : signal is "true";
-  attribute MARK_DEBUG of updown_o : signal is std.standard.true;
+  signal sawtri_i_1 : STD_LOGIC;
+  signal sel_i_1 : STD_LOGIC;
+  signal start_i_1 : STD_LOGIC;
+  signal update_o : STD_LOGIC;
+  attribute DEBUG of update_o : signal is "true";
+  attribute MARK_DEBUG of update_o : signal is std.standard.true;
+  signal valley_i_1 : STD_LOGIC;
   signal xadc_wiz_0_M_AXIS_TDATA : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal xadc_wiz_0_M_AXIS_TID : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal xadc_wiz_0_M_AXIS_TREADY : STD_LOGIC;
   signal xadc_wiz_0_M_AXIS_TVALID : STD_LOGIC;
-  signal NLW_AXIS_Snooper_0_idA_o_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
-  signal NLW_AXIS_Snooper_0_idB_o_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
+  signal NLW_ADC_SNOOPER_adcB_msb_UNCONNECTED : STD_LOGIC_VECTOR ( 11 downto 0 );
+  signal NLW_AXIreg_1_reg3_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal NLW_DPWM_over_o_UNCONNECTED : STD_LOGIC;
+  signal NLW_DPWM_under_o_UNCONNECTED : STD_LOGIC;
+  signal NLW_DPWM_updown_o_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_S_AXI_HP0_ARREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_S_AXI_HP0_AWREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_S_AXI_HP0_BVALID_UNCONNECTED : STD_LOGIC;
@@ -2927,22 +3562,12 @@ architecture STRUCTURE of pwm_controller is
   signal NLW_processing_system7_0_S_AXI_HP0_WACOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal NLW_processing_system7_0_S_AXI_HP0_WCOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal NLW_processing_system7_0_USB0_PORT_INDCTL_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_ps7_0_axi_periph_M02_AXI_araddr_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_arprot_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_arvalid_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_awaddr_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_awprot_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_awvalid_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_bready_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_rready_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_wdata_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_wstrb_UNCONNECTED : STD_LOGIC;
-  signal NLW_ps7_0_axi_periph_M02_AXI_wvalid_UNCONNECTED : STD_LOGIC;
   signal NLW_rst_ps7_0_100M_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_rst_ps7_0_100M_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps7_0_100M_interconnect_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps7_0_100M_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_xadc_wiz_0_alarm_out_UNCONNECTED : STD_LOGIC;
+  signal NLW_xadc_wiz_0_eos_out_UNCONNECTED : STD_LOGIC;
   signal NLW_xadc_wiz_0_channel_out_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
@@ -2982,14 +3607,13 @@ begin
   Vaux5_0_1_V_P <= Vaux5_0_v_p;
   Vp_Vn_0_1_V_N <= Vp_Vn_0_v_n;
   Vp_Vn_0_1_V_P <= Vp_Vn_0_v_p;
-  pwm_o_0 <= 'Z';
-AXIS_Snooper_0: component pwm_controller_AXIS_Snooper_0_0
+  pwm_o_0 <= pwm_o;
+ADC_SNOOPER: entity work.ADC_SNOOPER_imp_YX3GGP
      port map (
-      adcA_o(15 downto 0) => adcA_o(15 downto 0),
-      adcB_o(15 downto 0) => adcB_o(15 downto 0),
-      en_out_i => configmap_pwm_0_en_snoop_o,
-      idA_o(4 downto 0) => NLW_AXIS_Snooper_0_idA_o_UNCONNECTED(4 downto 0),
-      idB_o(4 downto 0) => NLW_AXIS_Snooper_0_idB_o_UNCONNECTED(4 downto 0),
+      adcA_msb(11 downto 0) => adcA(11 downto 0),
+      adcA_slicepad(16 downto 0) => ADC_SLICEPAD_data_o(16 downto 0),
+      adcB_msb(11 downto 0) => NLW_ADC_SNOOPER_adcB_msb_UNCONNECTED(11 downto 0),
+      en_out_i => DPWM_SLICE_en_snoop_o,
       s_axis_aclk => processing_system7_0_FCLK_CLK0,
       s_axis_aresetn => rst_ps7_0_100M_peripheral_aresetn(0),
       s_axis_tdata(15 downto 0) => xadc_wiz_0_M_AXIS_TDATA(15 downto 0),
@@ -3025,36 +3649,105 @@ AXIreg_0: component pwm_controller_AXIreg_0_0
       s00_axi_wstrb(3 downto 0) => ps7_0_axi_periph_M00_AXI_WSTRB(3 downto 0),
       s00_axi_wvalid => ps7_0_axi_periph_M00_AXI_WVALID
     );
-configmap_pwm_0: component pwm_controller_configmap_pwm_0_0
+AXIreg_1: component pwm_controller_AXIreg_1_0
      port map (
-      acq_cmp_o => configmap_pwm_0_acq_cmp_o,
-      acq_free_o => configmap_pwm_0_acq_free_o,
-      acq_half_o => configmap_pwm_0_acq_hlaf_o,
-      acq_max_o => configmap_pwm_0_acq_max_o,
-      acq_zero_o => configmap_pwm_0_acq_zero_o,
-      async_o => configmap_pwm_0_async_o,
-      data_i(31 downto 0) => AXIreg_0_reg3(31 downto 0),
-      en_snoop_o => configmap_pwm_0_en_snoop_o,
-      resetn_o => configmap_pwm_0_resetn_o,
-      sawtri_o => configmap_pwm_0_sawtri_o,
-      upd_peak_o => configmap_pwm_0_peak_o,
-      upd_valley_o => configmap_pwm_0_valley_o
+      reg0(31 downto 0) => AXIreg_1_reg0(31 downto 0),
+      reg1(31 downto 0) => AXIreg_1_reg1(31 downto 0),
+      reg2(31 downto 0) => AXIreg_1_reg2(31 downto 0),
+      reg3(31 downto 0) => NLW_AXIreg_1_reg3_UNCONNECTED(31 downto 0),
+      s00_axi_aclk => processing_system7_0_FCLK_CLK0,
+      s00_axi_araddr(3 downto 0) => ps7_0_axi_periph_M02_AXI_ARADDR(3 downto 0),
+      s00_axi_aresetn => rst_ps7_0_100M_peripheral_aresetn(0),
+      s00_axi_arprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_ARPROT(2 downto 0),
+      s00_axi_arready => ps7_0_axi_periph_M02_AXI_ARREADY,
+      s00_axi_arvalid => ps7_0_axi_periph_M02_AXI_ARVALID,
+      s00_axi_awaddr(3 downto 0) => ps7_0_axi_periph_M02_AXI_AWADDR(3 downto 0),
+      s00_axi_awprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_AWPROT(2 downto 0),
+      s00_axi_awready => ps7_0_axi_periph_M02_AXI_AWREADY,
+      s00_axi_awvalid => ps7_0_axi_periph_M02_AXI_AWVALID,
+      s00_axi_bready => ps7_0_axi_periph_M02_AXI_BREADY,
+      s00_axi_bresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_BRESP(1 downto 0),
+      s00_axi_bvalid => ps7_0_axi_periph_M02_AXI_BVALID,
+      s00_axi_rdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_RDATA(31 downto 0),
+      s00_axi_rready => ps7_0_axi_periph_M02_AXI_RREADY,
+      s00_axi_rresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_RRESP(1 downto 0),
+      s00_axi_rvalid => ps7_0_axi_periph_M02_AXI_RVALID,
+      s00_axi_wdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_WDATA(31 downto 0),
+      s00_axi_wready => ps7_0_axi_periph_M02_AXI_WREADY,
+      s00_axi_wstrb(3 downto 0) => ps7_0_axi_periph_M02_AXI_WSTRB(3 downto 0),
+      s00_axi_wvalid => ps7_0_axi_periph_M02_AXI_WVALID
     );
-counter_updown_0: component pwm_controller_counter_updown_0_0
+DPWM: entity work.DPWM_imp_16A0TOR
      port map (
+      acq_o => acq_o,
+      async_i => async_i_1,
       clk_i => processing_system7_0_FCLK_CLK0,
+      cmp_i(15 downto 0) => dsp_o(15 downto 0),
+      cmp_o(15 downto 0) => cmp_o(15 downto 0),
       counter_o(15 downto 0) => counter_o(15 downto 0),
-      max_i(15 downto 0) => AXIreg_0_reg1(15 downto 0),
-      over_o => over_o,
-      resetn_i => configmap_pwm_0_resetn_o,
-      sawtri_i => configmap_pwm_0_sawtri_o,
-      under_o => under_o,
-      updown_o => updown_o
+      en_cmp_i => en_cmp_i_1,
+      en_free_i => en_free_i_1,
+      en_half_i => en_half_i_1,
+      en_max_i => en_max_i_1,
+      en_zero_i => en_zero_i_1,
+      free_i(15 downto 0) => free_i(15 downto 0),
+      max_i(15 downto 0) => max_i(15 downto 0),
+      over_o => NLW_DPWM_over_o_UNCONNECTED,
+      peak_i => peak_i_1,
+      pwm_o_0 => pwm_o,
+      resetn_i => resetn_i_1,
+      sawtri_i => sawtri_i_1,
+      under_o => NLW_DPWM_under_o_UNCONNECTED,
+      update_i => update_o,
+      updown_o => NLW_DPWM_updown_o_UNCONNECTED,
+      valley_i => valley_i_1
     );
-limiter_unsigned_0: component pwm_controller_limiter_unsigned_0_0
+DPWM_SLICE: entity work.DPWM_SLICE_imp_J8D3HN
      port map (
-      data_i(31 downto 0) => AXIreg_0_reg0(31 downto 0),
-      data_o(15 downto 0) => limiter_unsigned_0_data_o(15 downto 0)
+      Din(31 downto 0) => AXIreg_0_reg2(31 downto 0),
+      Din1(31 downto 0) => AXIreg_0_reg1(31 downto 0),
+      acq_cmp_o => en_cmp_i_1,
+      acq_free_o => en_free_i_1,
+      acq_half_o => en_half_i_1,
+      acq_max_o => en_max_i_1,
+      acq_zero_o => en_zero_i_1,
+      async_o => async_i_1,
+      data_i(31 downto 0) => AXIreg_0_reg3(31 downto 0),
+      dsp_bypass_o => sel_i_1,
+      dsp_start_o => start_i_1,
+      en_snoop_o => DPWM_SLICE_en_snoop_o,
+      free_i(15 downto 0) => free_i(15 downto 0),
+      max_i(15 downto 0) => max_i(15 downto 0),
+      resetn_o => resetn_i_1,
+      sawtri_o => sawtri_i_1,
+      upd_peak_o => peak_i_1,
+      upd_valley_o => valley_i_1
+    );
+DSP: entity work.DSP_imp_MU6FP7
+     port map (
+      add_i(16 downto 0) => ADC_SLICEPAD_data_o(16 downto 0),
+      clk_i => processing_system7_0_FCLK_CLK0,
+      direct_i(15 downto 0) => data1_i_1(15 downto 0),
+      dsp_o(15 downto 0) => dsp_o(15 downto 0),
+      ki_i(16 downto 0) => DSP_SLICEPAD_Dout(16 downto 0),
+      kp_i(16 downto 0) => DSP_SLICEPAD_coef_slicepad(16 downto 0),
+      ref_i(16 downto 0) => DSP_SLICEPAD_data_o(16 downto 0),
+      sel_i => sel_i_1,
+      shift_i(3 downto 0) => DSP_SLICEPAD_Dout1(3 downto 0),
+      snh_i => acq_o,
+      start_i => start_i_1
+    );
+DSP_SLICEPAD: entity work.DSP_SLICEPAD_imp_5QZW03
+     port map (
+      conf_i(31 downto 0) => AXIreg_1_reg2(31 downto 0),
+      ki_i(31 downto 0) => AXIreg_1_reg1(31 downto 0),
+      ki_slicepad(16 downto 0) => DSP_SLICEPAD_Dout(16 downto 0),
+      kp_i(31 downto 0) => AXIreg_1_reg0(31 downto 0),
+      kp_slicepad(16 downto 0) => DSP_SLICEPAD_coef_slicepad(16 downto 0),
+      ref_i(31 downto 0) => AXIreg_0_reg0(31 downto 0),
+      ref_slice(15 downto 0) => data1_i_1(15 downto 0),
+      ref_slicepad(16 downto 0) => DSP_SLICEPAD_data_o(16 downto 0),
+      shift_slice(3 downto 0) => DSP_SLICEPAD_Dout1(3 downto 0)
     );
 processing_system7_0: component pwm_controller_processing_system7_0_0
      port map (
@@ -3255,25 +3948,25 @@ ps7_0_axi_periph: entity work.pwm_controller_ps7_0_axi_periph_0
       M01_AXI_wvalid(0) => ps7_0_axi_periph_M01_AXI_WVALID(0),
       M02_ACLK => processing_system7_0_FCLK_CLK0,
       M02_ARESETN => rst_ps7_0_100M_peripheral_aresetn(0),
-      M02_AXI_araddr => NLW_ps7_0_axi_periph_M02_AXI_araddr_UNCONNECTED,
-      M02_AXI_arprot => NLW_ps7_0_axi_periph_M02_AXI_arprot_UNCONNECTED,
-      M02_AXI_arready => '0',
-      M02_AXI_arvalid => NLW_ps7_0_axi_periph_M02_AXI_arvalid_UNCONNECTED,
-      M02_AXI_awaddr => NLW_ps7_0_axi_periph_M02_AXI_awaddr_UNCONNECTED,
-      M02_AXI_awprot => NLW_ps7_0_axi_periph_M02_AXI_awprot_UNCONNECTED,
-      M02_AXI_awready => '0',
-      M02_AXI_awvalid => NLW_ps7_0_axi_periph_M02_AXI_awvalid_UNCONNECTED,
-      M02_AXI_bready => NLW_ps7_0_axi_periph_M02_AXI_bready_UNCONNECTED,
-      M02_AXI_bresp => '0',
-      M02_AXI_bvalid => '0',
-      M02_AXI_rdata => '0',
-      M02_AXI_rready => NLW_ps7_0_axi_periph_M02_AXI_rready_UNCONNECTED,
-      M02_AXI_rresp => '0',
-      M02_AXI_rvalid => '0',
-      M02_AXI_wdata => NLW_ps7_0_axi_periph_M02_AXI_wdata_UNCONNECTED,
-      M02_AXI_wready => '0',
-      M02_AXI_wstrb => NLW_ps7_0_axi_periph_M02_AXI_wstrb_UNCONNECTED,
-      M02_AXI_wvalid => NLW_ps7_0_axi_periph_M02_AXI_wvalid_UNCONNECTED,
+      M02_AXI_araddr(31 downto 0) => ps7_0_axi_periph_M02_AXI_ARADDR(31 downto 0),
+      M02_AXI_arprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_ARPROT(2 downto 0),
+      M02_AXI_arready => ps7_0_axi_periph_M02_AXI_ARREADY,
+      M02_AXI_arvalid => ps7_0_axi_periph_M02_AXI_ARVALID,
+      M02_AXI_awaddr(31 downto 0) => ps7_0_axi_periph_M02_AXI_AWADDR(31 downto 0),
+      M02_AXI_awprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_AWPROT(2 downto 0),
+      M02_AXI_awready => ps7_0_axi_periph_M02_AXI_AWREADY,
+      M02_AXI_awvalid => ps7_0_axi_periph_M02_AXI_AWVALID,
+      M02_AXI_bready => ps7_0_axi_periph_M02_AXI_BREADY,
+      M02_AXI_bresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_BRESP(1 downto 0),
+      M02_AXI_bvalid => ps7_0_axi_periph_M02_AXI_BVALID,
+      M02_AXI_rdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_RDATA(31 downto 0),
+      M02_AXI_rready => ps7_0_axi_periph_M02_AXI_RREADY,
+      M02_AXI_rresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_RRESP(1 downto 0),
+      M02_AXI_rvalid => ps7_0_axi_periph_M02_AXI_RVALID,
+      M02_AXI_wdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_WDATA(31 downto 0),
+      M02_AXI_wready => ps7_0_axi_periph_M02_AXI_WREADY,
+      M02_AXI_wstrb(3 downto 0) => ps7_0_axi_periph_M02_AXI_WSTRB(3 downto 0),
+      M02_AXI_wvalid => ps7_0_axi_periph_M02_AXI_WVALID,
       S00_ACLK => processing_system7_0_FCLK_CLK0,
       S00_ARESETN => rst_ps7_0_100M_peripheral_aresetn(0),
       S00_AXI_araddr(31 downto 0) => processing_system7_0_M_AXI_GP0_ARADDR(31 downto 0),
@@ -3355,17 +4048,6 @@ ps7_0_axi_periph: entity work.pwm_controller_ps7_0_axi_periph_0
       S01_AXI_wstrb(3 downto 0) => processing_system7_0_M_AXI_GP1_WSTRB(3 downto 0),
       S01_AXI_wvalid => processing_system7_0_M_AXI_GP1_WVALID
     );
-pwm_comparator_0: component pwm_controller_pwm_comparator_0_0
-     port map (
-      async_i => configmap_pwm_0_async_o,
-      clk_i => processing_system7_0_FCLK_CLK0,
-      cmp_i(15 downto 0) => limiter_unsigned_0_data_o(15 downto 0),
-      cmp_o(15 downto 0) => cmp_o(15 downto 0),
-      counter_i(15 downto 0) => counter_o(15 downto 0),
-      half_o(15 downto 0) => half_o(15 downto 0),
-      pwm_o => pwm_o,
-      update_i => trigger_update_0_update_o
-    );
 rst_ps7_0_100M: component pwm_controller_rst_ps7_0_100M_0
      port map (
       aux_reset_in => '1',
@@ -3384,50 +4066,23 @@ system_ila_0: component pwm_controller_system_ila_0_0
       clk => processing_system7_0_FCLK_CLK0,
       probe0(15 downto 0) => cmp_o(15 downto 0),
       probe1(15 downto 0) => counter_o(15 downto 0),
-      probe10(0) => ip2intc_irpt,
-      probe11(15 downto 0) => adcA_o(15 downto 0),
-      probe12(15 downto 0) => adcB_o(15 downto 0),
-      probe13(15 downto 0) => limiter_unsigned_0_data_o(15 downto 0),
-      probe2(0) => over_o,
-      probe3(0) => pwm_o,
-      probe4(0) => trigger_update_0_update_o,
-      probe5(0) => under_o,
-      probe6(0) => updown_o,
-      probe7(0) => trigger_acquisition_0_acq_o,
-      probe8(0) => busy_out,
-      probe9(0) => eoc_out
-    );
-trigger_acquisition_0: component pwm_controller_trigger_acquisition_0_0
-     port map (
-      acq_o => trigger_acquisition_0_acq_o,
-      cmp_i(15 downto 0) => cmp_o(15 downto 0),
-      counter_i(15 downto 0) => counter_o(15 downto 0),
-      en_cmp_i => configmap_pwm_0_acq_cmp_o,
-      en_free_i => configmap_pwm_0_acq_free_o,
-      en_half_i => configmap_pwm_0_acq_hlaf_o,
-      en_max_i => configmap_pwm_0_acq_max_o,
-      en_zero_i => configmap_pwm_0_acq_zero_o,
-      free_i(15 downto 0) => AXIreg_0_reg2(15 downto 0),
-      half_i(15 downto 0) => half_o(15 downto 0),
-      max_i(15 downto 0) => AXIreg_0_reg1(15 downto 0)
-    );
-trigger_update_0: component pwm_controller_trigger_update_0_0
-     port map (
-      counter_i(15 downto 0) => counter_o(15 downto 0),
-      max_i(15 downto 0) => AXIreg_0_reg1(15 downto 0),
-      peak_i => configmap_pwm_0_peak_o,
-      sawtri_i => configmap_pwm_0_sawtri_o,
-      update_o => trigger_update_0_update_o,
-      valley_i => configmap_pwm_0_valley_o
+      probe2(0) => pwm_o,
+      probe3(0) => update_o,
+      probe4(0) => acq_o,
+      probe5(0) => busy_out,
+      probe6(0) => eoc_out,
+      probe7(0) => ip2intc_irpt,
+      probe8(11 downto 0) => adcA(11 downto 0),
+      probe9(15 downto 0) => dsp_o(15 downto 0)
     );
 xadc_wiz_0: component pwm_controller_xadc_wiz_0_1
      port map (
       alarm_out => NLW_xadc_wiz_0_alarm_out_UNCONNECTED,
       busy_out => busy_out,
       channel_out(4 downto 0) => NLW_xadc_wiz_0_channel_out_UNCONNECTED(4 downto 0),
-      convst_in => trigger_acquisition_0_acq_o,
+      convst_in => acq_o,
       eoc_out => eoc_out,
-      eos_out => eos_out,
+      eos_out => NLW_xadc_wiz_0_eos_out_UNCONNECTED,
       ip2intc_irpt => ip2intc_irpt,
       m_axis_tdata(15 downto 0) => xadc_wiz_0_M_AXIS_TDATA(15 downto 0),
       m_axis_tid(4 downto 0) => xadc_wiz_0_M_AXIS_TID(4 downto 0),

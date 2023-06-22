@@ -14,7 +14,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9eca4e84</spirit:value>
+            <spirit:value>9:97a38220</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -25,7 +25,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9eca4e84</spirit:value>
+            <spirit:value>9:97a38220</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -41,11 +41,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jun 16 16:53:03 UTC 2023</spirit:value>
+            <spirit:value>Thu Jun 22 00:12:53 UTC 2023</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9eca4e84</spirit:value>
+            <spirit:value>9:97a38220</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -57,7 +57,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:997637e0</spirit:value>
+            <spirit:value>9:537850fc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -73,11 +73,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jun 16 16:53:03 UTC 2023</spirit:value>
+            <spirit:value>Thu Jun 22 00:12:53 UTC 2023</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:997637e0</spirit:value>
+            <spirit:value>9:537850fc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -91,11 +91,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jun 16 16:54:12 UTC 2023</spirit:value>
+            <spirit:value>Thu Jun 22 00:14:14 UTC 2023</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9eca4e84</spirit:value>
+            <spirit:value>9:97a38220</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -245,6 +245,32 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>dsp_start_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>dsp_bypass_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>data_i</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
@@ -317,6 +343,16 @@
         <spirit:name>EN_SNOOP_BIT</spirit:name>
         <spirit:displayName>En Snoop Bit</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.EN_SNOOP_BIT" spirit:minimum="0" spirit:rangeType="long">10</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>DSP_START_BIT</spirit:name>
+        <spirit:displayName>Dsp Start Bit</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DSP_START_BIT" spirit:minimum="0" spirit:rangeType="long">11</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>DSP_BYPASS_BIT</spirit:name>
+        <spirit:displayName>Dsp Bypass Bit</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DSP_BYPASS_BIT" spirit:minimum="0" spirit:rangeType="long">12</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>DATA_WIDTH</spirit:name>
@@ -435,6 +471,16 @@
       <spirit:name>EN_SNOOP_BIT</spirit:name>
       <spirit:displayName>En Snoop Bit</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.EN_SNOOP_BIT" spirit:minimum="0" spirit:rangeType="long">10</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>DSP_START_BIT</spirit:name>
+      <spirit:displayName>Dsp Start Bit</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.DSP_START_BIT" spirit:minimum="0" spirit:rangeType="long">11</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>DSP_BYPASS_BIT</spirit:name>
+      <spirit:displayName>Dsp Bypass Bit</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.DSP_BYPASS_BIT" spirit:minimum="0" spirit:rangeType="long">12</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>DATA_WIDTH</spirit:name>

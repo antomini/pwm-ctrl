@@ -1,7 +1,7 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Fri Jun 16 18:54:12 2023
+// Date        : Thu Jun 22 02:14:14 2023
 // Host        : Big-Fiok running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/antonio/github_prj/pwm-ctrl/BD/pwm_controller/ip/pwm_controller_configmap_pwm_0_0/pwm_controller_configmap_pwm_0_0_sim_netlist.v
@@ -27,6 +27,8 @@ module pwm_controller_configmap_pwm_0_0
     acq_half_o,
     acq_zero_o,
     en_snoop_o,
+    dsp_start_o,
+    dsp_bypass_o,
     data_i);
   output resetn_o;
   output sawtri_o;
@@ -39,6 +41,8 @@ module pwm_controller_configmap_pwm_0_0
   output acq_half_o;
   output acq_zero_o;
   output en_snoop_o;
+  output dsp_start_o;
+  output dsp_bypass_o;
   input [31:0]data_i;
 
   wire [31:0]data_i;
@@ -49,6 +53,8 @@ module pwm_controller_configmap_pwm_0_0
   assign acq_max_o = data_i[6];
   assign acq_zero_o = data_i[9];
   assign async_o = data_i[2];
+  assign dsp_bypass_o = data_i[12];
+  assign dsp_start_o = data_i[11];
   assign en_snoop_o = data_i[10];
   assign resetn_o = data_i[0];
   assign sawtri_o = data_i[1];

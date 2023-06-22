@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 21 00:37:01 2023" VIVADOVERSION="2022.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jun 22 23:43:45 2023" VIVADOVERSION="2022.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="bd_0def" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -49,34 +49,14 @@
         <CONNECTION INSTANCE="ila_lib" PORT="probe7"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe8">
+    <PORT DIR="I" LEFT="11" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe8">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_lib" PORT="probe8"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="0" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe9">
+    <PORT DIR="I" LEFT="15" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe9">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_lib" PORT="probe9"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="0" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe10">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="ila_lib" PORT="probe10"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="15" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe11">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="ila_lib" PORT="probe11"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="15" NAME="probe12" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe12">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="ila_lib" PORT="probe12"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="15" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe13">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="ila_lib" PORT="probe13"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -104,8 +84,8 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="14"/>
-        <PARAMETER NAME="C_DATA_DEPTH" VALUE="32768"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="10"/>
+        <PARAMETER NAME="C_DATA_DEPTH" VALUE="65536"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2022"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
         <PARAMETER NAME="C_BUILD_REVISION" VALUE="0"/>
@@ -121,7 +101,7 @@
         <PARAMETER NAME="C_TRIGIN_EN" VALUE="0"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TDEST_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_SLOT_0_AXIS_TID_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_SLOT_0_AXIS_TID_WIDTH" VALUE="12"/>
         <PARAMETER NAME="C_SLOT_0_AXI_ID_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_ARUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_RUSER_WIDTH" VALUE="1"/>
@@ -136,12 +116,12 @@
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="12"/>
+        <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="16"/>
         <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="16"/>
-        <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="16"/>
-        <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE14_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE15_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE16_WIDTH" VALUE="1"/>
@@ -3269,34 +3249,14 @@
             <CONNECTION INSTANCE="External_Ports" PORT="probe7"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe8">
+        <PORT DIR="I" LEFT="11" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe8">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="probe8"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe9">
+        <PORT DIR="I" LEFT="15" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe9">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="probe9"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe10">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="probe10"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe11">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="probe11"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe12" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe12">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="probe12"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe13">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="probe13"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

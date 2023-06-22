@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "pwm_controller_pwm_comparator_0_0",
-    "cell_name": "pwm_comparator_0",
+    "cell_name": "DPWM/pwm_comparator_0",
     "component_reference": "xilinx.com:module_ref:pwm_comparator:1.0",
     "ip_revision": "1",
     "gen_directory": ".",
